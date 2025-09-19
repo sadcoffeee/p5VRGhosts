@@ -10,6 +10,5 @@ public class UpdateControllerWithInput : MonoBehaviour
     void Update()
     {
         triggerPressed = triggerPulled.action.ReadValue<float>();
-        Debug.Log(triggerPressed);
     }
 }
