@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &329380335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdaf63c696ffb24899be0540a39d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endMaterial: {fileID: 0}
+  endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &904375222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdaf63c696ffb24899be0540a39d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endMaterial: {fileID: 0}
+  endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &1151524836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,7 +1553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdaf63c696ffb24899be0540a39d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endMaterial: {fileID: 0}
+  endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &1506001762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdaf63c696ffb24899be0540a39d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endMaterial: {fileID: 0}
+  endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &1558687102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdaf63c696ffb24899be0540a39d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endMaterial: {fileID: 0}
+  endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &1570135504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,7 +2154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdaf63c696ffb24899be0540a39d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endMaterial: {fileID: 0}
+  endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &1662163884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2764,6 +2771,7 @@ GameObject:
   - component: {fileID: 1929601677}
   - component: {fileID: 1929601676}
   - component: {fileID: 1929601675}
+  - component: {fileID: 1929601678}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Furniture
@@ -2861,6 +2869,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929601673}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1929601678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929601673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdaf63c696ffb24899be0540a39d871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
+  isPossessed: 0
 --- !u!1 &2136194215
 GameObject:
   m_ObjectHideFlags: 0
