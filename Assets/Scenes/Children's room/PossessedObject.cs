@@ -4,13 +4,15 @@ public class PossessedObject : MonoBehaviour
 {
     private Renderer currentObject;
     public Material endMaterial;
-    private bool isPossessed = false;
+    public bool isPossessed = false;
     private GameObject ghostFace;
+
 
     private void Start()
     {
         currentObject = GetComponent<Renderer>();
         ghostFace = transform.GetChild(0).gameObject;
+        ghostFace.SetActive(false);
     }
 
     private void Update()

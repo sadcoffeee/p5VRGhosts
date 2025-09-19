@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class FlyTowardsGhost : MonoBehaviour
 {
-    public string targetTag = "Couch";
     public float speed = 5f;
     public float arriveDistance = 0.1f; //rammer couch
     public float delay = 3f; //test timer før vi flyver mod couch
     public GameObject Ghost;
+    int targetChosen;
+    private PossessedObject possessed;
 
     private Transform target;
     private HoverGhost hoverScript; //så vi kan finde hoverghost scriptet de kan snakke sammen
@@ -16,14 +17,14 @@ public class FlyTowardsGhost : MonoBehaviour
 
     void Start()
     {
-        GameObject couch = GameObject.FindGameObjectWithTag(targetTag);
-        if (couch != null)
-        {
-            target = couch.transform;
-        }
+        GameObject[] furniture = GameObject.FindGameObjectsWithTag("Furniture");
+        targetChosen = Random.Range(0, furniture.Length);
+        target = furniture[targetChosen].transform;
 
         //vi henter hoverscriptet nu
         hoverScript = GetComponent<HoverGhost>();
+        possessed = target.GetComponent<PossessedObject>();
+
     }
     void Update()
 
@@ -49,6 +50,7 @@ public class FlyTowardsGhost : MonoBehaviour
         //laver inactive når arrived så vi kan active igen bagefter
         if (Vector3.Distance( transform.position, target.position ) <= arriveDistance)
         {
+            possessed.isPossessed = true;
             Ghost.SetActive(false); 
             //hoverScript.enabled = true; //genaktiver hover
             isFlying = false;
