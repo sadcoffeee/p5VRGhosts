@@ -8,63 +8,78 @@ public class FlyTowardsGhost : MonoBehaviour
     public GameObject Ghost;
     int targetChosen;
     private PossessedObject possessed;
-
     private Transform target;
     private HoverGhost hoverScript; //så vi kan finde hoverghost scriptet de kan snakke sammen
+    public enum GhostState
+    {
+        Hovering,
+        FlyingTowardsObject,
+        Possessing
 
-    private bool isFlying = false;
+    };
+
     private float timer = 0f;
+    public GhostState currentState = GhostState.Hovering;
 
     void Start()
     {
-        GameObject[] furniture = GameObject.FindGameObjectsWithTag("Furniture");
-        targetChosen = Random.Range(0, furniture.Length);
-        target = furniture[targetChosen].transform;
-
         //vi henter hoverscriptet nu
         hoverScript = GetComponent<HoverGhost>();
-        possessed = target.GetComponent<PossessedObject>();
-
     }
+
     void Update()
-
     {
-        if (!isFlying)
+        switch (currentState)
         {
-            timer += Time.deltaTime;
-            if (timer >= delay)
-            {
+            case GhostState.Hovering:
+                hoverScript.enabled = true; // keep hover active
+                Ghost.SetActive(true);
+                Hovering();
+                break;
+
+            case GhostState.FlyingTowardsObject:
+                hoverScript.enabled = false; // pause hover while flying
+                if (target == null)
+                {
+                    GameObject[] furniture = GameObject.FindGameObjectsWithTag("Furniture");
+                    targetChosen = Random.Range(0, furniture.Length);
+                    target = furniture[targetChosen].transform;
+                    possessed = target.GetComponent<PossessedObject>();
+                }
                 StartFlying();
-            }
-            return;
+                break;
+
+            case GhostState.Possessing:
+                possessed.SetPossessed(true, this.gameObject);
+                target = null;
+                Ghost.SetActive(false);
+                break;
         }
+        Debug.Log(currentState);
+    }
 
-        if (target == null) return;
+    private void Hovering()
+    {
+        timer += Time.deltaTime;
+        if (timer >= delay)
+        {
+            currentState = GhostState.FlyingTowardsObject;
+            timer = 0;
+        }
+    }
 
+    public void StartFlying()
+    {
         transform.position = Vector3.MoveTowards(
             transform.position,
             target.position,
             Time.deltaTime * speed
             );
-
-        //laver inactive når arrived så vi kan active igen bagefter
-        if (Vector3.Distance( transform.position, target.position ) <= arriveDistance)
+        if (Vector3.Distance(transform.position, target.position) <= arriveDistance)
         {
-            possessed.isPossessed = true;
-            Ghost.SetActive(false); 
-            //hoverScript.enabled = true; //genaktiver hover
-            isFlying = false;
-        }
-        
-    }
-
-    
-    public void StartFlying()
-    {
-        isFlying = true;
-        if (hoverScript != null)
-        {
-            hoverScript.enabled = false; //pause hover mens flyver
+            currentState = GhostState.Possessing;
         }
     }
 }
+    
+
