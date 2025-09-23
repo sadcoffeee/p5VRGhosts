@@ -5458,6 +5458,7 @@ GameObject:
   - component: {fileID: 317631949}
   - component: {fileID: 317631948}
   - component: {fileID: 317631951}
+  - component: {fileID: 317631952}
   m_Layer: 0
   m_Name: Carpet
   m_TagString: Furniture
@@ -5570,6 +5571,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &317631952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317631946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &329380335
 GameObject:
   m_ObjectHideFlags: 0
@@ -6207,6 +6234,7 @@ GameObject:
   - component: {fileID: 807889973}
   - component: {fileID: 807889972}
   - component: {fileID: 807889975}
+  - component: {fileID: 807889976}
   m_Layer: 0
   m_Name: Shelf
   m_TagString: Furniture
@@ -6319,6 +6347,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &807889976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807889970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &815255385
 GameObject:
   m_ObjectHideFlags: 0
@@ -6713,6 +6767,7 @@ GameObject:
   - component: {fileID: 1053207647}
   - component: {fileID: 1053207646}
   - component: {fileID: 1053207649}
+  - component: {fileID: 1053207650}
   m_Layer: 0
   m_Name: Beanbag
   m_TagString: Furniture
@@ -6825,6 +6880,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &1053207650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053207644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &1133636750
 GameObject:
   m_ObjectHideFlags: 0
@@ -7202,6 +7283,7 @@ GameObject:
   - component: {fileID: 1472745205}
   - component: {fileID: 1472745204}
   - component: {fileID: 1472745207}
+  - component: {fileID: 1472745208}
   m_Layer: 0
   m_Name: Desk chair
   m_TagString: Furniture
@@ -7314,6 +7396,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &1472745208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472745202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &1506001762
 GameObject:
   m_ObjectHideFlags: 0
@@ -7448,6 +7556,7 @@ GameObject:
   - component: {fileID: 1552281288}
   - component: {fileID: 1552281287}
   - component: {fileID: 1552281290}
+  - component: {fileID: 1552281291}
   m_Layer: 0
   m_Name: Night drawer
   m_TagString: Furniture
@@ -7560,6 +7669,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &1552281291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552281285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &1558687102
 GameObject:
   m_ObjectHideFlags: 0
@@ -7573,6 +7708,7 @@ GameObject:
   - component: {fileID: 1558687105}
   - component: {fileID: 1558687104}
   - component: {fileID: 1558687107}
+  - component: {fileID: 1558687108}
   m_Layer: 0
   m_Name: Toy1
   m_TagString: Furniture
@@ -7685,6 +7821,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &1558687108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558687102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &1570135504
 GameObject:
   m_ObjectHideFlags: 0
@@ -8184,6 +8346,7 @@ GameObject:
   - component: {fileID: 1591619301}
   - component: {fileID: 1591619300}
   - component: {fileID: 1591619303}
+  - component: {fileID: 1591619304}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Furniture
@@ -8296,6 +8459,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &1591619304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591619298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &1670549762
 GameObject:
   m_ObjectHideFlags: 0
@@ -9443,6 +9632,7 @@ GameObject:
   - component: {fileID: 1929601676}
   - component: {fileID: 1929601675}
   - component: {fileID: 1929601678}
+  - component: {fileID: 1929601679}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Furniture
@@ -9555,6 +9745,32 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   isPossessed: 0
   ghostOccupying: {fileID: 0}
+--- !u!114 &1929601679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929601673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 18696610-34af-47f8-94a9-b03a295b2ada
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!1 &2136194215
 GameObject:
   m_ObjectHideFlags: 0
