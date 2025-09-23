@@ -1,40 +1,47 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; // Singleton
+    public static GameManager Instance;
 
+    [Header("Spawning Settings")]
+    public GameObject ghostPrefab;
     public int maxGhosts = 6;
+    private int currentMaxGhosts = 1;
+    public float spawnInterval = 5f;
+    public float diffCheckInterval = 10f;
+    public int killsToIncrease = 3;
 
+    [Header("References")]
+    public List<Transform> ghostSpawnPoints;
     public List<PossessedObject> allObjects = new List<PossessedObject>();
     public List<FlyTowardsGhost> activeGhosts = new List<FlyTowardsGhost>();
 
-
     private int ghostsDefeated = 0;
-
+    private int ghostsDefeatedLastCheck = 0;
 
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+
     void Start()
     {
         GameObject[] obj = GameObject.FindGameObjectsWithTag("Furniture");
-
-        foreach (GameObject go in obj) 
+        foreach (GameObject go in obj)
         {
             PossessedObject theObjectInQuestion = go.GetComponent<PossessedObject>();
             allObjects.Add(theObjectInQuestion);
         }
+
+        StartCoroutine(AdjustDifficultyLoop());
+        StartCoroutine(SpawnLoop());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #region ghost management
     public void RegisterGhost(FlyTowardsGhost ghost)
     {
         if (!activeGhosts.Contains(ghost))
@@ -58,6 +65,59 @@ public class GameManager : MonoBehaviour
     {
         ghostsDefeated++;
         UnregisterGhost(ghost);
+        Debug.Log("defeated ghost");
     }
 
+    public bool CanSpawnMoreGhosts()
+    {
+        return activeGhosts.Count < currentMaxGhosts;
+    }
+    #endregion
+
+    #region spawning logic
+    private IEnumerator AdjustDifficultyLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(diffCheckInterval);
+
+            int killsThisInterval = ghostsDefeated - ghostsDefeatedLastCheck;
+            ghostsDefeatedLastCheck = ghostsDefeated;
+
+            if (killsThisInterval >= killsToIncrease && currentMaxGhosts < maxGhosts)
+            {
+                currentMaxGhosts++;
+                Debug.Log($"now allowing {currentMaxGhosts} ghosts at once");
+            }
+        }
+    }
+
+    private IEnumerator SpawnLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnInterval);
+
+            if (CanSpawnMoreGhosts())
+            {
+                SpawnGhost();
+            }
+        }
+    }
+
+    private void SpawnGhost()
+    {
+        if (ghostPrefab == null || ghostSpawnPoints.Count == 0) return;
+
+        Transform spawnPoint = ghostSpawnPoints[Random.Range(0, ghostSpawnPoints.Count)];
+
+        GameObject newGhost = Instantiate(ghostPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        FlyTowardsGhost ghostComponent = newGhost.GetComponent<FlyTowardsGhost>();
+        if (ghostComponent != null)
+        {
+            RegisterGhost(ghostComponent);
+        }
+    }
+    #endregion
 }
