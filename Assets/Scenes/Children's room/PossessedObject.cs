@@ -44,7 +44,7 @@ public class PossessedObject : MonoBehaviour
             ghostOccupying.transform.position = transform.position + transform.forward * 2f;
             ghostOccupying.SetActive(true);
             FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
-            ghostScript.currentState = FlyTowardsGhost.GhostState.Hovering;
+            ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
             ghostOccupying = null;
 
         }

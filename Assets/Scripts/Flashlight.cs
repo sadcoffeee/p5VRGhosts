@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class VRFlashlight : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class VRFlashlight : MonoBehaviour
     public Light flashlight;
     private PossessedObject currentTarget;
     private float hoverTimer = 0f;
+    private HapticImpulsePlayer hapticPlayer;
+
+    private void Start()
+    {
+        hapticPlayer = GetComponent<HapticImpulsePlayer>();
+    }
 
     private void Update()
     {
@@ -29,6 +36,7 @@ public class VRFlashlight : MonoBehaviour
                 if (possessed.isPossessed)
                 {
                     hoverTimer += Time.deltaTime;
+                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
                     if (hoverTimer >= unpossessTime)
                     {
                         possessed.SetPossessed(false);
