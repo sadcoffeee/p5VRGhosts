@@ -1,11 +1,18 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class PossessedObject : MonoBehaviour
 {
     private Renderer currentObject;
     public Material endMaterial;
+    public Material DeadMaterial;
+
+
     public bool isPossessed = false;
+
+
     private GameObject ghostFace;
     private Material startMaterial;
     public GameObject ghostOccupying;
@@ -17,6 +24,13 @@ public class PossessedObject : MonoBehaviour
     private float rumbleTime = 0.5f;
     private HapticImpulsePlayer hapticPlayer;
 
+    //HealtBar
+    public Canvas healtbarCanvas;
+    public Image lifeImage;
+    public float possessionDuration = 5f;
+    private float currentTimer;
+    
+
     private void Start()
     {
         currentObject = GetComponent<Renderer>();
@@ -26,15 +40,36 @@ public class PossessedObject : MonoBehaviour
         originalPosition = transform.localPosition;
         originalRotation = transform.localRotation;
         hapticPlayer = GetComponent<HapticImpulsePlayer>();
+
+        //Initialize timer
+        currentTimer = possessionDuration;
     }
 
     private void Update()
     {
+        //if the furniture is possesed reduce the timer
         if (isPossessed)
         {
+            Debug.Log("jeg er possessed");
+            healtbarCanvas.gameObject.SetActive(true);
+
             currentObject.material = endMaterial;
             ghostFace.SetActive(true);
             PossessRumble();
+
+            //Decrease the timer
+            currentTimer -= Time.deltaTime;
+            //Convert time left into a value between 0 and 1 for the image fill for UI
+            float normalizedTime = currentTimer / possessionDuration;
+            lifeImage.fillAmount = normalizedTime;
+
+            if (currentTimer < 0)
+            {
+                Debug.Log("i am dead");
+                FurnitureDead();
+
+            }
+            
         }
     }
     public void SetPossessed(bool value, GameObject ghost = null)
@@ -46,6 +81,14 @@ public class PossessedObject : MonoBehaviour
             ghostOccupying = ghost;
             currentObject.material = endMaterial;
             ghostFace.SetActive(true);
+
+            // Reset timer to full duration
+            currentTimer = possessionDuration;
+
+            // Reset UI fill
+            if (lifeImage != null)
+                lifeImage.fillAmount = 1f;
+
         }
         else
         {
@@ -59,6 +102,11 @@ public class PossessedObject : MonoBehaviour
             FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
             ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
             ghostOccupying = null;
+
+            // Reset everything timer an fill amount
+            currentTimer = possessionDuration;
+            lifeImage.fillAmount = 1f;
+            healtbarCanvas.gameObject.SetActive(false);
 
         }
     }
@@ -94,5 +142,11 @@ public class PossessedObject : MonoBehaviour
             transform.localRotation = originalRotation;
         }
     }
+
+    private void FurnitureDead()
+    {
+        currentObject.material = DeadMaterial;
+    }
+
 }
 
