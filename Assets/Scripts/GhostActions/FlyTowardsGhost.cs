@@ -85,7 +85,6 @@ public class FlyTowardsGhost : MonoBehaviour
                 break;
 
         }
-        Debug.Log(currentState);
     }
 
     private void Hovering()
