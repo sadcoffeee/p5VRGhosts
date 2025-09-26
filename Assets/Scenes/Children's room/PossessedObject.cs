@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.XR.Haptics;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
@@ -11,7 +12,7 @@ public class PossessedObject : MonoBehaviour
 
 
     public bool isPossessed = false;
-
+    public bool isFurnitureBroken = false;
 
     private GameObject ghostFace;
     private Material startMaterial;
@@ -29,7 +30,7 @@ public class PossessedObject : MonoBehaviour
     public Image lifeImage;
     public float possessionDuration = 5f;
     private float currentTimer;
-    
+
 
     private void Start()
     {
@@ -146,6 +147,17 @@ public class PossessedObject : MonoBehaviour
     private void FurnitureDead()
     {
         currentObject.material = DeadMaterial;
+        isFurnitureBroken = true;
+        
+        Debug.Log("jeg er ødelagt");
+
+        //den kalder ikke det her rigtigt
+        FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
+        ghostScript.currentState = FlyTowardsGhost.GhostState.Hovering;
+
+        isPossessed = false;
+
+
     }
 
 }

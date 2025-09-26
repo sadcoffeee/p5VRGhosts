@@ -5576,6 +5576,7 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 0}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
@@ -6364,6 +6365,7 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 0}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
@@ -6943,6 +6945,7 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 0}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
@@ -7615,6 +7618,7 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 0}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
@@ -7926,6 +7930,7 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 0}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
@@ -8083,10 +8088,11 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 2100000, guid: 3ebae908326212d4ca00ef7a5f990756, type: 2}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   lifeImage: {fileID: 1051417331}
-  possessionDuration: 10
+  possessionDuration: 5
 --- !u!114 &1558687108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8725,6 +8731,7 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 0}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
@@ -9900,6 +9907,7 @@ MonoBehaviour:
   endMaterial: {fileID: 2100000, guid: 7bdec0b46ba9b134abe03733f3e7df64, type: 2}
   DeadMaterial: {fileID: 0}
   isPossessed: 0
+  isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}

@@ -21,7 +21,8 @@ public class FlyTowardsGhost : MonoBehaviour
         Possessing,
         FlyToMiddle,
         Stunned,
-        Grabbed
+        Grabbed,
+        DestroyedFurniture
     };
 
     private float hoverTimer = 0f;
@@ -38,6 +39,8 @@ public class FlyTowardsGhost : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(currentState);
+
         switch (currentState)
         {
             case GhostState.FlyToMiddle:
@@ -68,6 +71,12 @@ public class FlyTowardsGhost : MonoBehaviour
                 possessed.SetPossessed(true, this.gameObject);
                 target = null;
                 Ghost.SetActive(false);
+                break;
+
+            case GhostState.DestroyedFurniture:
+                Ghost.SetActive(true);
+                currentState = GhostState.Hovering;
+                Debug.Log("DU KOM HER TIL");
                 break;
 
             case GhostState.Stunned:
