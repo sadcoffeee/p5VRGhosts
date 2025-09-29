@@ -39,7 +39,7 @@ public class FlyTowardsGhost : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
 
         switch (currentState)
         {
@@ -76,7 +76,7 @@ public class FlyTowardsGhost : MonoBehaviour
             case GhostState.DestroyedFurniture:
                 Ghost.SetActive(true);
                 currentState = GhostState.Hovering;
-                Debug.Log("DU KOM HER TIL");
+                //Debug.Log("DU KOM HER TIL");
                 break;
 
             case GhostState.Stunned:

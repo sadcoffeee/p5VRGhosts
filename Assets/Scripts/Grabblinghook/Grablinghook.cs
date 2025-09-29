@@ -32,6 +32,7 @@ public class Grablinghook : MonoBehaviour
     private bool grabbing = false;
     private Vector3 hookTarget = Vector3.zero;
 
+
     void Update()
     {
         float trgRightValue = trgRight.action.ReadValue<float>();
@@ -39,11 +40,21 @@ public class Grablinghook : MonoBehaviour
         switch (currState)
         {
             case GrabblingState.Idle:
-                if (trgRightValue != 0)
+                if (trgRightValue != 0 && !grabbing)
                 {
                     hand.transform.SetParent(null);
                     if (hookTarget == Vector3.zero) hookTarget = SetTarget();
                     currState = GrabblingState.Shooting;
+                }
+
+                if (grabbing)
+                {
+                    if (trgRightValue == 0)
+                    {
+                        grabbed.transform.SetParent(null);
+                        if (grabbed.CompareTag("Ghost")) Destroy(grabbed);
+                        grabbing = false;
+                    }
                 }
 
                 break;
@@ -52,8 +63,25 @@ public class Grablinghook : MonoBehaviour
                 float outStep = flySpeed * Time.deltaTime;
                 hand.transform.position = Vector3.MoveTowards(hand.transform.position, hookTarget, outStep);
 
-                if (Vector3.Distance(hand.transform.position, hookTarget) < 0.1f)
+                if (Vector3.Distance(hand.transform.position, hookTarget) < 0.01f)
                 {
+                    Grablinghand grabHand = hand.GetComponent<Grablinghand>();
+                    GameObject touched = grabHand.HandTouched();
+                    if (touched != null)
+                    {
+                        if (touched.CompareTag("Ghost"))
+                        {
+                            Debug.Log(touched.name);
+                            FlyTowardsGhost ghostScript = touched.GetComponent<FlyTowardsGhost>();
+                            if (ghostScript.currentState == FlyTowardsGhost.GhostState.Stunned)
+                            {
+                                grabbed = touched;
+
+                                grabbed.transform.SetParent(hand.transform);
+                                grabbing = true;
+                            }
+                        }
+                    }
                     hand.transform.position = hookTarget;
                     hookTarget = Vector3.zero;
                     currState = GrabblingState.Returning;

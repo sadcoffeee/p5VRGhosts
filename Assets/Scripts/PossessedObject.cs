@@ -51,7 +51,7 @@ public class PossessedObject : MonoBehaviour
         //if the furniture is possesed reduce the timer
         if (isPossessed)
         {
-            Debug.Log("jeg er possessed");
+            //Debug.Log("jeg er possessed");
             healtbarCanvas.gameObject.SetActive(true);
 
             currentObject.material = endMaterial;
@@ -66,7 +66,7 @@ public class PossessedObject : MonoBehaviour
 
             if (currentTimer < 0)
             {
-                Debug.Log("i am dead");
+                //Debug.Log("i am dead");
                 FurnitureDead();
 
             }
@@ -94,15 +94,28 @@ public class PossessedObject : MonoBehaviour
         else
         {
             ghostFace.SetActive(false);
-            currentObject.material = startMaterial;
+            if (!isFurnitureBroken)
+            {
+                currentObject.material = startMaterial;
+            }
+            
             transform.localPosition = originalPosition;
             transform.localRotation = originalRotation;
             //Reactivate ghost and release it from furniture
-            ghostOccupying.transform.position = transform.position + transform.forward * 2f;
+            ghostOccupying.transform.position = transform.position + transform.up * 2f;
             ghostOccupying.SetActive(true);
             FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
-            ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
-            ghostOccupying = null;
+            if(!isFurnitureBroken)
+            {
+                currentObject.material = startMaterial;
+                ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
+            }
+            else
+            {
+                ghostScript.currentState = FlyTowardsGhost.GhostState.Hovering;
+            }
+
+                ghostOccupying = null;
 
             // Reset everything timer an fill amount
             currentTimer = possessionDuration;
@@ -149,13 +162,9 @@ public class PossessedObject : MonoBehaviour
         currentObject.material = DeadMaterial;
         isFurnitureBroken = true;
         
-        Debug.Log("jeg er ødelagt");
+        //Debug.Log("jeg er ødelagt");
 
-        //den kalder ikke det her rigtigt
-        FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
-        ghostScript.currentState = FlyTowardsGhost.GhostState.Hovering;
-
-        isPossessed = false;
+        SetPossessed(false, ghostOccupying);
 
 
     }

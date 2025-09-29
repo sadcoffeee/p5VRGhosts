@@ -6125,9 +6125,11 @@ GameObject:
   - component: {fileID: 610879519}
   - component: {fileID: 610879518}
   - component: {fileID: 610879517}
-  m_Layer: 0
+  - component: {fileID: 610879520}
+  - component: {fileID: 610879521}
+  m_Layer: 2
   m_Name: Hand
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6171,8 +6173,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2, y: 1.2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0.6}
 --- !u!23 &610879518
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6226,6 +6228,45 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610879515}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &610879520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610879515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a2f462e35c9c4bb106f7884e756dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &610879521
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610879515}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &613696891
 GameObject:
   m_ObjectHideFlags: 0
@@ -6361,7 +6402,7 @@ GameObject:
   - component: {fileID: 665853018}
   - component: {fileID: 665853017}
   - component: {fileID: 665853016}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6663,7 +6704,7 @@ GameObject:
   - component: {fileID: 781189371}
   - component: {fileID: 781189370}
   - component: {fileID: 781189369}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pinky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8764,7 +8805,7 @@ GameObject:
   - component: {fileID: 1540031029}
   - component: {fileID: 1540031028}
   - component: {fileID: 1540031027}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: beepFinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11458,7 +11499,7 @@ GameObject:
   - component: {fileID: 2026939324}
   - component: {fileID: 2026939323}
   - component: {fileID: 2026939322}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ringfinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11566,7 +11607,7 @@ GameObject:
   - component: {fileID: 2105825151}
   - component: {fileID: 2105825150}
   - component: {fileID: 2105825149}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PointingFinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
