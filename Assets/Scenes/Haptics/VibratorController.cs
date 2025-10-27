@@ -7,7 +7,7 @@ public class VibratorController : MonoBehaviour
     public string portName = "COM7";
     SerialPort arduinoPort;
 
-    int vibrationVal = 5;
+    int vibrationVal = 55;
 
     float timerOn;
     float timerOff;
@@ -37,8 +37,8 @@ public class VibratorController : MonoBehaviour
 
             if (increase)
             {
-                if (vibrationVal <= 255) vibrationVal += 25;
-                if (vibrationVal > 255) vibrationVal = 5;
+                if (vibrationVal <= 255) vibrationVal += 50;
+                if (vibrationVal > 255) vibrationVal = 55;
                 increase = false;
             }
 
