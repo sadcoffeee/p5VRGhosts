@@ -31,6 +31,7 @@ public class VibratorController : MonoBehaviour
 
     void Update()
     {
+        
         if (on)
         {
             timerOff = 0.5f;
