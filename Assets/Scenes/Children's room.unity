@@ -13948,6 +13948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_Ball_03
       objectReference: {fileID: 0}
+    - target: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_TagString
+      value: Grabbable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13955,6 +13959,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1232143751}
+    - targetCorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1232143755}
   m_SourcePrefab: {fileID: 100100000, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
 --- !u!4 &1232143749 stripped
 Transform:
@@ -13993,6 +14000,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1232143755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232143750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdOffset: {x: 0, y: 0, z: 1}
+  holdRotation: {x: 0, y: 0, z: 0}
 --- !u!224 &1241120912 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}

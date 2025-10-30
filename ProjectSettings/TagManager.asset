@@ -9,6 +9,7 @@ TagManager:
   - Couch
   - Furniture
   - Hand
+  - Grabbable
   layers:
   - Default
   - TransparentFX

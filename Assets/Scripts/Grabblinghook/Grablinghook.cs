@@ -31,6 +31,9 @@ public class Grablinghook : MonoBehaviour
     [HideInInspector] public GameObject grabbed;
     private bool grabbing = false;
     private Vector3 hookTarget = Vector3.zero;
+    private Vector3 lastHandPos = Vector3.zero;
+    private Vector3 handVelocity;
+
 
 
     void Update()
@@ -52,7 +55,25 @@ public class Grablinghook : MonoBehaviour
                     if (trgRightValue == 0)
                     {
                         grabbed.transform.SetParent(null);
-                        if (grabbed.CompareTag("Ghost")) Destroy(grabbed);
+
+                        if (grabbed.CompareTag("Ghost"))
+                        {
+                            Destroy(grabbed);
+                        }
+                        else if (grabbed.CompareTag("Grabbable"))
+                        {
+                            Rigidbody rb = grabbed.GetComponent<Rigidbody>();
+                            if (rb != null)
+                            {
+                                rb.isKinematic = false;
+
+                                // Apply throw force based on hand velocity
+                                handVelocity = (hand.transform.position - lastHandPos) / Time.deltaTime;
+                                rb.AddForce(handVelocity * 0.8f, ForceMode.VelocityChange);
+                            }
+                        }
+
+                        grabbed = null;
                         grabbing = false;
                     }
                 }
@@ -71,17 +92,40 @@ public class Grablinghook : MonoBehaviour
                     {
                         if (touched.CompareTag("Ghost"))
                         {
-                            Debug.Log(touched.name);
                             FlyTowardsGhost ghostScript = touched.GetComponent<FlyTowardsGhost>();
                             if (ghostScript.currentState == FlyTowardsGhost.GhostState.Stunned)
                             {
                                 grabbed = touched;
-
                                 grabbed.transform.SetParent(hand.transform);
                                 grabbing = true;
                             }
                         }
+                        else if (touched.CompareTag("Grabbable"))
+                        {
+                            grabbed = touched;
+
+                            grabbed.transform.SetParent(hand.transform);
+
+                            var grabComp = grabbed.GetComponent<Grabbable>();
+                            if (grabComp != null)
+                            {
+                                grabbed.transform.localPosition = grabComp.holdOffset;
+                                grabbed.transform.localEulerAngles = grabComp.holdRotation;
+                            }
+                            else
+                            {
+                                grabbed.transform.localPosition = Vector3.zero;
+                                grabbed.transform.localRotation = Quaternion.identity;
+                            }
+
+                            Rigidbody rb = grabbed.GetComponent<Rigidbody>();
+                            if (rb != null)
+                                rb.isKinematic = true;
+
+                            grabbing = true;
+                        }
                     }
+
                     hand.transform.position = hookTarget;
                     hookTarget = Vector3.zero;
                     currState = GrabblingState.Returning;
@@ -110,6 +154,9 @@ public class Grablinghook : MonoBehaviour
 
                 break;
         }
+
+        handVelocity = (hand.transform.position - lastHandPos) / Time.deltaTime;
+        lastHandPos = hand.transform.position;
     }
 
     private Vector3 SetTarget()
