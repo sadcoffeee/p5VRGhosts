@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.ComponentModel.Design.Serialization;
 using System.IO.Ports;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class VibratorController : MonoBehaviour
 {
     public string portName = "COM7";
     SerialPort arduinoPort;
+    float connectionCheckTimer;
+    float connectionCheckInterval = 0.5f;
 
     int vibrationVal = 55;
 
@@ -16,6 +19,8 @@ public class VibratorController : MonoBehaviour
 
     void Start()
     {
+        connectionCheckTimer = connectionCheckInterval;
+
         arduinoPort = new SerialPort(portName, 115200);
         arduinoPort.ReadTimeout = 50;
         arduinoPort.Open();
@@ -25,13 +30,44 @@ public class VibratorController : MonoBehaviour
         else
             Debug.LogError("Failed to open serial port");
 
-        timerOn = 2.0f;
-        timerOff = 0.5f;
+        timerOn = 3f;
+        timerOff = 3f;
     }
 
     void Update()
     {
-        
+        CheckConnection(); //checks connection to arduino, should not be removed
+
+
+        //just something for testing, should be removed
+        if (on)
+        {
+            timerOff = 3f;
+
+            SendArduinoSignal("PC", 0);
+            SendArduinoSignal("PL", 255);
+            Debug.Log("Play arm");
+
+            timerOn -= 1 * Time.deltaTime;
+            if (timerOn <= 0) on = false;
+            SendArduinoSignal("TN");
+            increase = false;
+        }
+        else if (!on)
+        {
+            timerOn = 3f;
+
+            SendArduinoSignal("PL", 0);
+            SendArduinoSignal("PC", 255);
+            SendArduinoSignal("TF");
+            Debug.Log("Procedure arm");
+
+            timerOff -= 1 * Time.deltaTime;
+            if (timerOff <= 0) on = true;
+
+        }
+
+        /*
         if (on)
         {
             timerOff = 0.5f;
@@ -57,20 +93,50 @@ public class VibratorController : MonoBehaviour
 
             timerOff -= 1 * Time.deltaTime;
             if (timerOff <= 0) on = true;
-        }
+        }*/
 
         //Debug.Log(vibrationVal);
         //Debug.Log(on);
     }
 
-    void SendVibration(int intensity)
+    // function for sending messages to the arduino
+    void SendArduinoSignal(string code, int intensity = -1)
     {
+        /* Code tells the arduino what it should manipulate and intensity (0-255) is the value for the vibrators
+         * Codes:
+            PC      = procedure arm 
+            PL      = play arm
+            TN      = Timing LED on
+            TF      = Timing LED off
+         * Examples
+            SendArduinoSignal("PL", 0);     sets play arm vibrators to 0
+            SendArduinoSignal("PC", 200);   sets procedure arm to 200
+            SendArduinoSignal("TF");        turns off timing LED
+         * Error LED will blink rapidley for 1 sec if it recives a faulty message
+        */
+
         if (arduinoPort != null && arduinoPort.IsOpen)
         {
-            Debug.Log("Sending signal");
-            string message = intensity.ToString() + "\n";
+            //Debug.Log("Sending signal");
+            string message = (intensity >= 0) ? code + intensity.ToString() + "\n" : code + "\n";
+            //Debug.Log(message);
             arduinoPort.WriteLine(message);
             arduinoPort.BaseStream.Flush();
+        }
+    }
+
+    //function that checks the connection, error LED will blink if no connection.
+    void CheckConnection()
+    {
+        connectionCheckTimer -= 1* Time.deltaTime;
+        if (connectionCheckTimer <= 0)
+        {
+            string message = "connectionCheck" + "\n";
+            //Debug.Log(message);
+            arduinoPort.WriteLine(message);
+            arduinoPort.BaseStream.Flush();
+
+            connectionCheckTimer = connectionCheckInterval;
         }
     }
 
