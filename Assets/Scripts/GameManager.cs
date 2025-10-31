@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour
     public float diffCheckInterval = 10f;
     public int killsToIncrease = 3;
 
+    [Header("Jar Ghost Settings")] //added this
+    public GameObject jarGhostPrefab; //the small ghost prefab i made
+    public Transform[] jarCorners;    // the 8 corner transforms defining the jar box
+    public int maxJarGhosts = 10;
+    public int currentJarGhosts = 0;
+
+
     [Header("References")]
     public List<Transform> ghostSpawnPoints;
     public List<PossessedObject> allObjects = new List<PossessedObject>();
@@ -66,6 +73,8 @@ public class GameManager : MonoBehaviour
         ghostsDefeated++;
         UnregisterGhost(ghost);
         Debug.Log("defeated ghost");
+
+        SpawnJarGhost(); //spawn jar ghost everytime ghost defeated
     }
 
     public bool CanSpawnMoreGhosts()
@@ -120,4 +129,54 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    //added this
+    #region Jar Ghost Logic 
+    private Vector3 GetRandomJarPosition()
+    {
+        if (jarCorners == null || jarCorners.Length < 8)
+        {
+            Debug.Log("Jar corner fail");
+            return Vector3.zero;
+        }
+
+        Vector3 min = jarCorners[0].position;
+        Vector3 max = jarCorners[0].position;
+
+        foreach (Transform corner in jarCorners)
+        {
+            Vector3 pos = corner.position;
+            min = Vector3.Min(min, pos);
+            max = Vector3.Max(max, pos);
+        }
+
+        float x = Random.Range(min.x, max.x);
+        float y = Random.Range(min.y, max.y);
+        float z = Random.Range(min.z, max.z);
+
+        return new Vector3(x, y, z);
+
+    }
+
+    public void SpawnJarGhost()
+    {
+
+        //LIMIT
+        if (currentJarGhosts >= maxJarGhosts) { return; }
+
+        if (jarGhostPrefab == null) return;
+
+        Vector3 spawnPos = GetRandomJarPosition();
+        GameObject newJarGhost = Instantiate(jarGhostPrefab, spawnPos, Quaternion.identity);
+
+        currentJarGhosts++; // count visually spawned
+
+        FlyTowardsGhost ghostComponent = newJarGhost.GetComponent<FlyTowardsGhost>();
+        if (ghostComponent != null)
+        {
+            RegisterGhost(ghostComponent);
+        }
+    }
+    #endregion
+
 }
