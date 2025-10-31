@@ -37,37 +37,9 @@ public class VibratorController : MonoBehaviour
     void Update()
     {
         CheckConnection(); //checks connection to arduino, should not be removed
+        SendArduinoSignal("PC", 255);
 
-
-        //just something for testing, should be removed
-        if (on)
-        {
-            timerOff = 3f;
-
-            SendArduinoSignal("PC", 0);
-            SendArduinoSignal("PL", 255);
-            Debug.Log("Play arm");
-
-            timerOn -= 1 * Time.deltaTime;
-            if (timerOn <= 0) on = false;
-            SendArduinoSignal("TN");
-            increase = false;
-        }
-        else if (!on)
-        {
-            timerOn = 3f;
-
-            SendArduinoSignal("PL", 0);
-            SendArduinoSignal("PC", 255);
-            SendArduinoSignal("TF");
-            Debug.Log("Procedure arm");
-
-            timerOff -= 1 * Time.deltaTime;
-            if (timerOff <= 0) on = true;
-
-        }
-
-        /*
+        /* Just some test stuff
         if (on)
         {
             timerOff = 0.5f;
