@@ -90,6 +90,7 @@ public class PossessedObject : MonoBehaviour
             if (lifeImage != null)
                 lifeImage.fillAmount = 1f;
 
+            FindObjectOfType<AudioManager>().PlayAudio("PossessFurniture");
         }
         else
         {
