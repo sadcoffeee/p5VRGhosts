@@ -30,6 +30,7 @@ public class PossessedObject : MonoBehaviour
     public Image lifeImage;
     public float possessionDuration = 5f;
     private float currentTimer;
+    public GameObject Hand;
 
 
     private void Start()
@@ -68,7 +69,6 @@ public class PossessedObject : MonoBehaviour
             {
                 //Debug.Log("i am dead");
                 FurnitureDead();
-
             }
             
         }
@@ -104,6 +104,7 @@ public class PossessedObject : MonoBehaviour
             transform.localRotation = originalRotation;
             //Reactivate ghost and release it from furniture
             ghostOccupying.transform.position = transform.position + transform.up * 2f;
+            ghostOccupying.transform.LookAt(Hand.transform);
             ghostOccupying.SetActive(true);
             FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
             if(!isFurnitureBroken)
