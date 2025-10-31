@@ -34,6 +34,8 @@ public class Grablinghook : MonoBehaviour
     private Vector3 lastHandPos = Vector3.zero;
     private Vector3 handVelocity;
 
+    private float originalGrabDistance = 0f; //this
+
 
 
     void Update()
@@ -98,6 +100,8 @@ public class Grablinghook : MonoBehaviour
                                 grabbed = touched;
                                 grabbed.transform.SetParent(hand.transform);
                                 grabbing = true;
+
+                                originalGrabDistance = Vector3.Distance(hand.transform.position, this.transform.position); //this
                             }
                         }
                         else if (touched.CompareTag("Grabbable"))
@@ -141,6 +145,18 @@ public class Grablinghook : MonoBehaviour
             case GrabblingState.Returning:
                 float inStep = returnSpeed * Time.deltaTime;
                 hand.transform.position = Vector3.MoveTowards(hand.transform.position, this.transform.position, inStep);
+
+                //added this for shrinking when pulled in and grabbed :3
+                if (grabbing && grabbed != null && grabbed.CompareTag("Ghost"))
+                {
+                    float currentDist = Vector3.Distance(hand.transform.position, this.transform.position);
+                    float ratio = Mathf.Clamp01(currentDist / Mathf.Max(originalGrabDistance, 0.01f));
+                    // shrinks gradually as it gets closer
+                    float smoothScale = Mathf.Lerp(1f, 0f, ratio);
+                    grabbed.transform.localScale = Vector3.one * smoothScale;
+                    grabbed.transform.position = hand.transform.position;
+
+                }
 
                 hand.transform.rotation = Quaternion.Slerp(hand.transform.rotation, this.transform.rotation, rotationSpeed * Time.deltaTime);
 
