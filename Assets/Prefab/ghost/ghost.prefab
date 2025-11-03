@@ -969,13 +969,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf90bc2872e08d743ac4747915211b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   arriveDistance: 0.1
   hoverDelay: 3
   stunDelay: 5
   Ghost: {fileID: 7901639083215149929}
   grabbable: 0
-  currentState: 3
+  currentState: 0
 --- !u!136 &3167758943284281632
 CapsuleCollider:
   m_ObjectHideFlags: 0

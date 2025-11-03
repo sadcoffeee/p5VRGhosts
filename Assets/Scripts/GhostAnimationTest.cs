@@ -23,47 +23,11 @@ public class GhostAnimationTest : MonoBehaviour
         anim = GetComponent<Animator>();
         ghostFaceRenderer = GetComponentsInChildren<Renderer>(true).FirstOrDefault(r => r.name == "ghostface");
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer = Time.time;
-        if (timer > 3 && timer < 6)
-        {
-            anim.Play("Shock");
-            ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[1];
-            ExclamationMarks.SetActive(true);
-            Stars.SetActive(false);
-
-        }
-        else if (timer > 6 && timer < 9) 
-        {
-            {
-                anim.Play("Dizzy");
-                ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[2];
-                Stars.SetActive(true);
-                ExclamationMarks.SetActive(false);
-                hoverGhostScript.enabled = false;
-            }
-        }
-        else if (timer > 9 && timer < 12)
-        {
-            anim.Play("Flying");
-            ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[3];
-            Stars.SetActive(false);
-            ExclamationMarks.SetActive(false);
-            hoverGhostScript.enabled = true;
-        }
-        else
-        {
-            anim.Play("Idle");
-            ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[0];
-            Stars.SetActive(false);
-            ExclamationMarks.SetActive(false);
-
-        }
-
+        anim.Play("Idle");
     }
 }
