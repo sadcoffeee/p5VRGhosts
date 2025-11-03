@@ -75,6 +75,7 @@ public class PossessedObject : MonoBehaviour
     }
     public void SetPossessed(bool value, GameObject ghost = null)
     {
+
         isPossessed = value;
 
         if (isPossessed)
@@ -93,7 +94,7 @@ public class PossessedObject : MonoBehaviour
             FindObjectOfType<AudioManager>().PlayAudio("PossessFurniture");
         }
         else
-        {
+        { 
             ghostFace.SetActive(false);
             if (!isFurnitureBroken)
             {
