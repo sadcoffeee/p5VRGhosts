@@ -5,6 +5,7 @@ public class VRFlashlight : MonoBehaviour
 {
     public float range = 100f;
     public float unpossessTime = 3f;
+    public float sphereRadius = 0.4f; //added
     public Light flashlight;
     private PossessedObject currentTarget;
     private float hoverTimer = 0f;
@@ -20,7 +21,7 @@ public class VRFlashlight : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, range))
+        if (Physics.SphereCast(ray, sphereRadius, out hit, range)) //changed tp spherecast and added sphereradius here
         {
             if (hit.collider.CompareTag("Furniture"))
             {
@@ -37,16 +38,12 @@ public class VRFlashlight : MonoBehaviour
                 {
                     hoverTimer += Time.deltaTime;
                     hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
-                    if (hoverTimer >= unpossessTime)
-                    {
-                        possessed.SetPossessed(false);
-                        currentTarget = null;
-                        hoverTimer = 0f;
-                    }
+
+                    possessed.HealFurniture(Time.deltaTime * 3f); //added
                 }
             }
 
-            //Debug.DrawRay(transform.position, transform.forward * range, Color.yellow);
+            Debug.DrawRay(transform.position, transform.forward * range, Color.gray);
         }
     }
 }

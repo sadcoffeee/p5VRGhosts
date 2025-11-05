@@ -28,7 +28,7 @@ public class PossessedObject : MonoBehaviour
     //HealtBar
     public Canvas healtbarCanvas;
     public Image lifeImage;
-    public float possessionDuration = 5f;
+    public float possessionDuration = 3f;
     private float currentTimer;
     public GameObject Hand;
     private GhostAnimations anim;
@@ -178,6 +178,25 @@ public class PossessedObject : MonoBehaviour
         SetPossessed(false, ghostOccupying);
 
 
+    }
+
+    public void HealFurniture(float amount) //how much time you want to heal by in one frame.
+    {
+        if (isPossessed) 
+        {
+            currentTimer += amount; //tilføj tiden/livet tilbage
+            currentTimer = Mathf.Clamp(currentTimer, 0f, possessionDuration);
+
+            //opdatere visuel lifebar
+            float normalizeTime = currentTimer / possessionDuration;
+            lifeImage.fillAmount = normalizeTime;
+
+            //release ved fuldt liv
+            if (currentTimer >= possessionDuration) 
+            {
+                SetPossessed(false, ghostOccupying );
+            }
+        }
     }
 
 }
