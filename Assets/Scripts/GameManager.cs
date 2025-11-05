@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public float spawnInterval = 5f;
     public float diffCheckInterval = 10f;
     public int killsToIncrease = 3;
-    private bool tutorialDone = false;
+    public bool tutorialDone = false;
 
     [Header("Jar Ghost Settings")] //added this
     public GameObject jarGhostPrefab; //the small ghost prefab i made

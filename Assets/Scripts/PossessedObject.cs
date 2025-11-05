@@ -31,6 +31,7 @@ public class PossessedObject : MonoBehaviour
     public float possessionDuration = 5f;
     private float currentTimer;
     public GameObject Hand;
+    private GhostAnimations anim;
 
 
     private void Start()
@@ -50,7 +51,7 @@ public class PossessedObject : MonoBehaviour
     private void Update()
     {
         //if the furniture is possesed reduce the timer
-        if (isPossessed)
+        if (isPossessed && GameManager.Instance.tutorialDone)
         {
             //Debug.Log("jeg er possessed");
             healtbarCanvas.gameObject.SetActive(true);
@@ -70,7 +71,12 @@ public class PossessedObject : MonoBehaviour
                 //Debug.Log("i am dead");
                 FurnitureDead();
             }
-            
+        }
+        else if (isPossessed && !GameManager.Instance.tutorialDone)
+        {
+            currentObject.material = endMaterial;
+            ghostFace.SetActive(true);
+            PossessRumble();
         }
     }
     public void SetPossessed(bool value, GameObject ghost = null)
@@ -107,6 +113,8 @@ public class PossessedObject : MonoBehaviour
             ghostOccupying.transform.position = transform.position + transform.up * 2f;
             ghostOccupying.transform.LookAt(Hand.transform);
             ghostOccupying.SetActive(true);
+            anim = ghostOccupying.GetComponent<GhostAnimations>();
+            anim.PlayDizzy();
             FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
             if(!isFurnitureBroken)
             {

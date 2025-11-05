@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 
 
-public class GhostAnimationTest : MonoBehaviour
+public class GhostAnimations : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     private float timer;
@@ -22,12 +22,36 @@ public class GhostAnimationTest : MonoBehaviour
         ExclamationMarks.SetActive(false);
         anim = GetComponent<Animator>();
         ghostFaceRenderer = GetComponentsInChildren<Renderer>(true).FirstOrDefault(r => r.name == "ghostface");
-
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayIdle()
     {
-        anim.Play("Idle");
+        anim.Play("Idle"); 
+        Stars.SetActive(false); 
+        ExclamationMarks.SetActive(false);
+    }
+
+    public void PlayShocked()
+    {
+        ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[1]; 
+        ExclamationMarks.SetActive(true); 
+        Stars.SetActive(false);
+        anim.Play("Shock");
+    }
+
+    public void PlayDizzy()
+    {
+        ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[2]; 
+        Stars.SetActive(true); 
+        ExclamationMarks.SetActive(false);
+        anim.Play("Dizzy");
+    }
+
+    public void PlayFlying()
+    {
+        ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[3]; 
+        Stars.SetActive(false); 
+        ExclamationMarks.SetActive(false);
+        anim.Play("Flying");
     }
 }

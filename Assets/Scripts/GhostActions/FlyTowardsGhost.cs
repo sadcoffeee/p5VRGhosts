@@ -39,7 +39,8 @@ public class FlyTowardsGhost : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(currentState);
+        if (!GameManager.Instance.tutorialDone)
+            return;
 
         switch (currentState)
         {
