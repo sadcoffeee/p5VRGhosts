@@ -521,7 +521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &104258216
 Transform:
   m_ObjectHideFlags: 0
@@ -530,8 +530,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104258215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.41161, y: 0.8622, z: -9.11635}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.10639, y: -0.30079997, z: 0.2126503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -543,7 +543,7 @@ Transform:
   - {fileID: 1712455484}
   - {fileID: 1238113353}
   - {fileID: 996618300}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1345944569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &105137307
 PrefabInstance:
@@ -926,7 +926,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 1149137932}
   lifeImage: {fileID: 1149137931}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!114 &138649044
 MonoBehaviour:
@@ -2164,7 +2164,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 1885862868}
   lifeImage: {fileID: 1885862867}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!1001 &213958883
 PrefabInstance:
@@ -3347,7 +3347,7 @@ Transform:
   m_GameObject: {fileID: 346050207}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0073900223, y: 0.5677999, z: 0.020350456}
+  m_LocalPosition: {x: -0.08299994, y: 0.577, z: -0.001000404}
   m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5832,6 +5832,7 @@ MonoBehaviour:
   spawnInterval: 2
   diffCheckInterval: 10
   killsToIncrease: 3
+  tutorialDone: 0
   jarGhostPrefab: {fileID: 772216412905499920, guid: 37f9ce4122051b9459fb1af14a70aad1, type: 3}
   jarCorners:
   - {fileID: 996618300}
@@ -7359,6 +7360,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &874478900
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.518
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.163
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.329
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_Name
+      value: glass
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d831bf3ce1039c4890e4298a0189158, type: 2}
+    - target: {fileID: -516098083770646512, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_Name
+      value: lid
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      propertyPath: m_Name
+      value: jar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 104258216}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
 --- !u!1 &904375222
 GameObject:
   m_ObjectHideFlags: 0
@@ -8494,7 +8567,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 1365803553}
   lifeImage: {fileID: 1365803552}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!1001 &992798116
 PrefabInstance:
@@ -8586,7 +8659,7 @@ Transform:
   m_GameObject: {fileID: 996618299}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0073900223, y: -0.00850004, z: 0.020350456}
+  m_LocalPosition: {x: -0.08299994, y: -0.00850004, z: -0.001}
   m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9310,7 +9383,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 695712871}
   lifeImage: {fileID: 695712870}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!1001 &1149137929
 PrefabInstance:
@@ -10441,8 +10514,8 @@ Transform:
   m_GameObject: {fileID: 1238113352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0073900223, y: -0.00850004, z: -0.23365021}
-  m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
+  m_LocalPosition: {x: -0.083, y: -0.00850004, z: -0.403}
+  m_LocalScale: {x: 0.02339485, y: 0.05327548, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 104258216}
@@ -10900,7 +10973,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 499783106}
   lifeImage: {fileID: 499783105}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!114 &1305999002 stripped
 MonoBehaviour:
@@ -11174,6 +11247,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1345944569 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 589238fbf37f1754787cbfe098be1fd8, type: 3}
+  m_PrefabInstance: {fileID: 874478900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1351101019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11322,7 +11400,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 505305986}
   lifeImage: {fileID: 505305985}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!1001 &1365803550
 PrefabInstance:
@@ -11590,7 +11668,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 232209364}
   lifeImage: {fileID: 232209363}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!224 &1403084032 stripped
 RectTransform:
@@ -11761,7 +11839,7 @@ Transform:
   m_GameObject: {fileID: 1420228279}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34038997, y: 0.5677999, z: -0.23365021}
+  m_LocalPosition: {x: 0.289, y: 0.577, z: -0.4029999}
   m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11975,7 +12053,7 @@ Transform:
   m_GameObject: {fileID: 1437993381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34038997, y: 0.5677999, z: 0.020350456}
+  m_LocalPosition: {x: 0.289, y: 0.577, z: -0.001000077}
   m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12083,7 +12161,7 @@ Transform:
   m_GameObject: {fileID: 1455616700}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34038997, y: -0.00850004, z: 0.020350456}
+  m_LocalPosition: {x: 0.289, y: -0.00850004, z: -0.0009999834}
   m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15235,7 +15313,7 @@ Transform:
   m_GameObject: {fileID: 1712455483}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34038997, y: -0.00850004, z: -0.23365021}
+  m_LocalPosition: {x: 0.289, y: -0.00850004, z: -0.4029999}
   m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17398,7 +17476,7 @@ MonoBehaviour:
   ghostOccupying: {fileID: 0}
   healtbarCanvas: {fileID: 482476644}
   lifeImage: {fileID: 482476643}
-  possessionDuration: 5
+  possessionDuration: 3
   Hand: {fileID: 815255385}
 --- !u!1 &1929601673
 GameObject:
@@ -17980,6 +18058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 100
   unpossessTime: 3
+  sphereRadius: 0.4
   flashlight: {fileID: 181429212}
 --- !u!114 &2011221085
 MonoBehaviour:
@@ -18936,7 +19015,7 @@ Transform:
   m_GameObject: {fileID: 2107743799}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0073900223, y: 0.5677999, z: -0.23365021}
+  m_LocalPosition: {x: -0.08299989, y: 0.577, z: -0.4029996}
   m_LocalScale: {x: 0.02339485, y: 0.053275477, z: 0.04070871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19326,4 +19405,4 @@ SceneRoots:
   - {fileID: 1832952200}
   - {fileID: 826371068}
   - {fileID: 1837585295}
-  - {fileID: 104258216}
+  - {fileID: 874478900}
