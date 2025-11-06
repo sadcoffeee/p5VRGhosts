@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     private int ghostsDefeated = 0;
     private int ghostsDefeatedLastCheck = 0;
 
-    //public int GhostsDefeated => ghostsDefeated; //added
+    public int GhostsDefeated => ghostsDefeated; //added
 
 
     void Awake()
