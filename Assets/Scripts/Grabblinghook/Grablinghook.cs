@@ -1,6 +1,7 @@
 using System.Xml;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class Grablinghook : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class Grablinghook : MonoBehaviour
     [SerializeField] float rotationSpeed = 2;
     [SerializeField] GrabblingState currState = GrabblingState.Idle;
 
+    [Header("Arm Haptics")]
+    [SerializeField] VibratorController vController;
+    [SerializeField] int shootVibration;
+    [SerializeField] int pullWweigthVibration;
+    [SerializeField] int pullWOweigthVibration;
+    private HapticImpulsePlayer hapticPlayer;
+
 
     [HideInInspector] public GameObject grabbed;
     private bool grabbing = false;
@@ -36,7 +44,10 @@ public class Grablinghook : MonoBehaviour
 
     private float originalGrabDistance = 0f; //this
 
-
+    void Start()
+    {
+        hapticPlayer = GetComponent<HapticImpulsePlayer>();
+    }
 
     void Update()
     {
@@ -140,6 +151,11 @@ public class Grablinghook : MonoBehaviour
                     currState = GrabblingState.Returning;
                 }
 
+
+                // Haptics
+                vController.SendArduinoSignal("PL",shootVibration);
+                hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+
                 break;
 
             case GrabblingState.Returning:
@@ -166,6 +182,18 @@ public class Grablinghook : MonoBehaviour
                     hand.transform.SetLocalPositionAndRotation(this.transform.position, this.transform.rotation);
                     hand.transform.SetParent(this.transform);
                     currState = GrabblingState.Idle;
+                }
+
+                //Haptics
+                if (grabbing)
+                {
+                    vController.SendArduinoSignal("PL", pullWweigthVibration);
+                    hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
+                }
+                else
+                {
+                    vController.SendArduinoSignal("PL", pullWOweigthVibration);
+                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
                 }
 
                 break;

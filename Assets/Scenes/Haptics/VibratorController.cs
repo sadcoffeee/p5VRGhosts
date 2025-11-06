@@ -36,9 +36,6 @@ public class VibratorController : MonoBehaviour
 
     void Update()
     {
-        CheckConnection(); //checks connection to arduino, should not be removed
-        SendArduinoSignal("PC", 255);
-
         /* Just some test stuff
         if (on)
         {
@@ -72,7 +69,7 @@ public class VibratorController : MonoBehaviour
     }
 
     // function for sending messages to the arduino
-    void SendArduinoSignal(string code, int intensity = -1)
+    public void SendArduinoSignal(string code, int intensity = -1)
     {
         /* Code tells the arduino what it should manipulate and intensity (0-255) is the value for the vibrators
          * Codes:
