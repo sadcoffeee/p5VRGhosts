@@ -39,7 +39,7 @@ public class VibratorController : MonoBehaviour
 
     void Update()
     {
-        CheckConnection();
+        if (arduinoPort.IsOpen) CheckConnection();
 
         /* Just some test stuff
         if (on)
