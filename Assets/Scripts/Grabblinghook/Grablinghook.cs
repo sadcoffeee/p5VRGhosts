@@ -153,8 +153,11 @@ public class Grablinghook : MonoBehaviour
 
 
                 // Haptics
-                vController.SendArduinoSignal("PL",shootVibration);
-                hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                if (vController != null)
+                {
+                    vController.SendArduinoSignal("PL", shootVibration);
+                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                }
 
                 break;
 
@@ -185,15 +188,18 @@ public class Grablinghook : MonoBehaviour
                 }
 
                 //Haptics
-                if (grabbing)
+                if (vController != null)
                 {
-                    vController.SendArduinoSignal("PL", pullWweigthVibration);
-                    hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
-                }
-                else
-                {
-                    vController.SendArduinoSignal("PL", pullWOweigthVibration);
-                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                    if (grabbing)
+                    {
+                        vController.SendArduinoSignal("PL", pullWweigthVibration);
+                        hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
+                    }
+                    else
+                    {
+                        vController.SendArduinoSignal("PL", pullWOweigthVibration);
+                        hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                    }
                 }
 
                 break;

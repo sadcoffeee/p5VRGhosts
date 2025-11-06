@@ -22,13 +22,16 @@ public class VibratorController : MonoBehaviour
         connectionCheckTimer = connectionCheckInterval;
 
         arduinoPort = new SerialPort(portName, 115200);
-        arduinoPort.ReadTimeout = 50;
-        arduinoPort.Open();
+        if (arduinoPort != null)
+        {
+            arduinoPort.ReadTimeout = 50;
+            arduinoPort.Open();
 
-        if (arduinoPort.IsOpen)
-            Debug.Log("Serial port successfully opened");
-        else
-            Debug.LogError("Failed to open serial port");
+            if (arduinoPort.IsOpen)
+                Debug.Log("Serial port successfully opened");
+            else
+                Debug.LogError("Failed to open serial port");
+        }
 
         timerOn = 3f;
         timerOff = 3f;
@@ -36,6 +39,8 @@ public class VibratorController : MonoBehaviour
 
     void Update()
     {
+        CheckConnection();
+
         /* Just some test stuff
         if (on)
         {
