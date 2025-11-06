@@ -18017,6 +18017,10 @@ MonoBehaviour:
   returnSpeed: 10
   rotationSpeed: 2
   currState: 0
+  vController: {fileID: 0}
+  shootVibration: 0
+  pullWweigthVibration: 0
+  pullWOweigthVibration: 0
   grabbed: {fileID: 0}
 --- !u!114 &2011221083
 MonoBehaviour:
