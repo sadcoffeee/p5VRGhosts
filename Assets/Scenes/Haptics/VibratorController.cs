@@ -9,6 +9,7 @@ public class VibratorController : MonoBehaviour
     SerialPort arduinoPort;
     float connectionCheckTimer;
     float connectionCheckInterval = 0.5f;
+    [HideInInspector] public bool connectionEstablished = false;
 
     int vibrationVal = 55;
 
@@ -16,6 +17,8 @@ public class VibratorController : MonoBehaviour
     float timerOff;
     bool on = false;
     bool increase = true;
+
+
 
     void Start()
     {
@@ -28,7 +31,10 @@ public class VibratorController : MonoBehaviour
             arduinoPort.Open();
 
             if (arduinoPort.IsOpen)
+            {
                 Debug.Log("Serial port successfully opened");
+                connectionEstablished = true;
+            } 
             else
                 Debug.LogError("Failed to open serial port");
         }
