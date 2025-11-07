@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         {
             PossessedObject theObjectInQuestion = go.GetComponent<PossessedObject>();
             allObjects.Add(theObjectInQuestion);
-            //EndTutorial();
+            EndTutorial();
         }
 
 

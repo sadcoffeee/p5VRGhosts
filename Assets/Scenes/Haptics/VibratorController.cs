@@ -30,45 +30,11 @@ public class VibratorController : MonoBehaviour
             else
                 Debug.LogError("Failed to open serial port");
         }
-
-        timerOn = 3f;
-        timerOff = 3f;
     }
 
     void Update()
     {
         if (arduinoPort.IsOpen) CheckConnection();
-
-        /* Just some test stuff
-        if (on)
-        {
-            timerOff = 0.5f;
-
-            if (increase)
-            {
-                if (vibrationVal <= 255) vibrationVal += 50;
-                if (vibrationVal > 255) vibrationVal = 55;
-                increase = false;
-            }
-
-            SendVibration(vibrationVal);
-
-            timerOn -= 1*Time.deltaTime;
-            if (timerOn <= 0) on = false;
-        }
-        else if (!on)
-        {
-            timerOn = 2.0f;
-            increase = true;
-
-            SendVibration(0);
-
-            timerOff -= 1 * Time.deltaTime;
-            if (timerOff <= 0) on = true;
-        }*/
-
-        //Debug.Log(vibrationVal);
-        //Debug.Log(on);
     }
 
     // function for sending messages to the arduino
