@@ -54,4 +54,24 @@ public class GhostAnimations : MonoBehaviour
         ExclamationMarks.SetActive(false);
         anim.Play("Flying");
     }
+    public void PlayHappyFlying()
+    {
+        ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[0];
+        anim.Play("Flying");
+        ExclamationMarks.SetActive(false);
+        Stars.SetActive(false);
+    }
+    public void PlayExcited()
+    {
+        ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[4];
+        anim.Play("Shock");
+        ExclamationMarks.SetActive(false);
+        Stars.SetActive(false);
+    }
+    public void Caught()
+    {
+        ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[1];
+        ExclamationMarks.SetActive(true);
+        Stars.SetActive(false);
+    }
 }

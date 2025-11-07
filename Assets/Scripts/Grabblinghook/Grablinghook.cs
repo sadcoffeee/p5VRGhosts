@@ -110,6 +110,7 @@ public class Grablinghook : MonoBehaviour
                             {
                                 grabbed = touched;
                                 grabbed.transform.SetParent(hand.transform);
+                                ghostScript.currentState = FlyTowardsGhost.GhostState.Grabbed;
                                 grabbing = true;
 
                                 originalGrabDistance = Vector3.Distance(hand.transform.position, this.transform.position); //this

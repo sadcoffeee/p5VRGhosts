@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         {
             PossessedObject theObjectInQuestion = go.GetComponent<PossessedObject>();
             allObjects.Add(theObjectInQuestion);
-            EndTutorial();
+            //EndTutorial();
         }
 
 
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EndTutorial()
+    public void EndTutorial()
     {
         tutorialDone = true;
         StartCoroutine(AdjustDifficultyLoop());
