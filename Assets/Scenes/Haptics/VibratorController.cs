@@ -11,14 +11,6 @@ public class VibratorController : MonoBehaviour
     float connectionCheckInterval = 0.5f;
     [HideInInspector] public bool connectionEstablished = false;
 
-    int vibrationVal = 55;
-
-    float timerOn;
-    float timerOff;
-    bool on = false;
-    bool increase = true;
-
-
 
     void Start()
     {
