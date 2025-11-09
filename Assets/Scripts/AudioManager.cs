@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
+
     public Sound[] sound;
 
-    //to call anywhere use FindObjectOfType<AudioManager>().PlayAudio("name of sound")
+    //to call anywhere use AudioManager.Instance.PlayAudio("name of sound")
 
 
     private void Awake()
-    {      
+    {
+
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
         foreach (Sound s in sound)
         {
             //creates a new audio source for each sound in the array

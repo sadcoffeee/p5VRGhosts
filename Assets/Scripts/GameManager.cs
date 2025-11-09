@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Spawning Settings")]
     public GameObject ghostPrefab;
-    public int maxGhosts = 6;
-    private int currentMaxGhosts = 1;
-    public float spawnInterval = 5f;
-    public float diffCheckInterval = 10f;
-    public int killsToIncrease = 3;
     public bool tutorialDone = false;
+
+    [Header("Difficulty Settings")]
+    public float minBreakTime = 2f; // lower bound for difficulty
+    public float maxBreakTime = 8f; // upper bound
+    public float adjustStep = 0.5f; // how much to increase/decrease per good/bad catch
 
     [Header("Jar Ghost Settings")] //added this
     public GameObject jarGhostPrefab; //the small ghost prefab i made
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public List<FlyTowardsGhost> activeGhosts = new List<FlyTowardsGhost>();
 
     private int ghostsDefeated = 0;
-    private int ghostsDefeatedLastCheck = 0;
+    [HideInInspector] public float objectBreakTime = 5f;
 
     public int GhostsDefeated => ghostsDefeated; //added
 
@@ -46,10 +46,10 @@ public class GameManager : MonoBehaviour
         {
             PossessedObject theObjectInQuestion = go.GetComponent<PossessedObject>();
             allObjects.Add(theObjectInQuestion);
-            EndTutorial();
         }
-
-
+        
+        //Temp line to skip tutorial
+        EndTutorial();
     }
 
     #region ghost management
@@ -72,71 +72,74 @@ public class GameManager : MonoBehaviour
         return freeObjects[Random.Range(0, freeObjects.Count)];
     }
 
-    public void OnGhostDefeated(FlyTowardsGhost ghost)
+    public void OnGhostDefeated(FlyTowardsGhost ghost, float catchDuration)
     {
         ghostsDefeated++;
         UnregisterGhost(ghost);
-        Debug.Log("defeated ghost");
+        SpawnJarGhost();
 
-        SpawnJarGhost(); //spawn jar ghost everytime ghost defeated
+        AdjustDifficulty(catchDuration);
+
+        StartCoroutine(SpawnNextGhost());
     }
 
-    public bool CanSpawnMoreGhosts()
-    {
-        return activeGhosts.Count < currentMaxGhosts;
-    }
     #endregion
 
     #region spawning logic
-    private IEnumerator AdjustDifficultyLoop()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(diffCheckInterval);
-
-            int killsThisInterval = ghostsDefeated - ghostsDefeatedLastCheck;
-            ghostsDefeatedLastCheck = ghostsDefeated;
-
-            if (killsThisInterval >= killsToIncrease && currentMaxGhosts < maxGhosts)
-            {
-                currentMaxGhosts++;
-                Debug.Log($"now allowing {currentMaxGhosts} ghosts at once");
-            }
-        }
-    }
-
-    private IEnumerator SpawnLoop()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(spawnInterval);
-
-            if (CanSpawnMoreGhosts())
-            {
-                SpawnGhost();
-            }
-        }
-    }
-
     public void EndTutorial()
     {
         tutorialDone = true;
-        StartCoroutine(AdjustDifficultyLoop());
-        StartCoroutine(SpawnLoop());
+
     }
 
-    private void SpawnGhost()
+    private IEnumerator SpawnNextGhost()
     {
-        if (ghostPrefab == null || ghostSpawnPoints.Count == 0) return;
+        yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+
+        if (ghostPrefab == null || ghostSpawnPoints.Count == 0)
+            yield break;
+
+        // Only one ghost at a time
+        if (activeGhosts.Count > 0)
+            yield break;
 
         Transform spawnPoint = ghostSpawnPoints[Random.Range(0, ghostSpawnPoints.Count)];
-
         GameObject newGhost = Instantiate(ghostPrefab, spawnPoint.position, spawnPoint.rotation);
 
         FlyTowardsGhost ghostComponent = newGhost.GetComponent<FlyTowardsGhost>();
         if (ghostComponent != null)
         {
             RegisterGhost(ghostComponent);
+            // Let the ghost know when it spawned so it can report catch duration
+            ghostComponent.spawnTime = Time.time;
+        }
+    }
+    private void AdjustDifficulty(float catchDuration)
+    {
+        float lowerThreshold = 1.2f * objectBreakTime;
+        float upperThreshold = 2.5f * objectBreakTime;
+
+        if (catchDuration < lowerThreshold)
+        {
+            // Player caught quickly = make it harder
+            objectBreakTime = Mathf.Max(minBreakTime, objectBreakTime - adjustStep);
+            Debug.Log($"Ghost caught FAST ({catchDuration:F1}s). Increasing difficulty {objectBreakTime:F1}s");
+        }
+        else if (catchDuration > upperThreshold)
+        {
+            // Player was slow = make it easier
+            objectBreakTime = Mathf.Min(maxBreakTime, objectBreakTime + adjustStep);
+            Debug.Log($"Ghost caught SLOW ({catchDuration:F1}s). Decreasing difficulty {objectBreakTime:F1}s");
+        }
+        else
+        {
+            Debug.Log($"Ghost caught average ({catchDuration:F1}s). No change to difficulty ({objectBreakTime:F1}s)");
+        }
+
+        // Apply new break time to all furniture
+        foreach (var obj in allObjects)
+        {
+            obj.UpdateBreakTime(objectBreakTime);
         }
     }
     #endregion

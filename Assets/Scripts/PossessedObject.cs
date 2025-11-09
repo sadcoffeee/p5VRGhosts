@@ -91,13 +91,13 @@ public class PossessedObject : MonoBehaviour
             ghostFace.SetActive(true);
 
             // Reset timer to full duration
-            currentTimer = possessionDuration;
+            currentTimer = 0.8f * possessionDuration;
 
             // Reset UI fill
             if (lifeImage != null)
-                lifeImage.fillAmount = 1f;
+                lifeImage.fillAmount = 0.8f;
 
-            FindObjectOfType<AudioManager>().PlayAudio("PossessFurniture");
+            AudioManager.Instance.PlayAudio("PossessFurniture");
         }
         else
         { 
@@ -197,6 +197,11 @@ public class PossessedObject : MonoBehaviour
                 SetPossessed(false, ghostOccupying );
             }
         }
+    }
+    public void UpdateBreakTime(float newBreakTime)
+    {
+        possessionDuration = newBreakTime;
+        currentTimer = newBreakTime;
     }
 
 }

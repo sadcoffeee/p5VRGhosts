@@ -8,6 +8,7 @@ public class FlyTowardsGhost : MonoBehaviour
     public float stunDelay = 5f;
     public GameObject Ghost;
     [HideInInspector] public bool grabbable;
+    [HideInInspector] public float spawnTime;
     int targetChosen;
     private PossessedObject possessed;
     private Transform target;
@@ -126,7 +127,7 @@ public class FlyTowardsGhost : MonoBehaviour
     }
     private void OnDestroy()
     {
-        GameManager.Instance.OnGhostDefeated(this);
+        GameManager.Instance.OnGhostDefeated(this, Time.time - spawnTime);
     }
 }
     
