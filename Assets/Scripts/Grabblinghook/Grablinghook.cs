@@ -99,8 +99,8 @@ public class Grablinghook : MonoBehaviour
 
                 if (Vector3.Distance(hand.transform.position, hookTarget) < 0.01f)
                 {
-                    Grablinghand grabHand = hand.GetComponent<Grablinghand>();
-                    GameObject touched = grabHand.HandTouched();
+                    GameObject touched = FindBestOverlapTarget();
+
                     if (touched != null)
                     {
                         if (touched.CompareTag("Ghost"))
@@ -231,5 +231,26 @@ public class Grablinghook : MonoBehaviour
         }
 
         return targetPos;
+    }
+    private GameObject FindBestOverlapTarget()
+    {
+        float overlapRadius = 0.1f;
+        Collider[] hits = Physics.OverlapSphere(hand.transform.position, overlapRadius);
+
+        GameObject bestTarget = null;
+
+        // Highest priority = ghost, then grabbable
+        foreach (Collider hit in hits)
+        {
+            if (hit == null) continue;
+
+            if (hit.CompareTag("Ghost"))
+                return hit.gameObject;
+
+            if (bestTarget == null && hit.CompareTag("Grabbable"))
+                bestTarget = hit.gameObject;
+        }
+
+        return bestTarget;
     }
 }
