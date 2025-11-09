@@ -49,6 +49,7 @@ public class FlyTowardsGhost : MonoBehaviour
                 if (middleTargetPosition == null)
                 {
                     middleTargetPosition = GetRandomHoverPosition();
+                    transform.LookAt(middleTargetPosition);
                 }
                 FlyToTarget(middleTargetPosition, GhostState.Hovering);
                 break;
@@ -65,6 +66,7 @@ public class FlyTowardsGhost : MonoBehaviour
                 {
                     possessed = GameManager.Instance.GetRandomFreeObject();
                     target = possessed.transform;
+                    transform.LookAt(target);
                 }
                 FlyToTarget(target.position, GhostState.Possessing);
                 break;

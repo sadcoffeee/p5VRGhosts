@@ -32,7 +32,6 @@ public class JarGhostMovement : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-
         if (Vector3.Distance(transform.position, targetPos) < 0.1f)
         {
             {
@@ -47,5 +46,6 @@ public class JarGhostMovement : MonoBehaviour
         float y = Random.Range(minBounds.y, maxBounds.y);
         float z = Random.Range(minBounds.z, maxBounds.z);
         targetPos = new Vector3(x, y, z);
+        transform.LookAt(targetPos);
     }
 }
