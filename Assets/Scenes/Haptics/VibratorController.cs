@@ -2,6 +2,7 @@ using Mono.Cecil.Cil;
 using System.ComponentModel.Design.Serialization;
 using System.IO.Ports;
 using UnityEngine;
+using System;
 
 public class VibratorController : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class VibratorController : MonoBehaviour
     }
 
     // function for sending messages to the arduino
-    public void SendArduinoSignal(string code, int intensity = -1)
+    public void SendArduinoSignal(string code, float intensity = -1)
     {
         /* Code tells the arduino what it should manipulate and intensity (0-165 Hz) is the value for the vibrators
          * Codes:
@@ -62,7 +63,7 @@ public class VibratorController : MonoBehaviour
                 //Nomalize value
                 intensity = intensity / 165;
                 //convert normalized value to Arduino output
-                intensitySignal = intensity * 255;
+                intensitySignal = Mathf.RoundToInt(intensity * 255);
             }
 
             //Send signal
