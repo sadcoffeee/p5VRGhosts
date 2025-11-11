@@ -14,6 +14,8 @@ public class FlyTowardsGhost : MonoBehaviour
     private Transform target;
     private HoverGhost hoverScript; //så vi kan finde hoverghost scriptet de kan snakke sammen
     private Vector3 middleTargetPosition;
+    private GhostAnimations anim;
+    private PossessedObject lastPossessed;
 
     public enum GhostState
     {
@@ -36,6 +38,7 @@ public class FlyTowardsGhost : MonoBehaviour
         hoverScript = GetComponent<HoverGhost>();
         stunTimer = stunDelay;
         GameManager.Instance.RegisterGhost(this);
+        anim = GetComponent<GhostAnimations>();
     }
 
     void Update()
@@ -55,6 +58,7 @@ public class FlyTowardsGhost : MonoBehaviour
                 break;
             
             case GhostState.Hovering:
+                anim.PlayFlying();
                 hoverScript.enabled = true; // keep hover active
                 Ghost.SetActive(true);
                 Hovering();
@@ -64,7 +68,8 @@ public class FlyTowardsGhost : MonoBehaviour
                 hoverScript.enabled = false; // pause hover while flying
                 if (target == null)
                 {
-                    possessed = GameManager.Instance.GetRandomFreeObject();
+                    possessed = GameManager.Instance.GetRandomFreeObject(lastPossessed);
+                    lastPossessed = possessed;
                     target = possessed.transform;
                     transform.LookAt(target);
                 }
@@ -112,6 +117,7 @@ public class FlyTowardsGhost : MonoBehaviour
 
     public void FlyToTarget(Vector3 target, GhostState nextState)
     {
+        anim.PlayFlying();
         transform.position = Vector3.MoveTowards(
             transform.position,
             target,

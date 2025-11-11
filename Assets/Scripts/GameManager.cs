@@ -65,9 +65,9 @@ public class GameManager : MonoBehaviour
             activeGhosts.Remove(ghost);
     }
 
-    public PossessedObject GetRandomFreeObject()
+    public PossessedObject GetRandomFreeObject(PossessedObject exclude = null)
     {
-        List<PossessedObject> freeObjects = allObjects.FindAll(o => !o.isPossessed);
+        List<PossessedObject> freeObjects = allObjects.FindAll(o => !o.isPossessed && o != exclude);
         if (freeObjects.Count == 0) return null;
         return freeObjects[Random.Range(0, freeObjects.Count)];
     }

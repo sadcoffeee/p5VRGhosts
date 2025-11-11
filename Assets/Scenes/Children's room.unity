@@ -5753,7 +5753,7 @@ MonoBehaviour:
   minBreakTime: 2
   maxBreakTime: 8
   adjustStep: 0.5
-  jarGhostPrefab: {fileID: 772216412905499920, guid: 37f9ce4122051b9459fb1af14a70aad1, type: 3}
+  jarGhostPrefab: {fileID: 5933462121241962575, guid: ed38f61ed1c4ed94f8a5b3b558e18d58, type: 3}
   jarCorners:
   - {fileID: 996618300}
   - {fileID: 1238113353}
