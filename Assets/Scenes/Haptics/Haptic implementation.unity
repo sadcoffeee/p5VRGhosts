@@ -5828,11 +5828,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
-  maxGhosts: 6
-  spawnInterval: 2
-  diffCheckInterval: 10
-  killsToIncrease: 3
   tutorialDone: 0
+  minBreakTime: 2
+  maxBreakTime: 8
+  adjustStep: 0.5
   jarGhostPrefab: {fileID: 772216412905499920, guid: 37f9ce4122051b9459fb1af14a70aad1, type: 3}
   jarCorners:
   - {fileID: 996618300}
@@ -5851,6 +5850,7 @@ MonoBehaviour:
   - {fileID: 919782113}
   allObjects: []
   activeGhosts: []
+  objectBreakTime: 5
 --- !u!4 &630644708
 Transform:
   m_ObjectHideFlags: 0
@@ -18017,9 +18017,9 @@ MonoBehaviour:
   rotationSpeed: 2
   currState: 0
   vController: {fileID: 727069606}
-  shootVibration: 125
-  pullWweigthVibration: 255
-  pullWOweigthVibration: 60
+  shootVibration: 80
+  pullWweigthVibration: 160
+  pullWOweigthVibration: 30
   grabbed: {fileID: 0}
 --- !u!114 &2011221083
 MonoBehaviour:

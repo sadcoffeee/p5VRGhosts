@@ -40,7 +40,7 @@ public class VibratorController : MonoBehaviour
     // function for sending messages to the arduino
     public void SendArduinoSignal(string code, int intensity = -1)
     {
-        /* Code tells the arduino what it should manipulate and intensity (0-255) is the value for the vibrators
+        /* Code tells the arduino what it should manipulate and intensity (0-165 Hz) is the value for the vibrators
          * Codes:
             PC      = procedure arm 
             PL      = play arm
@@ -55,9 +55,18 @@ public class VibratorController : MonoBehaviour
 
         if (arduinoPort != null && arduinoPort.IsOpen)
         {
-            //Debug.Log("Sending signal");
-            string message = (intensity >= 0) ? code + intensity.ToString() + "\n" : code + "\n";
-            //Debug.Log(message);
+            int intensitySignal = -1;
+            
+            if (intensity != -1)
+            {
+                //Nomalize value
+                intensity = intensity / 165;
+                //convert normalized value to Arduino output
+                intensitySignal = intensity * 255;
+            }
+
+            //Send signal
+            string message = (intensitySignal >= 0) ? code + intensitySignal.ToString() + "\n" : code + "\n";
             arduinoPort.WriteLine(message);
             arduinoPort.BaseStream.Flush();
         }
