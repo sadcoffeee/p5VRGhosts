@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public List<PossessedObject> allObjects = new List<PossessedObject>();
     public List<FlyTowardsGhost> activeGhosts = new List<FlyTowardsGhost>();
 
+    [Header("Turtorial")]
+    [SerializeField] bool endTurtorial = true;
+
     private int ghostsDefeated = 0;
     [HideInInspector] public float objectBreakTime = 5f;
 
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         
         //Temp line to skip tutorial
-        EndTutorial();
+        if (endTurtorial) EndTutorial();
     }
 
     #region ghost management
