@@ -217,9 +217,9 @@ public class PossessedObject : MonoBehaviour
     {
         currentObject.material = DeadMaterial;
         isFurnitureBroken = true;
-        
-        //Debug.Log("jeg er ødelagt");
 
+        //Debug.Log("jeg er ødelagt");
+        GameManager.Instance.UnregisterFurniture(this);
         SetPossessed(false, ghostOccupying);
 
 

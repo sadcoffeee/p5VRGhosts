@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
         if (activeGhosts.Contains(ghost))
             activeGhosts.Remove(ghost);
     }
+    public void UnregisterFurniture(PossessedObject furniture)
+    {
+        if (allObjects.Contains(furniture))
+            allObjects.Remove(furniture);
+    }
 
     public PossessedObject GetRandomFreeObject(PossessedObject exclude = null)
     {
