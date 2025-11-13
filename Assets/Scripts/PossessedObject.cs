@@ -91,7 +91,7 @@ public class PossessedObject : MonoBehaviour
             ghostFace.SetActive(true);
 
             // Reset timer to full duration
-            currentTimer = 0.8f * possessionDuration;
+            currentTimer = 0.6f * possessionDuration;
 
             // Reset UI fill
             if (lifeImage != null)
