@@ -19,31 +19,35 @@ public class VRFlashlight : MonoBehaviour
     private void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
+        RaycastHit[] hits = Physics.SphereCastAll (ray, sphereRadius, range); //returns an array of hits
 
-        if (Physics.SphereCast(ray, sphereRadius, out hit, range)) //changed tp spherecast and added sphereradius here
+        if (hits.Length > 0) //checks if there are any hits at all
         {
-            if (hit.collider.CompareTag("Furniture"))
+            foreach (RaycastHit hit in hits)
             {
-                PossessedObject possessed = hit.collider.GetComponent<PossessedObject>();
-                //Debug.Log(possessed.name);
-                //Debug.Log(hoverTimer);
-
-                if (currentTarget != possessed)
+                if (hit.collider.CompareTag("Furniture") && currentTarget.isPossessed == true)
                 {
-                    currentTarget = possessed;
-                    hoverTimer = 0f;
-                }
-                if (possessed.isPossessed)
-                {
-                    hoverTimer += Time.deltaTime;
-                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                    PossessedObject possessed = hit.collider.GetComponent<PossessedObject>();
+                    //Debug.Log(possessed.name);
+                    //Debug.Log(hoverTimer);
 
-                    possessed.HealFurniture(Time.deltaTime * 3f); //added
+                    if (currentTarget != possessed)
+                    {
+                        currentTarget = possessed;
+                        hoverTimer = 0f;
+                    }
+                    if (possessed.isPossessed)
+                    {
+                        hoverTimer += Time.deltaTime;
+                        hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+
+                        possessed.HealFurniture(Time.deltaTime * 3f); //added
+                    }
                 }
+
+                Debug.DrawRay(transform.position, transform.forward * range, Color.gray);
             }
-
-            Debug.DrawRay(transform.position, transform.forward * range, Color.gray);
         }
+        
     }
 }
