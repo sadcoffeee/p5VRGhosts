@@ -44,6 +44,10 @@ public class Grablinghook : MonoBehaviour
 
     private float originalGrabDistance = 0f; //this
 
+    //Sound
+    bool shotSoundPlayed = false;
+    bool returnSoundPlayed = false;
+
     void Start()
     {
         hapticPlayer = GetComponent<HapticImpulsePlayer>();
@@ -91,9 +95,16 @@ public class Grablinghook : MonoBehaviour
                     }
                 }
 
+                //Sound
+                returnSoundPlayed = false;
+                shotSoundPlayed = false;
+                AudioManager.Instance.StopAudio("RopeStretchSound");
+                AudioManager.Instance.StopAudio("HandReturnWindSound");
+
                 break;
 
-            case GrabblingState.Shooting: 
+            case GrabblingState.Shooting:
+                if (!shotSoundPlayed) AudioManager.Instance.PlayAudio("ShootSound"); shotSoundPlayed = true;
                 float outStep = flySpeed * Time.deltaTime;
                 hand.transform.position = Vector3.MoveTowards(hand.transform.position, hookTarget, outStep);
 
@@ -166,6 +177,9 @@ public class Grablinghook : MonoBehaviour
                 break;
 
             case GrabblingState.Returning:
+                
+
+
                 float inStep = returnSpeed * Time.deltaTime;
                 hand.transform.position = Vector3.MoveTowards(hand.transform.position, this.transform.position, inStep);
 
@@ -189,6 +203,17 @@ public class Grablinghook : MonoBehaviour
                     hand.transform.SetLocalPositionAndRotation(this.transform.position, this.transform.rotation);
                     hand.transform.SetParent(this.transform);
                     currState = GrabblingState.Idle;
+                }
+
+                //sound
+                if (!returnSoundPlayed)
+                {
+                    AudioManager.Instance.PlayAudio("HandReturnWindSound");
+                    if (grabbing)
+                    {
+                        AudioManager.Instance.PlayAudio("RopeStretchSound");
+                    }
+                    returnSoundPlayed = true;
                 }
 
                 //Haptics

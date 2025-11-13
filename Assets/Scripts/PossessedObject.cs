@@ -120,6 +120,7 @@ public class PossessedObject : MonoBehaviour
             {
                 currentObject.material = startMaterial;
                 ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
+                AudioManager.Instance.PlayAudio("GhostStunned");
             }
             else
             {
@@ -133,6 +134,7 @@ public class PossessedObject : MonoBehaviour
             lifeImage.fillAmount = 1f;
             healtbarCanvas.gameObject.SetActive(false);
 
+            AudioManager.Instance.StopAudio("PossessFurniture");
         }
     }
 

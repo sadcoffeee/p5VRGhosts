@@ -62,6 +62,7 @@ public class FlyTowardsGhost : MonoBehaviour
                 hoverScript.enabled = true; // keep hover active
                 Ghost.SetActive(true);
                 Hovering();
+                AudioManager.Instance.StopAudio("GhostStunned");
                 break;
 
             case GhostState.FlyingTowardsObject:
@@ -99,6 +100,7 @@ public class FlyTowardsGhost : MonoBehaviour
                     currentState = GhostState.Hovering;
                 }
                 break;
+
             case GhostState.Grabbed:
                 break;
 

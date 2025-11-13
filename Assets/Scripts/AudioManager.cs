@@ -8,6 +8,12 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sound;
 
+    // Car sound
+    float carSoundTimer;
+    [SerializeField] float carTimeIntervalMin;
+    [SerializeField] float carTimeIntervalMax;
+    Vector2 carSoundTimeInterval;
+
     //to call anywhere use AudioManager.Instance.PlayAudio("name of sound")
 
 
@@ -29,7 +35,22 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayAudio("BackgroundMusic");
+        //Car Sound
+        carSoundTimeInterval = new Vector2(carTimeIntervalMin, carTimeIntervalMax);
+        carSoundTimer = UnityEngine.Random.Range(carSoundTimeInterval[0], carSoundTimeInterval[1]);
+
+        PlayAudio("BirdSound");
+    }
+
+    void Update()
+    {
+        //Car sound
+        if (carSoundTimer > 0) carSoundTimer -= Time.deltaTime;
+        if (carSoundTimer <= 0)
+        {
+            PlayAudio("CarSound");
+            carSoundTimer = UnityEngine.Random.Range(carSoundTimeInterval[0], carSoundTimeInterval[1]);
+        }
     }
 
     public void PlayAudio (string name)
@@ -37,11 +58,27 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sound, sound => sound.name == name);
         if (s == null)
         {
-            Debug.Log("failed song load");
+            Debug.Log($"PlayAudio, failed song load: {name}");
             return;
         }
+        else
+        {
+            s.source.Play();
+        }
+    }
 
-        s.source.Play();
+    public void StopAudio(string name)
+    {
+        Sound s = Array.Find(sound, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log($"StopAudio, failed song load: {name}");
+        }
+        else
+        {
+            s.source.Stop();
+        }
+        
     }
 
     
