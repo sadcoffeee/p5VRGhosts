@@ -25,7 +25,7 @@ public class VRFlashlight : MonoBehaviour
         {
             foreach (RaycastHit hit in hits)
             {
-                if (hit.collider.CompareTag("Furniture") && currentTarget.isPossessed == true)
+                if (hit.collider.CompareTag("Furniture"))
                 {
                     PossessedObject possessed = hit.collider.GetComponent<PossessedObject>();
                     //Debug.Log(possessed.name);
