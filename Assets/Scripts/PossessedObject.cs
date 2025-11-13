@@ -109,25 +109,20 @@ public class PossessedObject : MonoBehaviour
             
             transform.localPosition = originalPosition;
             transform.localRotation = originalRotation;
-            //Reactivate ghost and release it from furniture
-            ghostOccupying.transform.position = transform.position + transform.up * 2f;
-            ghostOccupying.transform.LookAt(Hand.transform);
-            ghostOccupying.SetActive(true);
-            anim = ghostOccupying.GetComponent<GhostAnimations>();
-            anim.PlayDizzy();
-            FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
-            if(!isFurnitureBroken)
+            if (!isFurnitureBroken)
             {
                 currentObject.material = startMaterial;
-                ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
-                AudioManager.Instance.PlayAudio("GhostStunned");
+                StartCoroutine(ExorciseGhostRoutine(ghostOccupying));
             }
             else
             {
+                FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
                 ghostScript.currentState = FlyTowardsGhost.GhostState.Hovering;
+                ghostOccupying.SetActive(true);
+
             }
 
-                ghostOccupying = null;
+            ghostOccupying = null;
 
             // Reset everything timer an fill amount
             currentTimer = possessionDuration;
@@ -169,6 +164,54 @@ public class PossessedObject : MonoBehaviour
             transform.localRotation = originalRotation;
         }
     }
+    private IEnumerator ExorciseGhostRoutine(GameObject ghost)
+    {
+        FlyTowardsGhost ghostScript = ghost.GetComponent<FlyTowardsGhost>();
+        ghostScript.enabled = false;
+        ghost.SetActive(true);
+        anim = ghost.GetComponent<GhostAnimations>();
+        anim.PlayDizzy();
+
+        float duration = 2.5f; // seconds for the animation
+        float elapsed = 0f;
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = transform.position + transform.up * 2f;
+
+        // spiralling animation
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+
+            // Vertical movement
+            float height = Mathf.Lerp(0f, (endPos - startPos).y, t);
+
+            // Spiral parameters
+            float radius = 0.5f * (1f - t); // radius shrinks as ghost rises
+            float spinSpeed = 1f; // rotations per second
+            float angle = elapsed * spinSpeed * Mathf.PI * 2f;
+
+            // Circular offset
+            float offsetX = Mathf.Cos(angle) * radius;
+            float offsetZ = Mathf.Sin(angle) * radius;
+
+            // Combine everything
+            ghost.transform.position = startPos + new Vector3(offsetX, height, offsetZ);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // After animation completes, actually release and stun the ghost
+        ghost.transform.position = endPos;
+        ghost.transform.LookAt(Hand.transform);
+        ghostScript.enabled = true;
+
+        ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
+        ghostScript.grabbable = true;
+        AudioManager.Instance.PlayAudio("GhostStunned");
+    }
+
 
     private void FurnitureDead()
     {
