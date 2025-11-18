@@ -196,9 +196,9 @@ public class Grablinghook : MonoBehaviour
                 {
                     float currentDist = Vector3.Distance(hand.transform.position, this.transform.position);
                     float ratio = Mathf.Clamp01(currentDist / Mathf.Max(originalGrabDistance, 0.01f));
-                    // shrinks gradually as it gets closer
-                    float smoothScale = Mathf.Lerp(1f, 0f, ratio);
-                    grabbed.transform.localScale = Vector3.one * smoothScale;
+                    // shrinks gradually as it gets closer (have to multiply by 10 because hand is 0.1 scale)
+                    grabbed.transform.localScale = 10f * Vector3.one * ratio;
+
                     grabbed.transform.position = hand.transform.position;
 
                 }
