@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     public List<Transform> ghostSpawnPoints;
+    public Transform startingMenu;
+    public GameObject firstGhost;
     public List<PossessedObject> allObjects = new List<PossessedObject>();
     public List<FlyTowardsGhost> activeGhosts = new List<FlyTowardsGhost>();
 
@@ -50,12 +54,46 @@ public class GameManager : MonoBehaviour
             PossessedObject theObjectInQuestion = go.GetComponent<PossessedObject>();
             allObjects.Add(theObjectInQuestion);
         }
-        
-        //Temp line to skip tutorial
-        if (endTurtorial) EndTutorial();
     }
+    public void startGame(bool withTutorial) 
+    {
+        if (!withTutorial) 
+            EndTutorial();
 
-    #region ghost management
+        firstGhost.SetActive(true);
+
+        if (withTutorial)
+            firstGhost.GetComponent<TutorialGhost>().beginTutorial();
+    }
+    void restartGame() 
+    {
+        SceneManager.LoadScene("Children's room");
+        /*
+        // remove leftover ghosts
+        foreach (FlyTowardsGhost ghost in activeGhosts) 
+        {
+            activeGhosts.Remove(ghost);
+        }
+
+        // re-add furniture
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Furniture");
+        foreach (GameObject go in obj)
+        {
+            PossessedObject theObjectInQuestion = go.GetComponent<PossessedObject>();
+            allObjects.Add(theObjectInQuestion);
+            theObjectInQuestion.FurnitureRessurect();
+        }
+        
+        // turn menu to start game back on 
+        startingMenu.gameObject.SetActive(true);
+        */
+    }
+    public void EndTutorial()
+    {
+        tutorialDone = true;
+
+    }
+    #region ghost & object management
     public void RegisterGhost(FlyTowardsGhost ghost)
     {
         if (!activeGhosts.Contains(ghost))
@@ -71,6 +109,9 @@ public class GameManager : MonoBehaviour
     {
         if (allObjects.Contains(furniture))
             allObjects.Remove(furniture);
+
+        if (allObjects.Count == 0)
+            restartGame();
     }
 
     public PossessedObject GetRandomFreeObject(PossessedObject exclude = null)
@@ -94,12 +135,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region spawning logic
-    public void EndTutorial()
-    {
-        tutorialDone = true;
-
-    }
-
     private IEnumerator SpawnNextGhost()
     {
         yield return new WaitForSeconds(Random.Range(0.5f, 2f));

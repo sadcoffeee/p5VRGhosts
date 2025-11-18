@@ -10,6 +10,7 @@ TagManager:
   - Furniture
   - Hand
   - Grabbable
+  - Button
   layers:
   - Default
   - TransparentFX

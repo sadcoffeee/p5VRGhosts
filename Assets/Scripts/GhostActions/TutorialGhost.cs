@@ -23,14 +23,14 @@ public class TutorialGhost : MonoBehaviour
 
     void Start()
     {
-        if (!GameManager.Instance.tutorialDone)
-        {
-            anim = GetComponent<GhostAnimations>();
-            ghostStates = GetComponent<FlyTowardsGhost>();
-            possessedScript = possessObject.GetComponent<PossessedObject>();
-            StartCoroutine(TutorialSequence());
-            flashlight.SetActive(false);
-        }
+        anim = GetComponent<GhostAnimations>();
+        ghostStates = GetComponent<FlyTowardsGhost>();
+        possessedScript = possessObject.GetComponent<PossessedObject>();
+    }
+    public void beginTutorial()
+    {
+        StartCoroutine(TutorialSequence());
+        flashlight.SetActive(false);
     }
 
     private IEnumerator TutorialSequence()
@@ -72,7 +72,6 @@ public class TutorialGhost : MonoBehaviour
         yield return MoveGhost(this.transform.position, possessObject.transform.position, flyTime);
         this.ghostStates.currentState = FlyTowardsGhost.GhostState.Possessing;
         possessedScript.SetPossessed(true, this.gameObject);
-        possessedScript.healtbarCanvas.gameObject.SetActive(true);
         HideGhost(false);
         flashlightTutorial.SetActive(true);
         yield return new WaitUntil(() => this.ghostStates.currentState == FlyTowardsGhost.GhostState.Stunned);

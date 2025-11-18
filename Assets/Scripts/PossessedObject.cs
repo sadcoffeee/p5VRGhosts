@@ -75,6 +75,9 @@ public class PossessedObject : MonoBehaviour
         }
         else if (isPossessed && !GameManager.Instance.tutorialDone)
         {
+            healtbarCanvas.gameObject.SetActive(true);
+            float normalizedTime = currentTimer / possessionDuration;
+            lifeImage.fillAmount = normalizedTime;
             currentObject.material = endMaterial;
             ghostFace.SetActive(true);
             PossessRumble();
@@ -101,7 +104,12 @@ public class PossessedObject : MonoBehaviour
             AudioManager.Instance.PlayAudio("PossessFurniture");
         }
         else
-        { 
+        {
+            foreach (Transform child in ghost.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+
             ghostFace.SetActive(false);
             if (!isFurnitureBroken)
             {
@@ -226,6 +234,11 @@ public class PossessedObject : MonoBehaviour
 
 
     }
+    public void FurnitureRessurect()
+    {
+        currentObject.material = startMaterial;
+        isFurnitureBroken = false;
+    }
 
     public void HealFurniture(float amount) //how much time you want to heal by in one frame.
     {
@@ -241,7 +254,7 @@ public class PossessedObject : MonoBehaviour
             //release ved fuldt liv
             if (currentTimer >= possessionDuration) 
             {
-                SetPossessed(false, ghostOccupying );
+                SetPossessed(false, ghostOccupying);
             }
         }
     }

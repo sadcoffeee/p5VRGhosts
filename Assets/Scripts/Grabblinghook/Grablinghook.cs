@@ -1,6 +1,8 @@
 using System.Xml;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class Grablinghook : MonoBehaviour
@@ -151,6 +153,12 @@ public class Grablinghook : MonoBehaviour
 
                             grabbing = true;
                         }
+                        else if (touched.CompareTag("Button"))
+                        {
+                            touched.GetComponent<Button>().onClick.Invoke();
+                            hookTarget = Vector3.zero;
+                            currState = GrabblingState.Returning;
+                        }
                     }
 
                     hand.transform.position = hookTarget;
@@ -273,6 +281,9 @@ public class Grablinghook : MonoBehaviour
                 return hit.gameObject;
 
             if (bestTarget == null && hit.CompareTag("Grabbable"))
+                bestTarget = hit.gameObject;
+
+            if (bestTarget == null && hit.CompareTag("Button"))
                 bestTarget = hit.gameObject;
         }
 
