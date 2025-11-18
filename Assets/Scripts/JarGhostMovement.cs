@@ -46,6 +46,6 @@ public class JarGhostMovement : MonoBehaviour
         float y = Random.Range(minBounds.y, maxBounds.y);
         float z = Random.Range(minBounds.z, maxBounds.z);
         targetPos = new Vector3(x, y, z);
-        transform.LookAt(targetPos);
+        transform.LookAt(new Vector3(targetPos.x, transform.position.y, targetPos.z));
     }
 }
