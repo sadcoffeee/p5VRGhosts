@@ -33,6 +33,7 @@ public class PossessedObject : MonoBehaviour
     private float currentTimer;
     public GameObject Hand;
     private GhostAnimations anim;
+    private ParticleSystem exorcismParticles;
 
 
     private void Start()
@@ -44,6 +45,7 @@ public class PossessedObject : MonoBehaviour
         originalPosition = transform.localPosition;
         originalRotation = transform.localRotation;
         hapticPlayer = GetComponent<HapticImpulsePlayer>();
+        exorcismParticles = GetComponentInChildren<ParticleSystem>();
 
         //Initialize timer
         currentTimer = possessionDuration;
@@ -181,6 +183,8 @@ public class PossessedObject : MonoBehaviour
         ghost.SetActive(true);
         anim = ghost.GetComponent<GhostAnimations>();
         anim.PlayDizzy();
+        exorcismParticles.Play();
+
 
         float duration = 2.5f; // seconds for the animation
         float elapsed = 0f;
@@ -192,6 +196,10 @@ public class PossessedObject : MonoBehaviour
         while (elapsed < duration)
         {
             float t = elapsed / duration;
+            ghost.transform.LookAt(Hand.transform);
+
+            // gradually scale up
+            ghost.transform.localScale = new Vector3(1*t, 1 * t, 1 * t);
 
             // Vertical movement
             float height = Mathf.Lerp(0f, (endPos - startPos).y, t);
@@ -214,7 +222,6 @@ public class PossessedObject : MonoBehaviour
 
         // After animation completes, actually release and stun the ghost
         ghost.transform.position = endPos;
-        ghost.transform.LookAt(Hand.transform);
         ghostScript.enabled = true;
 
         ghostScript.currentState = FlyTowardsGhost.GhostState.Stunned;
