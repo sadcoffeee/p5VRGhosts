@@ -1034,6 +1034,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.05, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 1149137932}
   lifeImage: {fileID: 1149137931}
   possessionDuration: 3
@@ -2478,6 +2480,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.05, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 1885862868}
   lifeImage: {fileID: 1885862867}
   possessionDuration: 3
@@ -8400,6 +8404,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 1365803553}
   lifeImage: {fileID: 1365803552}
   possessionDuration: 3
@@ -8713,6 +8719,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.02, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
   possessionDuration: 5
@@ -9057,6 +9065,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.05, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 695712871}
   lifeImage: {fileID: 695712870}
   possessionDuration: 3
@@ -10582,6 +10592,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.05, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 499783106}
   lifeImage: {fileID: 499783105}
   possessionDuration: 3
@@ -11019,6 +11031,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.05, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 505305986}
   lifeImage: {fileID: 505305985}
   possessionDuration: 3
@@ -11291,6 +11305,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.05, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 232209364}
   lifeImage: {fileID: 232209363}
   possessionDuration: 3
@@ -15565,6 +15581,8 @@ MonoBehaviour:
   isPossessed: 0
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
+  rumbleBounds: {x: 0.05, y: 0.05, z: 0.05}
+  rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 482476644}
   lifeImage: {fileID: 482476643}
   possessionDuration: 3

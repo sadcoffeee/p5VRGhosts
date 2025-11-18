@@ -20,7 +20,8 @@ public class PossessedObject : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private float rumbleTimer = 0f;
-    private float rumbleAmount = 0.05f;
+    public Vector3 rumbleBounds = new Vector3(0.05f, 0.05f, 0.05f);
+    public Vector3 rotationBounds = new Vector3(2f, 2f, 2f); // degrees
     private float rumbleInterval = 2;
     private float rumbleTime = 0.5f;
     private HapticImpulsePlayer hapticPlayer;
@@ -139,16 +140,17 @@ public class PossessedObject : MonoBehaviour
         if (rumbleTimer >= rumbleInterval)
         {
             Vector3 randomOffset = new Vector3(
-                Random.Range(-rumbleAmount, rumbleAmount),
-                Random.Range(-rumbleAmount, rumbleAmount),
-                Random.Range(-rumbleAmount, rumbleAmount)
+                Random.Range(-rumbleBounds.x, rumbleBounds.x),
+                Random.Range(-rumbleBounds.y, rumbleBounds.y),
+                Random.Range(-rumbleBounds.z, rumbleBounds.z)
             );
+
             transform.localPosition = originalPosition + randomOffset;
 
             Vector3 randomRotation = new Vector3(
-                Random.Range(-rumbleAmount, rumbleAmount),
-                Random.Range(-rumbleAmount, rumbleAmount),
-                Random.Range(-rumbleAmount, rumbleAmount)
+                Random.Range(-rotationBounds.x, rotationBounds.x),
+                Random.Range(-rotationBounds.y, rotationBounds.y),
+                Random.Range(-rotationBounds.z, rotationBounds.z)
             );
             transform.localRotation = Quaternion.Euler(originalRotation.eulerAngles + randomRotation);
             hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
