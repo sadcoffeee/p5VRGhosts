@@ -5,9 +5,11 @@ int motorValue = 0;
 int errorLed = 7;
 int timingLed = 8;
 
-//Timings
-unsigned long lastMotorMessageTime = 0;
-const unsigned long motorTimeout = 100;
+//Motor timing
+unsigned long lastPlayMotorMessageTime = 0;
+const unsigned long playMotorTimeout = 100;
+unsigned long lastProcedureMotorMessageTime = 0;
+const unsigned long procedureMotorTimeout = 100;
 
 //failed connection
 bool connectionError = false;
@@ -68,7 +70,8 @@ void loop() {
           failedMessageTime = millis();
           failedMessage = true;
         }
-        if (code == "PC" || code == "PL") lastMotorMessageTime = millis();
+        if (code == "PC") lastProcedureMotorMessageTime = millis();
+        if (code == "PL") lastPlayMotorMessageTime = millis();
       }
     }
   }
@@ -78,9 +81,12 @@ void loop() {
     connectionError = true;
   }
 
-  //check time since last command
-  if (millis() - lastMotorMessageTime > motorTimeout) {
-    StopMotors();
+  //check time since last motor commands
+  if (millis() - lastPlayMotorMessageTime > playMotorTimeout) {
+    analogWrite(playMotor, 0);
+  }
+  if (millis() - lastProcedureMotorMessageTime > procedureMotorTimeout) {
+    analogWrite(procedureMotor, 0);
   }
 
   //makes the LED blink if there is a connection error;
@@ -105,11 +111,6 @@ void loop() {
     digitalWrite(errorLed, LOW);
     failedMessage = false;
   }
-}
-
-void  StopMotors(){
-  analogWrite(playMotor, 0);
-  analogWrite(procedureMotor, 0);
 }
 
 void  StopAll(){
