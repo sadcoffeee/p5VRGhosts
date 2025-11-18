@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public bool tutorialDone = false;
 
     [Header("Difficulty Settings")]
-    public float minBreakTime = 2f; // lower bound for difficulty
+    public float minBreakTime = 5f; // lower bound for difficulty
     public float maxBreakTime = 8f; // upper bound
     public float adjustStep = 0.5f; // how much to increase/decrease per good/bad catch
 
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool endTurtorial = true;
 
     private int ghostsDefeated = 0;
-    [HideInInspector] public float objectBreakTime = 5f;
+    [HideInInspector] public float objectBreakTime = 7f;
 
     public int GhostsDefeated => ghostsDefeated; //added
 

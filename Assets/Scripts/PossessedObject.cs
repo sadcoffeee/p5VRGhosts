@@ -29,7 +29,7 @@ public class PossessedObject : MonoBehaviour
     //HealtBar
     public Canvas healtbarCanvas;
     public Image lifeImage;
-    public float possessionDuration = 3f;
+    public float possessionDuration = 7f;
     private float currentTimer;
     public GameObject Hand;
     private GhostAnimations anim;
@@ -92,11 +92,11 @@ public class PossessedObject : MonoBehaviour
             ghostFace.SetActive(true);
 
             // Reset timer to full duration
-            currentTimer = 0.6f * possessionDuration;
+            currentTimer = 0.75f * possessionDuration;
 
             // Reset UI fill
             if (lifeImage != null)
-                lifeImage.fillAmount = 0.8f;
+                lifeImage.fillAmount = 0.75f;
 
             AudioManager.Instance.PlayAudio("PossessFurniture");
         }

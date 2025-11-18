@@ -72,6 +72,7 @@ public class TutorialGhost : MonoBehaviour
         yield return MoveGhost(this.transform.position, possessObject.transform.position, flyTime);
         this.ghostStates.currentState = FlyTowardsGhost.GhostState.Possessing;
         possessedScript.SetPossessed(true, this.gameObject);
+        possessedScript.healtbarCanvas.gameObject.SetActive(true);
         HideGhost(false);
         flashlightTutorial.SetActive(true);
         yield return new WaitUntil(() => this.ghostStates.currentState == FlyTowardsGhost.GhostState.Stunned);
