@@ -39,6 +39,9 @@ public class FlyTowardsGhost : MonoBehaviour
         stunTimer = stunDelay;
         GameManager.Instance.RegisterGhost(this);
         anim = GetComponent<GhostAnimations>();
+        middleTargetPosition = GetRandomHoverPosition();
+        transform.LookAt(middleTargetPosition);
+
     }
 
     void Update()
@@ -49,12 +52,14 @@ public class FlyTowardsGhost : MonoBehaviour
         switch (currentState)
         {
             case GhostState.FlyToMiddle:
-                if (middleTargetPosition == null)
+                hoverScript.enabled = false; // pause hover while flying
+                if (middleTargetPosition.magnitude < 0.01f)
                 {
                     middleTargetPosition = GetRandomHoverPosition();
                     transform.LookAt(middleTargetPosition);
                 }
                 FlyToTarget(middleTargetPosition, GhostState.Hovering);
+                AudioManager.Instance.StopAudio("GhostStunned");
                 break;
             
             case GhostState.Hovering:
@@ -109,6 +114,9 @@ public class FlyTowardsGhost : MonoBehaviour
 
     private void Hovering()
     {
+        if (hoverTimer == 0)
+            AudioManager.Instance.PlayAudio("ghostLaugh");
+
         hoverTimer += Time.deltaTime;
         if (hoverTimer >= hoverDelay)
         {
@@ -133,7 +141,7 @@ public class FlyTowardsGhost : MonoBehaviour
 
     public Vector3 GetRandomHoverPosition()
     {
-        return new Vector3(Random.Range(-2f, 2f), Random.Range(0.2f, 2f), Random.Range(-7f, -3f));
+        return new Vector3(Random.Range(-2.8f, 2.8f), Random.Range(0.5f, 2.2f), Random.Range(-8f, -5f));
     }
     private void OnDestroy()
     {

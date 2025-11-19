@@ -32,6 +32,7 @@ public class PossessedObject : MonoBehaviour
     public float possessionDuration = 7f;
     private float currentTimer;
     public GameObject Hand;
+    public VibratorController vibratorController;
     private GhostAnimations anim;
     private ParticleSystem exorcismParticles;
 
@@ -92,6 +93,8 @@ public class PossessedObject : MonoBehaviour
 
         if (isPossessed)
         {
+            playNociceptiveHaptics();
+
             ghostOccupying = ghost;
             currentObject.material = endMaterial;
             ghostFace.SetActive(true);
@@ -184,8 +187,8 @@ public class PossessedObject : MonoBehaviour
         anim = ghost.GetComponent<GhostAnimations>();
         anim.PlayDizzy();
         exorcismParticles.Play();
-
-
+        AudioManager.Instance.PlayAudio("Exorcism");
+        
         float duration = 2.5f; // seconds for the animation
         float elapsed = 0f;
 
@@ -199,7 +202,7 @@ public class PossessedObject : MonoBehaviour
             ghost.transform.LookAt(Hand.transform);
 
             // gradually scale up
-            ghost.transform.localScale = new Vector3(1*t, 1 * t, 1 * t);
+            ghost.transform.localScale = new Vector3(1 * t, 1 * t, 1 * t);
 
             // Vertical movement
             float height = Mathf.Lerp(0f, (endPos - startPos).y, t);
@@ -269,6 +272,28 @@ public class PossessedObject : MonoBehaviour
     {
         possessionDuration = newBreakTime;
         currentTimer = newBreakTime;
+    }
+
+    IEnumerator playNociceptiveHaptics()
+    {
+        float timer = 0f;
+
+        while (timer < 4.9f)
+        {
+            timer += Time.deltaTime;
+            vibratorController.SendArduinoSignal("PC", 180);
+            vibratorController.SendArduinoSignal("PL", 180);
+            yield return new WaitForSeconds(0.09f);
+        }
+
+        while (isPossessed)
+        {
+            vibratorController.SendArduinoSignal("PC", 180);
+            vibratorController.SendArduinoSignal("PL", 180);
+            yield return new WaitForSeconds(0.09f);
+        }
+
+        yield return null;
     }
 
 }

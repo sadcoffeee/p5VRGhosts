@@ -127,7 +127,8 @@ public class Grablinghook : MonoBehaviour
                                 grabbing = true;
 
                                 originalGrabDistance = Vector3.Distance(hand.transform.position, this.transform.position); //this
-                            }
+                            } else if (ghostScript.currentState == FlyTowardsGhost.GhostState.Hovering || ghostScript.currentState == FlyTowardsGhost.GhostState.FlyingTowardsObject)
+                                AudioManager.Instance.PlayAudio("ghostLaughOther");
                         }
                         else if (touched.CompareTag("Grabbable"))
                         {
@@ -156,8 +157,6 @@ public class Grablinghook : MonoBehaviour
                         else if (touched.CompareTag("Button"))
                         {
                             touched.GetComponent<Button>().onClick.Invoke();
-                            hookTarget = Vector3.zero;
-                            currState = GrabblingState.Returning;
                         }
                     }
 
@@ -185,9 +184,6 @@ public class Grablinghook : MonoBehaviour
                 break;
 
             case GrabblingState.Returning:
-                
-
-
                 float inStep = returnSpeed * Time.deltaTime;
                 hand.transform.position = Vector3.MoveTowards(hand.transform.position, this.transform.position, inStep);
 

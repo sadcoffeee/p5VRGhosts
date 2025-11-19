@@ -5694,6 +5694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boombox
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2d01deb515d19014aa5680df0f0ddbce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5723,7 +5727,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 75a595547ed126a4bb431798b572b672, type: 3}
+  m_Resource: {fileID: 8300000, guid: 45132ba0168b3344c8ccdaf58f6f4bd3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -5809,6 +5813,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &119572604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d01deb515d19014aa5680df0f0ddbce, type: 3}
+  m_PrefabInstance: {fileID: 119572600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &138649040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5934,6 +5943,7 @@ MonoBehaviour:
   lifeImage: {fileID: 1149137931}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!114 &138649044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7383,6 +7393,7 @@ MonoBehaviour:
   lifeImage: {fileID: 1885862867}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!1001 &213958883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13805,8 +13816,8 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 1
   - name: ShootSound
-    clip: {fileID: 8300000, guid: 53525abbf7c0a944da72ad80cc0277c1, type: 3}
-    volume: 0.25
+    clip: {fileID: 8300000, guid: 74025b3ac097f3940aafcd65480608b7, type: 3}
+    volume: 0.2
     source: {fileID: 0}
     loop: 0
   - name: HandReturnWindSound
@@ -13819,6 +13830,26 @@ MonoBehaviour:
     volume: 0.15
     source: {fileID: 0}
     loop: 1
+  - name: Exorcism
+    clip: {fileID: 8300000, guid: a4068115f38d63046a573cd13a86c822, type: 3}
+    volume: 0.05
+    source: {fileID: 0}
+    loop: 0
+  - name: ghostLaugh
+    clip: {fileID: 8300000, guid: 327571eaa9b9b314aaff83ce330f94df, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+    loop: 0
+  - name: ghostLaughOther
+    clip: {fileID: 8300000, guid: 3ecc268119285cf4e8ac035078b52fcc, type: 3}
+    volume: 0.15
+    source: {fileID: 0}
+    loop: 0
+  - name: gasp
+    clip: {fileID: 8300000, guid: f7c0697ff3570f844a6ed6937b6fdf1f, type: 3}
+    volume: 0.2
+    source: {fileID: 0}
+    loop: 0
   carTimeIntervalMin: 10
   carTimeIntervalMax: 30
 --- !u!4 &410851875
@@ -18823,6 +18854,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 119572604}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 760871640}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -25752,6 +25795,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 119572604}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 760871640}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -25969,6 +26024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630644708}
   - component: {fileID: 630644707}
+  - component: {fileID: 630644709}
   m_Layer: 0
   m_Name: Gamemanager
   m_TagString: Untagged
@@ -26030,6 +26086,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &630644709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630644706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efab5ed634dc484e81e8f04badc2e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM4
+  connectionEstablished: 0
 --- !u!1 &665853014
 GameObject:
   m_ObjectHideFlags: 0
@@ -38272,11 +38342,12 @@ MonoBehaviour:
   isFurnitureBroken: 0
   ghostOccupying: {fileID: 0}
   rumbleBounds: {x: 0.05, y: 0, z: 0.05}
-  rotationBounds: {x: 2, y: 2, z: 2}
+  rotationBounds: {x: 0, y: 2, z: 0}
   healtbarCanvas: {fileID: 1365803553}
   lifeImage: {fileID: 1365803552}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!1 &986481721
 GameObject:
   m_ObjectHideFlags: 0
@@ -43483,6 +43554,7 @@ MonoBehaviour:
   lifeImage: {fileID: 0}
   possessionDuration: 5
   Hand: {fileID: 0}
+  vibratorController: {fileID: 0}
 --- !u!1 &1042781380 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7374353758504465848, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
@@ -43832,6 +43904,7 @@ MonoBehaviour:
   lifeImage: {fileID: 695712870}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!1001 &1149137929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45362,6 +45435,7 @@ MonoBehaviour:
   lifeImage: {fileID: 499783105}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!1 &1309529139
 GameObject:
   m_ObjectHideFlags: 0
@@ -45804,6 +45878,7 @@ MonoBehaviour:
   lifeImage: {fileID: 505305985}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!1001 &1365803550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46108,6 +46183,7 @@ MonoBehaviour:
   lifeImage: {fileID: 232209363}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!1 &1400186462
 GameObject:
   m_ObjectHideFlags: 0
@@ -50602,6 +50678,7 @@ MonoBehaviour:
   lifeImage: {fileID: 482476643}
   possessionDuration: 3
   Hand: {fileID: 815255385}
+  vibratorController: {fileID: 630644709}
 --- !u!1001 &1977240362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57705,7 +57782,7 @@ MonoBehaviour:
   Ghost: {fileID: 7901639082528194288}
   grabbable: 0
   spawnTime: 0
-  currentState: 0
+  currentState: 3
 --- !u!4 &5043507506156868930
 Transform:
   m_ObjectHideFlags: 0

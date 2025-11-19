@@ -63,7 +63,7 @@ public class TutorialGhost : MonoBehaviour
         yield return StartCoroutine(SmoothTransform(Hand.transform, 0.3f));
         yield return new WaitForSeconds(idleFloatTime);
         anim.Caught();
-
+        AudioManager.Instance.PlayAudio("gasp");
 
         //Pause while shock animation plays, fly towards furniture 
         yield return new WaitForSeconds(pauseInAir);

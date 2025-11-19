@@ -975,7 +975,8 @@ MonoBehaviour:
   stunDelay: 5
   Ghost: {fileID: 7901639083215149929}
   grabbable: 0
-  currentState: 0
+  spawnTime: 0
+  currentState: 3
 --- !u!136 &3167758943284281632
 CapsuleCollider:
   m_ObjectHideFlags: 0
