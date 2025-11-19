@@ -89,9 +89,8 @@ public class FlyTowardsGhost : MonoBehaviour
                 break;
 
             case GhostState.DestroyedFurniture:
-                Ghost.SetActive(true);
+                hoverScript.startPosition = transform.position + new Vector3(0, 2f, 0);
                 currentState = GhostState.Hovering;
-                //Debug.Log("DU KOM HER TIL");
                 break;
 
             case GhostState.Stunned:
@@ -135,6 +134,7 @@ public class FlyTowardsGhost : MonoBehaviour
             );
         if (Vector3.Distance(transform.position, target) <= arriveDistance)
         {
+            hoverScript.startPosition = transform.position;
             currentState = nextState;
         }
     }

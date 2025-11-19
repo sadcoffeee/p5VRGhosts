@@ -5941,6 +5941,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 1149137932}
   lifeImage: {fileID: 1149137931}
+  exorcismImage: {fileID: 1149137933}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}
@@ -7391,6 +7393,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 1885862868}
   lifeImage: {fileID: 1885862867}
+  exorcismImage: {fileID: 1885862869}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}
@@ -7564,6 +7568,14 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 502414696166792333, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7644,6 +7656,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7625117610402568259, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8384960029179584631, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -7678,6 +7694,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 232209361}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &232209365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 232209361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &241050570
 GameObject:
   m_ObjectHideFlags: 0
@@ -19068,6 +19095,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 482476641}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &482476645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 482476641}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &499783103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19198,6 +19236,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 499783103}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &499783107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 499783103}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &505305983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19328,6 +19377,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 505305983}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &505305987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 505305983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &536378302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25591,6 +25651,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c44bd9bdc114d4a60932c0087d9d1732, type: 3}
+--- !u!1 &617392474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 617392475}
+  m_Layer: 0
+  m_Name: Vision Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &617392475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617392474}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 996504866}
+  m_Father: {fileID: 982971976}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618399235
 GameObject:
   m_ObjectHideFlags: 0
@@ -26302,6 +26394,10 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -26416,6 +26512,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 695712868}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &695712872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 695712868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &715235113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38186,6 +38293,7 @@ Transform:
   - {fileID: 777175679}
   - {fileID: 1525382895}
   - {fileID: 859421344}
+  - {fileID: 617392475}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &983299545
@@ -38345,6 +38453,8 @@ MonoBehaviour:
   rotationBounds: {x: 0, y: 2, z: 0}
   healtbarCanvas: {fileID: 1365803553}
   lifeImage: {fileID: 1365803552}
+  exorcismImage: {fileID: 1365803554}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}
@@ -43301,6 +43411,114 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1809706334242690962, guid: 47c725d3548d6384192e503e2e7aa339, type: 3}
   m_PrefabInstance: {fileID: 992798116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &996504865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 996504866}
+  - component: {fileID: 996504869}
+  - component: {fileID: 996504868}
+  - component: {fileID: 996504867}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &996504866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996504865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03, y: 2.18, z: -13.923}
+  m_LocalScale: {x: 9.9452, y: 4.761877, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 617392475}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &996504867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996504865}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &996504868
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996504865}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &996504869
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996504865}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &996618299
 GameObject:
   m_ObjectHideFlags: 0
@@ -43552,6 +43770,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 0}
   lifeImage: {fileID: 0}
+  exorcismImage: {fileID: 0}
+  exorcismRequiredTime: 3
   possessionDuration: 5
   Hand: {fileID: 0}
   vibratorController: {fileID: 0}
@@ -43902,6 +44122,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 695712871}
   lifeImage: {fileID: 695712870}
+  exorcismImage: {fileID: 695712872}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}
@@ -43920,6 +44142,10 @@ PrefabInstance:
     - target: {fileID: 456027635806646572, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_FillAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_Pivot.x
@@ -44035,6 +44261,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 1149137929}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149137933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 1149137929}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1152734340
 GameObject:
   m_ObjectHideFlags: 0
@@ -44827,6 +45064,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1814788487}
     m_Modifications:
+    - target: {fileID: 8225432176999796389, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: bcb4a914457c8604dbf22169ef0d1a47, type: 2}
     - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8
@@ -45433,6 +45674,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 499783106}
   lifeImage: {fileID: 499783105}
+  exorcismImage: {fileID: 499783107}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}
@@ -45876,6 +46119,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 505305986}
   lifeImage: {fileID: 505305985}
+  exorcismImage: {fileID: 505305987}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}
@@ -46009,6 +46254,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 1365803550}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365803554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 1365803550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1392577055 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8267480866280864119, guid: 17a2dbbc08272c54596da392f724183d, type: 3}
@@ -46181,6 +46437,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 232209364}
   lifeImage: {fileID: 232209363}
+  exorcismImage: {fileID: 232209365}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}
@@ -50084,6 +50342,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2556697158073163780, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
   m_PrefabInstance: {fileID: 1885862865}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885862869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3641508612779292755, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
+  m_PrefabInstance: {fileID: 1885862865}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1886886816
 GameObject:
   m_ObjectHideFlags: 0
@@ -50676,6 +50945,8 @@ MonoBehaviour:
   rotationBounds: {x: 2, y: 2, z: 2}
   healtbarCanvas: {fileID: 482476644}
   lifeImage: {fileID: 482476643}
+  exorcismImage: {fileID: 482476645}
+  exorcismRequiredTime: 3
   possessionDuration: 3
   Hand: {fileID: 815255385}
   vibratorController: {fileID: 630644709}

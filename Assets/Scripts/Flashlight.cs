@@ -41,8 +41,7 @@ public class VRFlashlight : MonoBehaviour
                         hoverTimer += Time.deltaTime;
                         hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
 
-                        // added Time.deltaTime to counteract furniture health loss, now 1.5 is the amount healed per second
-                        possessed.HealFurniture(Time.deltaTime * 1.5f + Time.deltaTime); //added
+                        possessed.HealFurniture();
                     }
                 }
 

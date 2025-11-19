@@ -29,6 +29,10 @@ public class PossessedObject : MonoBehaviour
     //HealtBar
     public Canvas healtbarCanvas;
     public Image lifeImage;
+    public Image exorcismImage;
+    public float exorcismRequiredTime = 3f;
+    private float exorcismCounter = 0f;
+    private bool isBeingHealed = false;
     public float possessionDuration = 7f;
     private float currentTimer;
     public GameObject Hand;
@@ -65,7 +69,10 @@ public class PossessedObject : MonoBehaviour
             PossessRumble();
 
             //Decrease the timer
-            currentTimer -= Time.deltaTime;
+            if (!isBeingHealed)
+            {
+                currentTimer -= Time.deltaTime;
+            }
             //Convert time left into a value between 0 and 1 for the image fill for UI
             float normalizedTime = currentTimer / possessionDuration;
             lifeImage.fillAmount = normalizedTime;
@@ -85,6 +92,10 @@ public class PossessedObject : MonoBehaviour
             ghostFace.SetActive(true);
             PossessRumble();
         }
+        
+        // Reset healing flag every frame
+        isBeingHealed = false;
+
     }
     public void SetPossessed(bool value, GameObject ghost = null)
     {
@@ -100,11 +111,11 @@ public class PossessedObject : MonoBehaviour
             ghostFace.SetActive(true);
 
             // Reset timer to full duration
-            currentTimer = 0.75f * possessionDuration;
+            currentTimer = possessionDuration;
 
             // Reset UI fill
             if (lifeImage != null)
-                lifeImage.fillAmount = 0.75f;
+                lifeImage.fillAmount = 1f;
 
             AudioManager.Instance.PlayAudio("PossessFurniture");
         }
@@ -116,24 +127,24 @@ public class PossessedObject : MonoBehaviour
             }
 
             ghostFace.SetActive(false);
-            if (!isFurnitureBroken)
-            {
-                currentObject.material = startMaterial;
-            }
-            
+
             transform.localPosition = originalPosition;
             transform.localRotation = originalRotation;
             if (!isFurnitureBroken)
             {
+                exorcismCounter = 0f;
+                isBeingHealed = false;
+                exorcismImage.fillAmount = 0f;
+
                 currentObject.material = startMaterial;
                 StartCoroutine(ExorciseGhostRoutine(ghostOccupying));
             }
             else
             {
                 FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
-                ghostScript.currentState = FlyTowardsGhost.GhostState.Hovering;
+                ghostScript.currentState = FlyTowardsGhost.GhostState.DestroyedFurniture;
+                ghostOccupying.transform.LookAt(Hand.transform.position - new Vector3(0, -5f, 0));
                 ghostOccupying.SetActive(true);
-
             }
 
             ghostOccupying = null;
@@ -241,8 +252,6 @@ public class PossessedObject : MonoBehaviour
         //Debug.Log("jeg er ødelagt");
         GameManager.Instance.UnregisterFurniture(this);
         SetPossessed(false, ghostOccupying);
-
-
     }
     public void FurnitureRessurect()
     {
@@ -250,24 +259,26 @@ public class PossessedObject : MonoBehaviour
         isFurnitureBroken = false;
     }
 
-    public void HealFurniture(float amount) //how much time you want to heal by in one frame.
+    public void HealFurniture()
     {
-        if (isPossessed) 
+        if (!isPossessed) return;
+
+        isBeingHealed = true;
+
+        exorcismCounter += Time.deltaTime;
+        exorcismCounter = Mathf.Clamp(exorcismCounter, 0f, exorcismRequiredTime);
+
+        if (exorcismImage != null)
         {
-            currentTimer += amount; //tilføj tiden/livet tilbage
-            currentTimer = Mathf.Clamp(currentTimer, 0f, possessionDuration);
+            exorcismImage.fillAmount = exorcismCounter / exorcismRequiredTime;
+        }
 
-            //opdatere visuel lifebar
-            float normalizeTime = currentTimer / possessionDuration;
-            lifeImage.fillAmount = normalizeTime;
-
-            //release ved fuldt liv
-            if (currentTimer >= possessionDuration) 
-            {
-                SetPossessed(false, ghostOccupying);
-            }
+        if (exorcismCounter >= exorcismRequiredTime)
+        {
+            SetPossessed(false, ghostOccupying);
         }
     }
+
     public void UpdateBreakTime(float newBreakTime)
     {
         possessionDuration = newBreakTime;
