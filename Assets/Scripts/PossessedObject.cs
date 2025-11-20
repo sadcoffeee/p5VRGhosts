@@ -104,7 +104,7 @@ public class PossessedObject : MonoBehaviour
 
         if (isPossessed)
         {
-            playNociceptiveHaptics();
+            StartCoroutine(playNociceptiveHaptics());
 
             ghostOccupying = ghost;
             currentObject.material = endMaterial;
@@ -143,7 +143,7 @@ public class PossessedObject : MonoBehaviour
             {
                 FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
                 ghostScript.currentState = FlyTowardsGhost.GhostState.DestroyedFurniture;
-                ghostOccupying.transform.LookAt(Hand.transform.position - new Vector3(0, -5f, 0));
+                ghostOccupying.transform.LookAt(Hand.transform.position - new Vector3(0, 2f, 0));
                 ghostOccupying.SetActive(true);
             }
 
@@ -292,16 +292,17 @@ public class PossessedObject : MonoBehaviour
         while (timer < 4.9f)
         {
             timer += Time.deltaTime;
-            vibratorController.SendArduinoSignal("PC", 180);
-            vibratorController.SendArduinoSignal("PL", 180);
-            yield return new WaitForSeconds(0.09f);
+            Debug.Log(timer.ToString());
+            vibratorController.SendArduinoSignal("PC", 100);
+            vibratorController.SendArduinoSignal("PL", 100);
+            yield return null;
         }
 
         while (isPossessed)
         {
-            vibratorController.SendArduinoSignal("PC", 180);
-            vibratorController.SendArduinoSignal("PL", 180);
-            yield return new WaitForSeconds(0.09f);
+            vibratorController.SendArduinoSignal("PC", 100);
+            vibratorController.SendArduinoSignal("PL", 100);
+            yield return null;
         }
 
         yield return null;

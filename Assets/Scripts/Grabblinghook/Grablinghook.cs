@@ -177,7 +177,7 @@ public class Grablinghook : MonoBehaviour
                     if (vController.connectionEstablished)
                     {
                         vController.SendArduinoSignal("PL", shootVibration);
-                        hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                        //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
                     }
                 }
 
@@ -228,12 +228,12 @@ public class Grablinghook : MonoBehaviour
                         if (grabbing)
                         {
                             vController.SendArduinoSignal("PL", pullWweigthVibration);
-                            hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
+                            //hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
                         }
                         else
                         {
                             vController.SendArduinoSignal("PL", pullWOweigthVibration);
-                            hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                            //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
                         }
                     }
                 }

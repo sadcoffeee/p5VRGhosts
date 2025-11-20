@@ -26190,7 +26190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efab5ed634dc484e81e8f04badc2e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: COM4
+  portName: COM9
   connectionEstablished: 0
 --- !u!1 &665853014
 GameObject:
@@ -51319,10 +51319,10 @@ MonoBehaviour:
   returnSpeed: 10
   rotationSpeed: 2
   currState: 0
-  vController: {fileID: 0}
-  shootVibration: 0
-  pullWweigthVibration: 0
-  pullWOweigthVibration: 0
+  vController: {fileID: 630644709}
+  shootVibration: 50
+  pullWweigthVibration: 150
+  pullWOweigthVibration: 100
   grabbed: {fileID: 0}
 --- !u!114 &2011221083
 MonoBehaviour:
