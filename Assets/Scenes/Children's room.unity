@@ -46182,11 +46182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.034
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9842463
+      value: 0.97430176
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -46194,7 +46194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.1768028
+      value: -0.22524673
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalRotation.z
@@ -46202,11 +46202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.106
+      value: 0.116
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -46214,7 +46214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -20.367
+      value: -26.035
       objectReference: {fileID: 0}
     - target: {fileID: 7490163166976742667, guid: 8d2ed1205238e52449e502b7840201bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -58051,6 +58051,7 @@ MonoBehaviour:
   hoverDelay: 3
   stunDelay: 5
   Ghost: {fileID: 7901639082528194288}
+  hand: {fileID: 0}
   grabbable: 0
   spawnTime: 0
   currentState: 3

@@ -143,7 +143,7 @@ public class PossessedObject : MonoBehaviour
             {
                 FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
                 ghostScript.currentState = FlyTowardsGhost.GhostState.DestroyedFurniture;
-                ghostOccupying.transform.LookAt(Hand.transform.position - new Vector3(0, 2f, 0));
+                //ghostOccupying.transform.LookAt(Hand.transform.position - new Vector3(0, 2f, 0));
                 ghostOccupying.SetActive(true);
             }
 

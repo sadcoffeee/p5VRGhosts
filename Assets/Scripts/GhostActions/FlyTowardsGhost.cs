@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class FlyTowardsGhost : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class FlyTowardsGhost : MonoBehaviour
     public float hoverDelay = 3f; //test timer før vi flyver mod couch
     public float stunDelay = 5f;
     public GameObject Ghost;
+    public Transform hand;
     [HideInInspector] public bool grabbable;
     [HideInInspector] public float spawnTime;
     int targetChosen;
@@ -39,6 +41,7 @@ public class FlyTowardsGhost : MonoBehaviour
         stunTimer = stunDelay;
         GameManager.Instance.RegisterGhost(this);
         anim = GetComponent<GhostAnimations>();
+        hand = FindFirstObjectByType<Grablinghook>().transform;
         middleTargetPosition = GetRandomHoverPosition();
         transform.LookAt(middleTargetPosition);
 
@@ -65,6 +68,7 @@ public class FlyTowardsGhost : MonoBehaviour
             case GhostState.Hovering:
                 anim.PlayFlying();
                 hoverScript.enabled = true; // keep hover active
+                transform.LookAt(hand);
                 Ghost.SetActive(true);
                 Hovering();
                 AudioManager.Instance.StopAudio("GhostStunned");
