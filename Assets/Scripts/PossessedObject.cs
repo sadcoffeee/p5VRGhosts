@@ -44,7 +44,7 @@ public class PossessedObject : MonoBehaviour
     private void Start()
     {
         currentObject = GetComponent<Renderer>();
-        ghostFace = transform.GetChild(0).gameObject;
+        ghostFace = transform.Find("ghostFace").gameObject;
         ghostFace.SetActive(false);
         startMaterial = GetComponent<Renderer>().material;
         originalPosition = transform.localPosition;
