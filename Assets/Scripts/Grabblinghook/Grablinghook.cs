@@ -43,6 +43,7 @@ public class Grablinghook : MonoBehaviour
     private Vector3 hookTarget = Vector3.zero;
     private Vector3 lastHandPos = Vector3.zero;
     private Vector3 handVelocity;
+    [SerializeField] private GrablinghandAnimations handAnim;
 
     private float originalGrabDistance = 0f; //this
 
@@ -67,6 +68,7 @@ public class Grablinghook : MonoBehaviour
                     hand.transform.SetParent(null);
                     if (hookTarget == Vector3.zero) hookTarget = SetTarget();
                     currState = GrabblingState.Shooting;
+                    handAnim.PlayHandReaching();
                 }
 
                 if (grabbing)
