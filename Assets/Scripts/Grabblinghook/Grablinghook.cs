@@ -295,4 +295,14 @@ public class Grablinghook : MonoBehaviour
 
         return bestTarget;
     }
+    public void disableHand() 
+    {
+        hand.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+    public void enableHand()
+    {
+        hand.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
+    }
 }

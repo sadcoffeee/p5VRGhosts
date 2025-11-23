@@ -26,10 +26,13 @@ public class TutorialGhost : MonoBehaviour
         anim = GetComponent<GhostAnimations>();
         ghostStates = GetComponent<FlyTowardsGhost>();
         possessedScript = possessObject.GetComponent<PossessedObject>();
+        Hand = FindFirstObjectByType<VRFlashlight>().gameObject;
+        flashlight = Hand.GetComponent<VRFlashlight>().flashlight.gameObject;
     }
     public void beginTutorial()
     {
         StartCoroutine(TutorialSequence());
+        
         flashlight.SetActive(false);
     }
 
