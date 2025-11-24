@@ -15,8 +15,8 @@ public class TutorialGhost : MonoBehaviour
     private GhostAnimations anim;
     public GameObject flashlightTutorial;
     public GameObject controllerTutorial;
-    public GameObject Hand;
-    public GameObject flashlight;
+    private GameObject Hand;
+    private GameObject flashlight;
     public GameObject lookAtObject1;
     public GameObject lookAtObject2;
     private float idleFloatTime = 0.8f;
