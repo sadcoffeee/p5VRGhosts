@@ -218,6 +218,13 @@ public class Grablinghook : MonoBehaviour
                     hand.transform.SetParent(handOffset.transform);
 
                     hand.transform.SetLocalPositionAndRotation(new Vector3(-0.0177f, -0.0348f, 0.1774f), Quaternion.identity);
+                    
+                    if (grabbing && grabbed != null && grabbed.CompareTag("Ghost"))
+                    {
+                        grabbed.transform.localPosition += new Vector3(0.08f, -0.08f, -0.09f);
+                        grabbed.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, -90));
+                    }
+
                     currState = GrabblingState.Idle;
                 }
 
