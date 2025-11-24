@@ -179,9 +179,6 @@ public class PossessedObject : MonoBehaviour
                 Random.Range(-rotationBounds.z, rotationBounds.z)
             );
             transform.localRotation = Quaternion.Euler(originalRotation.eulerAngles + randomRotation);
-            hapticPlayerR.SendHapticImpulse(0.1f, 0.1f);
-            hapticPlayerL.SendHapticImpulse(0.1f, 0.1f);
-
             if (rumbleTimer >= rumbleTime + rumbleInterval)
             {
                 rumbleTimer = 0;

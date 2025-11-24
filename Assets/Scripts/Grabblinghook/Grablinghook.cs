@@ -199,11 +199,13 @@ public class Grablinghook : MonoBehaviour
                 //added this for shrinking when pulled in and grabbed :3
                 if (grabbing && grabbed != null && grabbed.CompareTag("Ghost"))
                 {
+                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
                     float currentDist = Vector3.Distance(hand.transform.position, this.transform.position);
                     float ratio = Mathf.Clamp01(currentDist / Mathf.Max(originalGrabDistance, 0.01f));
-                    // shrinks gradually as it gets closer
-                    grabbed.transform.localScale = Vector3.one * ratio;
-
+                    float minScale = 0.15f;
+                    float minScaleRatio = Mathf.Clamp(ratio, minScale, 1f);
+                    //shrinks gradually to a minimum point, as it gets closer to original hand position
+                    grabbed.transform.localScale = Vector3.one * minScaleRatio;
                     grabbed.transform.position = hand.transform.position;
 
                 }
