@@ -14733,8 +14733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0, y: -0.02, z: -0.13}
+  holdRotation: {x: 180, y: 0, z: 0}
 --- !u!1001 &363700658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28278,8 +28278,6 @@ MonoBehaviour:
   roomPoint3: {fileID: 1275055127}
   flashlightTutorial: {fileID: 863735458}
   controllerTutorial: {fileID: 1577254464}
-  Hand: {fileID: 2086318686}
-  flashlight: {fileID: 181429209}
   lookAtObject1: {fileID: 257038200}
   lookAtObject2: {fileID: 1034491179}
 --- !u!1 &726201202
@@ -34075,7 +34073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
+  holdOffset: {x: -0.016, y: -0.05, z: -0.08}
   holdRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &826371068
 PrefabInstance:
@@ -34091,7 +34089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45520,7 +45518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7794579719072261618, guid: 625b27705cf415242913c2cd454718e8, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Grabbable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45555,8 +45553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0.21, y: -0.32, z: -0.1}
+  holdRotation: {x: 0, y: 180, z: -70}
 --- !u!54 &1034491181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -47197,7 +47195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0, y: -0.18, z: -0.2}
   holdRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1238113352
 GameObject:
@@ -47356,8 +47354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0.03, y: -0.16, z: -0.13}
+  holdRotation: {x: 0, y: -90, z: 0}
 --- !u!1 &1259017022
 GameObject:
   m_ObjectHideFlags: 0
@@ -49321,8 +49319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0.06, y: -0.09, z: -0.11}
+  holdRotation: {x: 90, y: 0, z: 90}
 --- !u!1 &1437993381
 GameObject:
   m_ObjectHideFlags: 0
@@ -50374,8 +50372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0.06, y: -0.09, z: -0.11}
+  holdRotation: {x: 90, y: 0, z: 90}
 --- !u!1001 &1604491902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52115,8 +52113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0.06, y: -0.09, z: -0.11}
+  holdRotation: {x: 90, y: 0, z: 90}
 --- !u!1 &1874896719
 GameObject:
   m_ObjectHideFlags: 0
@@ -52897,8 +52895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0, y: -0.02, z: -0.13}
+  holdRotation: {x: 180, y: 0, z: 0}
 --- !u!1001 &1911637894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53407,7 +53405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
+  holdOffset: {x: -0.016, y: -0.05, z: -0.09}
   holdRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1987959079
 PrefabInstance:
@@ -53903,8 +53901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0, y: -0.02, z: -0.13}
+  holdRotation: {x: 180, y: 0, z: 0}
 --- !u!1001 &2031819508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54465,7 +54463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
+  holdOffset: {x: -0.016, y: -0.05, z: -0.09}
   holdRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2075611365 stripped
 GameObject:
@@ -54511,8 +54509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0.24, y: -0.22, z: -0.24}
+  holdRotation: {x: 0, y: 0, z: 90}
 --- !u!1 &2086318686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c8e3502171b2a8d4296e16a971000a58, type: 3}
