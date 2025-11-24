@@ -22,9 +22,12 @@ public class PossessedObject : MonoBehaviour
     private float rumbleTimer = 0f;
     public Vector3 rumbleBounds = new Vector3(0.05f, 0.05f, 0.05f);
     public Vector3 rotationBounds = new Vector3(2f, 2f, 2f); // degrees
-    private float rumbleInterval = 2;
+    private float rumbleInterval = 1.4f;
     private float rumbleTime = 0.5f;
-    private HapticImpulsePlayer hapticPlayer;
+    public HapticImpulsePlayer hapticPlayerR;
+    public HapticImpulsePlayer hapticPlayerL;
+    public Transform playerCamera;
+
 
     //HealtBar
     public Canvas healtbarCanvas;
@@ -35,7 +38,6 @@ public class PossessedObject : MonoBehaviour
     private bool isBeingHealed = false;
     public float possessionDuration = 7f;
     private float currentTimer;
-    public GameObject Hand;
     public VibratorController vibratorController;
     private GhostAnimations anim;
     private ParticleSystem exorcismParticles;
@@ -49,8 +51,9 @@ public class PossessedObject : MonoBehaviour
         startMaterial = GetComponent<Renderer>().material;
         originalPosition = transform.localPosition;
         originalRotation = transform.localRotation;
-        hapticPlayer = GetComponent<HapticImpulsePlayer>();
+
         exorcismParticles = GetComponentInChildren<ParticleSystem>();
+
 
         //Initialize timer
         currentTimer = possessionDuration;
@@ -143,7 +146,6 @@ public class PossessedObject : MonoBehaviour
             {
                 FlyTowardsGhost ghostScript = ghostOccupying.GetComponent<FlyTowardsGhost>();
                 ghostScript.currentState = FlyTowardsGhost.GhostState.DestroyedFurniture;
-                //ghostOccupying.transform.LookAt(Hand.transform.position - new Vector3(0, 2f, 0));
                 ghostOccupying.SetActive(true);
             }
 
@@ -177,7 +179,9 @@ public class PossessedObject : MonoBehaviour
                 Random.Range(-rotationBounds.z, rotationBounds.z)
             );
             transform.localRotation = Quaternion.Euler(originalRotation.eulerAngles + randomRotation);
-            hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+            hapticPlayerR.SendHapticImpulse(0.1f, 0.1f);
+            hapticPlayerL.SendHapticImpulse(0.1f, 0.1f);
+
             if (rumbleTimer >= rumbleTime + rumbleInterval)
             {
                 rumbleTimer = 0;
@@ -210,7 +214,7 @@ public class PossessedObject : MonoBehaviour
         while (elapsed < duration)
         {
             float t = elapsed / duration;
-            ghost.transform.LookAt(Hand.transform);
+            ghost.transform.LookAt(playerCamera);
 
             // gradually scale up
             ghost.transform.localScale = new Vector3(1 * t, 1 * t, 1 * t);
@@ -292,7 +296,6 @@ public class PossessedObject : MonoBehaviour
         while (timer < 4.9f)
         {
             timer += Time.deltaTime;
-            Debug.Log(timer.ToString());
             vibratorController.SendArduinoSignal("PC", 100);
             vibratorController.SendArduinoSignal("PL", 100);
             yield return null;

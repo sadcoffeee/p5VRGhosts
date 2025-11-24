@@ -21,7 +21,8 @@ public class Grablinghook : MonoBehaviour
     [SerializeField] GameObject hand;
     [SerializeField] GameObject forearm;
     [SerializeField] GameObject ghLineRenderer;
-    
+    [SerializeField] GameObject handOffset;
+
 
     [Header("Variables")]
     [SerializeField] float maxLength = 10;
@@ -43,6 +44,7 @@ public class Grablinghook : MonoBehaviour
     private Vector3 hookTarget = Vector3.zero;
     private Vector3 lastHandPos = Vector3.zero;
     private Vector3 handVelocity;
+    [SerializeField] private GrablinghandAnimations handAnim;
 
     private float originalGrabDistance = 0f; //this
 
@@ -67,6 +69,7 @@ public class Grablinghook : MonoBehaviour
                     hand.transform.SetParent(null);
                     if (hookTarget == Vector3.zero) hookTarget = SetTarget();
                     currState = GrabblingState.Shooting;
+                    handAnim.PlayHandReaching();
                 }
 
                 if (grabbing)
@@ -91,6 +94,8 @@ public class Grablinghook : MonoBehaviour
                                 rb.AddForce(handVelocity * 0.8f, ForceMode.VelocityChange);
                             }
                         }
+
+                        handAnim.PlayHandIdle();
 
                         grabbed = null;
                         grabbing = false;
@@ -118,6 +123,8 @@ public class Grablinghook : MonoBehaviour
                     {
                         if (touched.CompareTag("Ghost"))
                         {
+                            handAnim.PlayHandGrabbed();
+
                             FlyTowardsGhost ghostScript = touched.GetComponent<FlyTowardsGhost>();
                             if (ghostScript.currentState == FlyTowardsGhost.GhostState.Stunned)
                             {
@@ -132,6 +139,8 @@ public class Grablinghook : MonoBehaviour
                         }
                         else if (touched.CompareTag("Grabbable"))
                         {
+                            handAnim.PlayHandGrabbed();
+
                             grabbed = touched;
 
                             grabbed.transform.SetParent(hand.transform);
@@ -199,14 +208,14 @@ public class Grablinghook : MonoBehaviour
 
                 }
 
-                hand.transform.rotation = Quaternion.Slerp(hand.transform.rotation, this.transform.rotation, rotationSpeed * Time.deltaTime);
+                hand.transform.rotation = Quaternion.Slerp(hand.transform.rotation, handOffset.transform.rotation, rotationSpeed * Time.deltaTime);
 
                 if (Vector3.Distance(hand.transform.position, this.transform.position) < 0.1f)
                 {
                     hookTarget = Vector3.zero;
-                    hand.transform.SetParent(this.transform);
+                    hand.transform.SetParent(handOffset.transform);
 
-                    hand.transform.SetLocalPositionAndRotation(new Vector3(0.035f, -0.043f, 0.101f), Quaternion.identity);
+                    hand.transform.SetLocalPositionAndRotation(new Vector3(-0.0177f, -0.0348f, 0.1774f), Quaternion.identity);
                     currState = GrabblingState.Idle;
                 }
 
@@ -285,5 +294,15 @@ public class Grablinghook : MonoBehaviour
         }
 
         return bestTarget;
+    }
+    public void disableHand() 
+    {
+        hand.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+    public void enableHand()
+    {
+        hand.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
     }
 }

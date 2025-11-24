@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GrablinghandAnimations : MonoBehaviour
 {
-
     private Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,16 +13,20 @@ public class GrablinghandAnimations : MonoBehaviour
     public void PlayHandIdle()
     {
         anim.Play("Idle");
-        Debug.Log("Playing idle");
     }
 
-    public void PlayHandReach()
+    public void PlayHandReaching()
     {
         anim.Play("Reaching");
     }
 
-    public void PlayHandGrab()
+    public void PlayHandGrabbing()
     {
         anim.Play("Grabbing");
+    }
+
+    public void PlayHandGrabbed()
+    {
+        anim.Play("Grabbed");
     }
 }
