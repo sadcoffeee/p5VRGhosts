@@ -6812,7 +6812,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -28233,8 +28233,8 @@ MonoBehaviour:
   roomPoint3: {fileID: 1275055127}
   flashlightTutorial: {fileID: 863735458}
   controllerTutorial: {fileID: 1577254464}
-  Hand: {fileID: 0}
-  flashlight: {fileID: 0}
+  Hand: {fileID: 2086318686}
+  flashlight: {fileID: 181429209}
   lookAtObject1: {fileID: 257038200}
   lookAtObject2: {fileID: 1034491179}
 --- !u!1 &726201202
@@ -34030,7 +34030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
