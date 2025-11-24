@@ -224,6 +224,8 @@ public class Grablinghook : MonoBehaviour
                         grabbed.transform.localPosition += new Vector3(0.08f, -0.08f, -0.09f);
                         grabbed.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, -90));
                     }
+                    else if (!grabbing)
+                        handAnim.PlayHandIdle();
 
                     currState = GrabblingState.Idle;
                 }
