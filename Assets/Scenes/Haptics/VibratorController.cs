@@ -6,7 +6,6 @@ using System;
 
 public class VibratorController : MonoBehaviour
 {
-    public static VibratorController instance;
 
     public string portName = "COM7";
     SerialPort arduinoPort;
@@ -17,13 +16,7 @@ public class VibratorController : MonoBehaviour
 
     void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        
-        
+
         connectionCheckTimer = connectionCheckInterval;
 
         arduinoPort = new SerialPort(portName, 115200);
@@ -58,7 +51,7 @@ public class VibratorController : MonoBehaviour
             TF      = Timing LED off
          * Examples
             SendArduinoSignal("PL", 0);     sets play arm vibrators to 0
-            SendArduinoSignal("PC", 200);   sets procedure arm to 200
+            SendArduinoSignal("PC", 165);   sets procedure arm to 165
             SendArduinoSignal("TF");        turns off timing LED
          * Error LED will blink rapidley for 1 sec if it recives a faulty message
         */
@@ -98,6 +91,11 @@ public class VibratorController : MonoBehaviour
     }
 
     private void OnApplicationQuit()
+    {
+        if (arduinoPort != null && arduinoPort.IsOpen)
+            arduinoPort.Close();
+    }
+    private void OnDestroy()
     {
         if (arduinoPort != null && arduinoPort.IsOpen)
             arduinoPort.Close();
