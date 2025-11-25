@@ -293,15 +293,15 @@ public class PossessedObject : MonoBehaviour
         while (timer < 4.9f)
         {
             timer += Time.deltaTime;
-            vibratorController.SendArduinoSignal("PC", 100);
-            vibratorController.SendArduinoSignal("PL", 100);
+            vibratorController.SendArduinoSignal("PC", 165);
+            vibratorController.SendArduinoSignal("PL", 165);
             yield return null;
         }
 
         while (isPossessed)
         {
-            vibratorController.SendArduinoSignal("PC", 100);
-            vibratorController.SendArduinoSignal("PL", 100);
+            vibratorController.SendArduinoSignal("PC", 165);
+            vibratorController.SendArduinoSignal("PL", 165);
             yield return null;
         }
 
