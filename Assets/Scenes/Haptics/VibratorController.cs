@@ -6,6 +6,8 @@ using System;
 
 public class VibratorController : MonoBehaviour
 {
+    public static VibratorController instance;
+
     public string portName = "COM7";
     SerialPort arduinoPort;
     float connectionCheckTimer;
@@ -15,6 +17,13 @@ public class VibratorController : MonoBehaviour
 
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        
+        
         connectionCheckTimer = connectionCheckInterval;
 
         arduinoPort = new SerialPort(portName, 115200);
