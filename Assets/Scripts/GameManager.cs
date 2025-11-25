@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour
     public List<PossessedObject> allObjects = new List<PossessedObject>();
     public List<FlyTowardsGhost> activeGhosts = new List<FlyTowardsGhost>();
 
-    [Header("Turtorial")]
-    [SerializeField] bool endTurtorial = true;
+    [Header("Condition parameters")]
+    public bool playControllerHaptics = true;
+    public bool playBigHaptics = true;
+
 
     private int ghostsDefeated = 0;
     [HideInInspector] public float objectBreakTime = 7f;
@@ -236,4 +238,21 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region condition setters
+    public void condition1()
+    {
+        playControllerHaptics = false;
+        playBigHaptics = false;
+    }
+    public void condition2()
+    {
+        playControllerHaptics = true;
+        playBigHaptics = false;
+    }
+    public void condition3()
+    {
+        playControllerHaptics = true;
+        playBigHaptics = true;
+    }
+    #endregion
 }

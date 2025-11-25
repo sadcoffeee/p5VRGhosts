@@ -39,7 +39,8 @@ public class VRFlashlight : MonoBehaviour
                     if (possessed.isPossessed)
                     {
                         hoverTimer += Time.deltaTime;
-                        hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                        if (GameManager.Instance.playControllerHaptics)
+                            hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
 
                         possessed.HealFurniture();
                     }

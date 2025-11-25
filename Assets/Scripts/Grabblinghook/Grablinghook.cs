@@ -183,7 +183,7 @@ public class Grablinghook : MonoBehaviour
                 // Haptics
                 if (vController != null)
                 {
-                    if (vController.connectionEstablished)
+                    if (vController.connectionEstablished && GameManager.Instance.playBigHaptics)
                     {
                         vController.SendArduinoSignal("PL", shootVibration);
                         //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
@@ -199,7 +199,9 @@ public class Grablinghook : MonoBehaviour
                 //added this for shrinking when pulled in and grabbed :3
                 if (grabbing && grabbed != null && grabbed.CompareTag("Ghost"))
                 {
-                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                    if (GameManager.Instance.playControllerHaptics)
+                        hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                    
                     float currentDist = Vector3.Distance(hand.transform.position, this.transform.position);
                     float ratio = Mathf.Clamp01(currentDist / Mathf.Max(originalGrabDistance, 0.01f));
                     float minScale = 0.15f;
@@ -244,7 +246,7 @@ public class Grablinghook : MonoBehaviour
                 //Haptics
                 if (vController != null)
                 {
-                    if (vController.connectionEstablished)
+                    if (vController.connectionEstablished && GameManager.Instance.playBigHaptics)
                     {
                         if (grabbing)
                         {

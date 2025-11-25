@@ -107,7 +107,8 @@ public class PossessedObject : MonoBehaviour
 
         if (isPossessed)
         {
-            StartCoroutine(playNociceptiveHaptics());
+            if (GameManager.Instance.playBigHaptics)
+                StartCoroutine(playNociceptiveHaptics());
 
             ghostOccupying = ghost;
             currentObject.material = endMaterial;
