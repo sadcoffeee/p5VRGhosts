@@ -9,6 +9,7 @@ public class FlyTowardsGhost : MonoBehaviour
     public float stunDelay = 5f;
     public GameObject Ghost;
     public Transform hand;
+    public Material ghostMat;
     [HideInInspector] public bool grabbable;
     [HideInInspector] public float spawnTime;
     int targetChosen;
@@ -105,6 +106,7 @@ public class FlyTowardsGhost : MonoBehaviour
                 {
                     stunTimer = stunDelay;
                     grabbable = false;
+                    ghostMat.SetColor("_EmissionColor", Color.white);
                     currentState = GhostState.Hovering;
                 }
                 break;
@@ -149,6 +151,7 @@ public class FlyTowardsGhost : MonoBehaviour
     }
     private void OnDestroy()
     {
+        ghostMat.SetColor("_EmissionColor", Color.white);
         GameManager.Instance.OnGhostDefeated(this, Time.time - spawnTime);
     }
 }

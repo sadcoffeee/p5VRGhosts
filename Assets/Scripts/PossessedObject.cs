@@ -41,7 +41,7 @@ public class PossessedObject : MonoBehaviour
     public VibratorController vibratorController;
     private GhostAnimations anim;
     private ParticleSystem exorcismParticles;
-
+    public Material ghostMat;
 
     private void Start()
     {
@@ -207,6 +207,9 @@ public class PossessedObject : MonoBehaviour
 
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.position + transform.up * 2f;
+        
+        ghostMat.SetColor("_EmissionColor", Color.white);
+
 
         // spiralling animation
         while (elapsed < duration)
@@ -235,6 +238,9 @@ public class PossessedObject : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+
+        ghostMat.SetColor("_EmissionColor", new Color(0.5f, 1f, 0.5f));
+
 
         // After animation completes, actually release and stun the ghost
         ghost.transform.position = endPos;

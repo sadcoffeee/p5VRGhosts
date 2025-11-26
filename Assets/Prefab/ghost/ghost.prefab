@@ -974,6 +974,8 @@ MonoBehaviour:
   hoverDelay: 3
   stunDelay: 5
   Ghost: {fileID: 7901639083215149929}
+  hand: {fileID: 0}
+  ghostMat: {fileID: 2100000, guid: 7b06841bf8bac3d4b9685824749fab20, type: 2}
   grabbable: 0
   spawnTime: 0
   currentState: 3

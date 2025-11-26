@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4857316319930685010, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 03e2246861b6c9349bfe3dee4ab071c3, type: 2}
+    - target: {fileID: 6168267868877481537, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 03e2246861b6c9349bfe3dee4ab071c3, type: 2}
     - target: {fileID: 7413930271811142099, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.13
@@ -68,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JarGhost Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8897546935610839550, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 03e2246861b6c9349bfe3dee4ab071c3, type: 2}
     m_RemovedComponents:
     - {fileID: 3167758943284281632, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
     - {fileID: -4212376178805977207, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
