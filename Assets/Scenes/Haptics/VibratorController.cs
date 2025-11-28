@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using System.ComponentModel.Design.Serialization;
 using System.IO.Ports;
 using UnityEngine;
@@ -10,7 +9,7 @@ public class VibratorController : MonoBehaviour
     public string portName = "COM7";
     SerialPort arduinoPort;
     float connectionCheckTimer;
-    float connectionCheckInterval = 0.5f;
+    float connectionCheckInterval = 0.25f;
     [HideInInspector] public bool connectionEstablished = false;
 
 

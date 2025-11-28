@@ -22,7 +22,7 @@ public class PossessedObject : MonoBehaviour
     private float rumbleTimer = 0f;
     public Vector3 rumbleBounds = new Vector3(0.05f, 0.05f, 0.05f);
     public Vector3 rotationBounds = new Vector3(2f, 2f, 2f); // degrees
-    private float rumbleInterval = 1.4f;
+    private float rumbleInterval = 0.8f;
     private float rumbleTime = 0.5f;
     public HapticImpulsePlayer hapticPlayerR;
     public HapticImpulsePlayer hapticPlayerL;

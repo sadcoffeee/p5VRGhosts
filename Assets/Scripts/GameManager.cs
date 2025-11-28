@@ -243,16 +243,19 @@ public class GameManager : MonoBehaviour
     {
         playControllerHaptics = false;
         playBigHaptics = false;
+        Debug.Log("condition1");
     }
     public void condition2()
     {
         playControllerHaptics = true;
         playBigHaptics = false;
+        Debug.Log("condition2");
     }
     public void condition3()
     {
         playControllerHaptics = true;
         playBigHaptics = true;
+        Debug.Log("condition3");
     }
     #endregion
 }
