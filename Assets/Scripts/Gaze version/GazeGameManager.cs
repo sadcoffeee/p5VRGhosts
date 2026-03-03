@@ -11,6 +11,7 @@ public class GazeGameManager : MonoBehaviour
     
     [Header("Spawning Settings")]
     [SerializeField] GameObject ghostPrefab;
+    [SerializeField] List<Transform> ghostSpawnPoints;
     [SerializeField] float defaultSpawnDelay;
 
     [Header("Difficulty Settings")]
@@ -35,6 +36,9 @@ public class GazeGameManager : MonoBehaviour
     }
     void Start()
     {
+        allGhosts = new List<GhostBehavior>();
+        allToys = new List<Transform>();
+
         timer = 0;
         ghostSpawnTimer = 0;
         difficultyIncreaseTimer = 0;
@@ -42,7 +46,7 @@ public class GazeGameManager : MonoBehaviour
         ghostSpawnDelay = defaultSpawnDelay;
 
         // get list of available toys
-        GameObject[] obj = GameObject.FindGameObjectsWithTag("Furniture");
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Toy");
         foreach (GameObject go in obj)
         {
             allToys.Add(go.transform);
@@ -67,7 +71,9 @@ public class GazeGameManager : MonoBehaviour
             if (ghostSpawnTimer >= ghostSpawnDelay)
             {
                 // If so, spawn new ghost and register in allGhosts
-                GhostBehavior newGhost = Instantiate(ghostPrefab).GetComponent<GhostBehavior>();
+                Transform spawnPoint = ghostSpawnPoints[UnityEngine.Random.Range(0, ghostSpawnPoints.Count)];
+
+                GhostBehavior newGhost = Instantiate(ghostPrefab, spawnPoint).GetComponent<GhostBehavior>();
                 allGhosts.Add(newGhost);
 
                 ghostSpawnTimer = 0;
@@ -114,7 +120,7 @@ public class GazeGameManager : MonoBehaviour
     }
     public void OnGhostStoleToy(GhostBehavior stealingGhost, Transform stolenToy) 
     {
-        stolenToy.GetComponent<XRGrabInteractable>().enabled = false;
+        stolenToy.GetComponent<Grabbable>().enabled = false;
         allToys.Remove(stolenToy);
     }
 }

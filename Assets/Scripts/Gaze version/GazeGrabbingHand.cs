@@ -184,7 +184,7 @@ public class GazeGrabbingHand : MonoBehaviour
                 // Haptics
                 if (vController != null)
                 {
-                    if (vController.connectionEstablished && GameManager.Instance.playBigHaptics)
+                    if (vController.connectionEstablished)
                     {
                         vController.SendArduinoSignal("PL", shootVibration);
                         //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
@@ -200,8 +200,7 @@ public class GazeGrabbingHand : MonoBehaviour
                 //added this for shrinking when pulled in and grabbed :3
                 if (grabbing && grabbed != null && grabbed.CompareTag("Ghost"))
                 {
-                    if (GameManager.Instance.playControllerHaptics)
-                        hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                    hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
 
                     float currentDist = Vector3.Distance(hand.transform.position, this.transform.position);
                     float ratio = Mathf.Clamp01(currentDist / Mathf.Max(originalGrabDistance, 0.01f));
@@ -246,21 +245,16 @@ public class GazeGrabbingHand : MonoBehaviour
 
                 //Haptics
                 if (vController != null)
-                {
-                    if (vController.connectionEstablished && GameManager.Instance.playBigHaptics)
+                    if (grabbing)
                     {
-                        if (grabbing)
-                        {
-                            vController.SendArduinoSignal("PL", pullWweigthVibration);
-                            //hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
-                        }
-                        else
-                        {
-                            vController.SendArduinoSignal("PL", pullWOweigthVibration);
-                            //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
-                        }
+                        vController.SendArduinoSignal("PL", pullWweigthVibration);
+                        //hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
                     }
-                }
+                    else
+                    {
+                        vController.SendArduinoSignal("PL", pullWOweigthVibration);
+                        //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
+                    }
 
                 break;
         }
