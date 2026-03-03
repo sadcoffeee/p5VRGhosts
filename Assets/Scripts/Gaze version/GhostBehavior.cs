@@ -15,7 +15,7 @@ public class GhostBehavior : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject ghostVisual;
     [SerializeField] Renderer ghostRenderer;
-    [SerializeField] Animator ghostAnimator;
+    [SerializeField] GhostAnimations ghostAnimator;
 
     [Header("Spawning")]
     [SerializeField] float spawnMoveDuration = 0.6f;   // seconds to glide into start position
@@ -151,7 +151,7 @@ public class GhostBehavior : MonoBehaviour
         if (ghostRenderer != null)
             ghostRenderer.material.SetColor(EmissionColorID, stunEmissionColor);
 
-        ghostAnimator?.SetTrigger("Stunned");
+        ghostAnimator?.PlayDizzy();
         AudioManager.Instance.PlayAudio("GhostStunned");
     }
 
@@ -186,7 +186,7 @@ public class GhostBehavior : MonoBehaviour
         stealTarget = toy;
         currentState = GhostState.FlyingToSteal;
         SetVisualActive(true);
-        ghostAnimator?.SetTrigger("Flying");
+        ghostAnimator?.PlayFlying();
         AudioManager.Instance.PlayAudio("ghostLaugh");
     }
 

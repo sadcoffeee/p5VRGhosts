@@ -10,7 +10,6 @@ public class FlashlightController : MonoBehaviour
 
     [Header("Haptic Armbands")]
     [SerializeField] VibratorController vibController;
-    [SerializeField] VibratorController rightArmband;
     [SerializeField] string leftArmCode  = "PC";
     [SerializeField] string rightArmCode = "PL";
     [SerializeField] float minVibration = 10f;

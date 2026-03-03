@@ -11,6 +11,7 @@ TagManager:
   - Hand
   - Grabbable
   - Button
+  - Toy
   layers:
   - Default
   - TransparentFX
