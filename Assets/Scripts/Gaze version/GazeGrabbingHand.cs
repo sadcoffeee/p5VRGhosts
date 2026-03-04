@@ -80,9 +80,9 @@ public class GazeGrabbingHand : MonoBehaviour
 
                         if (grabbed.CompareTag("Ghost"))
                         {
-                            Destroy(grabbed);
+                            grabbed.GetComponent<GhostBehavior>().Die();
                         }
-                        else if (grabbed.CompareTag("Grabbable"))
+                        else if (grabbed.CompareTag("Toy"))
                         {
                             Rigidbody rb = grabbed.GetComponent<Rigidbody>();
                             if (rb != null)
@@ -130,7 +130,7 @@ public class GazeGrabbingHand : MonoBehaviour
                             {
                                 grabbed = touched;
                                 grabbed.transform.SetParent(hand.transform);
-                                ghostScript.currentState = GhostBehavior.GhostState.Grabbed;
+                                ghostScript.OnGrabbed();
                                 grabbing = true;
 
                                 originalGrabDistance = Vector3.Distance(hand.transform.position, this.transform.position); //this
@@ -138,7 +138,7 @@ public class GazeGrabbingHand : MonoBehaviour
                             else if (ghostScript.currentState == GhostBehavior.GhostState.Lingering || ghostScript.currentState == GhostBehavior.GhostState.FlyingToSteal)
                                 AudioManager.Instance.PlayAudio("ghostLaughOther");
                         }
-                        else if (touched.CompareTag("Grabbable"))
+                        else if (touched.CompareTag("Toy"))
                         {
                             handAnim.PlayHandGrabbed();
 
@@ -294,7 +294,7 @@ public class GazeGrabbingHand : MonoBehaviour
             if (hit.CompareTag("Ghost"))
                 return hit.gameObject;
 
-            if (bestTarget == null && hit.CompareTag("Grabbable"))
+            if (bestTarget == null && hit.CompareTag("Toy"))
                 bestTarget = hit.gameObject;
 
             if (bestTarget == null && hit.CompareTag("Button"))
