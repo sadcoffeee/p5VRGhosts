@@ -20,7 +20,7 @@ public class GazeGameManager : MonoBehaviour
     [SerializeField] float difficultyIncreaseDelay;
 
 
-    List<GhostBehavior> allGhosts;
+    public List<GhostBehavior> allGhosts;
     List<Transform> allToys;
     
     float timer;
@@ -70,11 +70,12 @@ public class GazeGameManager : MonoBehaviour
             // If low enough, check if enough time passed to spawn a new ghost
             if (ghostSpawnTimer >= ghostSpawnDelay)
             {
-                // If so, spawn new ghost and register in allGhosts
+                Debug.Log("Spawned new ghost");
+
+                // If so, spawn new ghost
                 Transform spawnPoint = ghostSpawnPoints[UnityEngine.Random.Range(0, ghostSpawnPoints.Count)];
 
                 GhostBehavior newGhost = Instantiate(ghostPrefab, spawnPoint).GetComponent<GhostBehavior>();
-                allGhosts.Add(newGhost);
 
                 ghostSpawnTimer = 0;
             }
@@ -88,6 +89,7 @@ public class GazeGameManager : MonoBehaviour
             // If not, check if enough time passed to increase possible amount of ghosts
             if (difficultyIncreaseTimer >= difficultyIncreaseDelay)
             {
+                Debug.Log("Increased ghost limit");
                 allowedGhosts++;
    
                 difficultyIncreaseTimer = 0;
@@ -95,7 +97,6 @@ public class GazeGameManager : MonoBehaviour
         }
         
         // Wait for a while before running checks again
-
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(GameplayLoop());
     }
@@ -113,10 +114,10 @@ public class GazeGameManager : MonoBehaviour
     {
         allGhosts.Add(newGhost);
     }
-    //placeholder while finishing toy stuff
     public Transform ClaimToyForGhost(GhostBehavior claimingGhost)
     {
-        return this.transform;
+        Transform claimedToy = allToys[UnityEngine.Random.Range(0, allToys.Count)];
+        return claimedToy;
     }
     public void OnGhostStoleToy(GhostBehavior stealingGhost, Transform stolenToy) 
     {

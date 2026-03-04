@@ -16,6 +16,7 @@ public class GhostBehavior : MonoBehaviour
     [SerializeField] GameObject ghostVisual;
     [SerializeField] Renderer ghostRenderer;
     [SerializeField] GhostAnimations ghostAnimator;
+    [SerializeField] ParticleSystem litParticles;
 
     [Header("Spawning")]
     [SerializeField] float spawnMoveDuration = 0.6f;   // seconds to glide into start position
@@ -31,7 +32,6 @@ public class GhostBehavior : MonoBehaviour
     [Header("Flashlight Stun")]
     [SerializeField] float stunChargeRequired = 0.5f;
     [SerializeField] float stunDuration = 5f;
-    [SerializeField] Color stunEmissionColor = Color.cyan;
 
     [Header("Flee / Steal")]
     [SerializeField] float flySpeed = 3.5f;
@@ -44,6 +44,7 @@ public class GhostBehavior : MonoBehaviour
     private float driftTimer;
     private Vector3 lingerAnchor;
     private Vector3 driftTarget;
+    private Transform lookTarget;
 
     // Stun charge
     private float stunChargeTimer;
@@ -55,9 +56,6 @@ public class GhostBehavior : MonoBehaviour
     // Grabbing
     [HideInInspector] public bool isGrabbable;
 
-    // Emission property cache
-    private static readonly int EmissionColorID = Shader.PropertyToID("_EmissionColor");
-
     void Start()
     {
         GazeGameManager.Instance.RegisterGhost(this);
@@ -68,6 +66,8 @@ public class GhostBehavior : MonoBehaviour
 
         spawnStartPosition = transform.position;
         spawnTimer = 0f;
+
+        lookTarget = Camera.main.transform;
     }
 
     void Update()
@@ -124,11 +124,18 @@ public class GhostBehavior : MonoBehaviour
             driftTarget = lingerAnchor + Random.insideUnitSphere * driftRadius;
         }
         transform.position = Vector3.MoveTowards(transform.position, driftTarget, driftSpeed * Time.deltaTime);
+        transform.LookAt(lookTarget);
+
     }
 
     public void NotifyFlashlightHit(float deltaTime)
     {
         if (currentState != GhostState.Lingering) return;
+
+        if (!litParticles.isPlaying) 
+            litParticles.Play();
+
+        Debug.Log("Getting hit by flashlight");
 
         stunChargeTimer += deltaTime;
         if (stunChargeTimer >= stunChargeRequired)
@@ -139,6 +146,9 @@ public class GhostBehavior : MonoBehaviour
     {
         if (currentState == GhostState.Lingering)
             stunChargeTimer = 0f;
+
+        if (litParticles.isPlaying)
+            litParticles.Stop();
     }
 
     void EnterStunned()
@@ -148,8 +158,6 @@ public class GhostBehavior : MonoBehaviour
         isGrabbable = true;
         SetVisualActive(true);
 
-        if (ghostRenderer != null)
-            ghostRenderer.material.SetColor(EmissionColorID, stunEmissionColor);
 
         ghostAnimator?.PlayDizzy();
         AudioManager.Instance.PlayAudio("GhostStunned");
@@ -165,10 +173,9 @@ public class GhostBehavior : MonoBehaviour
     void RecoverFromStun()
     {
         isGrabbable = false;
-        if (ghostRenderer != null)
-            ghostRenderer.material.SetColor(EmissionColorID, Color.white);
 
         AudioManager.Instance.PlayAudio("ghostLaughOther");
+        AudioManager.Instance.StopAudio("GhostStunned");
         EnterLingering();
     }
 
@@ -179,7 +186,7 @@ public class GhostBehavior : MonoBehaviour
         if (toy == null)
         {
             // No toys left; just vanish quietly for now
-            Destroy(gameObject);
+            Die();
             return;
         }
 
@@ -194,18 +201,19 @@ public class GhostBehavior : MonoBehaviour
     {
         if (stealTarget == null)
         {
-            Destroy(gameObject);
+            Die();
             return;
         }
 
         transform.position = Vector3.MoveTowards(transform.position, stealTarget.position, flySpeed * Time.deltaTime);
         transform.LookAt(stealTarget.position);
 
+        // Ghost successfully arrives at toy; probably want to change this so it flies to some point out of scene
         if (Vector3.Distance(transform.position, stealTarget.position) <= arriveDistance)
         {
             // Ghost steals the toy and exits
             GazeGameManager.Instance.OnGhostStoleToy(this, stealTarget);
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -223,11 +231,9 @@ public class GhostBehavior : MonoBehaviour
             ghostVisual.SetActive(active);
     }
 
-    void OnDestroy()
+    public void Die()
     {
-        if (ghostRenderer != null)
-            ghostRenderer.material.SetColor(EmissionColorID, Color.white);
-
         GazeGameManager.Instance?.OnGhostDefeated(this, Time.time);
+        Destroy(gameObject);
     }
 }
