@@ -30219,6 +30219,93 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 018043cfabdde774ba9cce7ebdbca091, type: 3}
+--- !u!1 &703823367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703823370}
+  - component: {fileID: 703823369}
+  - component: {fileID: 703823368}
+  m_Layer: 0
+  m_Name: Gamemanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &703823368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703823367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efab5ed634dc484e81e8f04badc2e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM5
+  connectionEstablished: 0
+--- !u!114 &703823369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703823367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521082e5faf8a744788895a192d1a592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
+  tutorialDone: 0
+  minBreakTime: 5
+  maxBreakTime: 8
+  adjustStep: 0.5
+  jarGhostPrefab: {fileID: 5933462121241962575, guid: ed38f61ed1c4ed94f8a5b3b558e18d58, type: 3}
+  jarCorners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  maxJarGhosts: 10
+  currentJarGhosts: 0
+  ghostSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingMenu: {fileID: 0}
+  firstGhost: {fileID: 0}
+  allObjects: []
+  activeGhosts: []
+  playControllerHaptics: 0
+  playBigHaptics: 0
+  objectBreakTime: 5
+--- !u!4 &703823370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703823367}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &717053625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2341433736713683081, guid: 340b2ccae55b1b640a06cb0df0519b92, type: 3}
@@ -33299,6 +33386,10 @@ PrefabInstance:
       propertyPath: vacuum
       value: 
       objectReference: {fileID: 1332768798}
+    - target: {fileID: 716499892727583079, guid: cc9a1c5459571bc49bc0c45dacc20a95, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 703823368}
     - target: {fileID: 716499892727583079, guid: cc9a1c5459571bc49bc0c45dacc20a95, type: 3}
       propertyPath: shootForce
       value: 9
@@ -59268,3 +59359,4 @@ SceneRoots:
   - {fileID: 1227018259}
   - {fileID: 1682890637}
   - {fileID: 419661814}
+  - {fileID: 703823370}

@@ -213,8 +213,8 @@ public class Vacuum : MonoBehaviour
         if (hapticPlayerR != null)
             hapticPlayerR.SendHapticImpulse(1f, 0.2f);
 
-        //controller.SendArduinoSignal("PC", 165);
-        //controller.SendArduinoSignal("PL", 165);
+        controller.SendArduinoSignal("PC", 165);
+        controller.SendArduinoSignal("PL", 165);
 
         //block the ability to suck objects for a short time
         suckBlockTimer = suckBlockDuration;
@@ -242,8 +242,8 @@ public class Vacuum : MonoBehaviour
         if (hapticPlayerR != null)
             hapticPlayerR.SendHapticImpulse(0.9f, 0.1f);
 
-        //controller.SendArduinoSignal("PC", 165);
-        //controller.SendArduinoSignal("PL", 165);
+        controller.SendArduinoSignal("PC", 165);
+        controller.SendArduinoSignal("PL", 165);
 
         //particle system
         if (effect != null)
