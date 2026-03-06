@@ -28337,7 +28337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efab5ed634dc484e81e8f04badc2e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: COM3
+  portName: COM5
   connectionEstablished: 0
 --- !u!1 &652917930
 GameObject:
