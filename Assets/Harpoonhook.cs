@@ -1,8 +1,6 @@
-using System.Xml;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class Harpoonhook : MonoBehaviour
@@ -28,15 +26,15 @@ public class Harpoonhook : MonoBehaviour
     [SerializeField] float maxLength = 10;
     [SerializeField] float flySpeed = 1;
     [SerializeField] float returnSpeed = 1;
+    [SerializeField] float returnSpeedGrabbed = 1;
     [SerializeField] float rotationSpeed = 2;
     [SerializeField] GrabblingState currState = GrabblingState.Idle;
 
     [Header("Arm Haptics")]
     [SerializeField] VibratorController vController;
     [SerializeField] int shootVibration;
-    [SerializeField] int pullWweigthVibration;
-    [SerializeField] int pullWOweigthVibration;
-    private HapticImpulsePlayer hapticPlayer;
+    [SerializeField] int retractVibration;
+    [SerializeField] HapticImpulsePlayer hapticPlayer;
 
 
     [HideInInspector] public GameObject grabbed;
@@ -44,11 +42,11 @@ public class Harpoonhook : MonoBehaviour
     private Vector3 hookTarget = Vector3.zero;
     private Vector3 lastHandPos = Vector3.zero;
     private Vector3 handVelocity;
+    [Header("Animation")]
     [SerializeField] private GrablinghandAnimations handAnim;
 
     private float originalGrabDistance = 0f; //this
 
-    Vector3 handOrigin = Vector3.zero;
 
     //Sound
     bool shotSoundPlayed = false;
@@ -57,7 +55,6 @@ public class Harpoonhook : MonoBehaviour
     void Start()
     {
         hapticPlayer = GetComponent<HapticImpulsePlayer>();
-        handOrigin = hand.transform.localPosition;
     }
 
     void Update()
@@ -110,8 +107,12 @@ public class Harpoonhook : MonoBehaviour
                 break;
 
             case GrabblingState.Shooting:
-                if (!shotSoundPlayed) AudioManager.Instance.PlayAudio("ShootSound"); shotSoundPlayed = true;
-
+                if (!shotSoundPlayed)
+                {
+                    AudioManager.Instance.PlayAudio("ShootSound");
+                    vController.SendArduinoSignal("PL", shootVibration);
+                    shotSoundPlayed = true;
+                }
                 float outStep = flySpeed * Time.deltaTime;
                 hand.transform.position = Vector3.MoveTowards(hand.transform.position, hookTarget, outStep);
 
@@ -178,7 +179,7 @@ public class Harpoonhook : MonoBehaviour
                 // Haptics
                 if (vController != null)
                 {
-                    if (vController.connectionEstablished && GameManager.Instance.playBigHaptics)
+                    if (vController.connectionEstablished)
                     {
                         vController.SendArduinoSignal("PL", shootVibration);
                         //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
@@ -189,6 +190,10 @@ public class Harpoonhook : MonoBehaviour
 
             case GrabblingState.Returning:
                 float inStep = returnSpeed * Time.deltaTime;
+                if (grabbing)
+                {
+                    inStep = returnSpeedGrabbed * Time.deltaTime;
+                }
                 hand.transform.position = Vector3.MoveTowards(hand.transform.position, this.transform.position, inStep);
 
                 //added this for shrinking when pulled in and grabbed :3
@@ -241,18 +246,11 @@ public class Harpoonhook : MonoBehaviour
                 //Haptics
                 if (vController != null)
                 {
-                    if (vController.connectionEstablished && GameManager.Instance.playBigHaptics)
+                    if (vController.connectionEstablished)
                     {
-                        if (grabbing)
-                        {
-                            vController.SendArduinoSignal("PL", pullWweigthVibration);
-                            //hapticPlayer.SendHapticImpulse(0.3f, 0.1f);
-                        }
-                        else
-                        {
-                            vController.SendArduinoSignal("PL", pullWOweigthVibration);
-                            //hapticPlayer.SendHapticImpulse(0.1f, 0.1f);
-                        }
+                        vController.SendArduinoSignal("PL", retractVibration);
+                        vController.SendArduinoSignal("PC", retractVibration);
+                        HapticsUtility.SendHapticImpulse(1, 0.1f, HapticsUtility.Controller.Both);
                     }
                 }
 
