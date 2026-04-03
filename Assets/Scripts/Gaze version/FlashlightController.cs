@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FlashlightController : MonoBehaviour
@@ -6,12 +7,9 @@ public class FlashlightController : MonoBehaviour
     [Header("Flashlight Cone")]
     [SerializeField] float coneHalfAngle = 20f;
     [SerializeField] float coneRange = 12f;
-    [SerializeField] LayerMask ghostLayer;
 
     [Header("Haptic Armbands")]
     [SerializeField] VibratorController vibController;
-    [SerializeField] string leftArmCode  = "PC";
-    [SerializeField] string rightArmCode = "PL";
     [SerializeField] float minVibration = 10f;
     [SerializeField] float maxVibration = 120f;
     [SerializeField] float hapticSmoothSpeed = 8f;
@@ -19,6 +17,12 @@ public class FlashlightController : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] bool drawDebugGizmos = true;
+    [SerializeField] bool doVibrationVisualization = true;
+    [SerializeField] TMP_Text leftVibVis;
+    [SerializeField] TMP_Text rightVibVis;
+
+
+
 
     // Smoothed current vibration values so they don't jump abruptly
     private float currentLeftVib  = 0f;
@@ -29,6 +33,15 @@ public class FlashlightController : MonoBehaviour
 
     void Update()
     {
+        // Default to using visualization rather than sending vibration CMDS, change that if we ever get a connection on the VibController
+        if (vibController.connectionEstablished && doVibrationVisualization) 
+        {
+            Debug.Log("turned vib vis off");
+            doVibrationVisualization = false;
+            leftVibVis.gameObject.SetActive(false);
+            rightVibVis.gameObject.SetActive(false);
+        }
+        
         GhostBehavior[] allGhosts = GazeGameManager.Instance.GetAllGhosts();
 
         HashSet<GhostBehavior> litThisFrame = new HashSet<GhostBehavior>();
@@ -128,8 +141,17 @@ public class FlashlightController : MonoBehaviour
         currentLeftVib  = Mathf.Lerp(currentLeftVib,  targetLeft,  hapticSmoothSpeed * Time.deltaTime);
         currentRightVib = Mathf.Lerp(currentRightVib, targetRight, hapticSmoothSpeed * Time.deltaTime);
 
-        SendArmband(vibController, "PC",  currentLeftVib);
-        SendArmband(vibController, "PL", currentRightVib);
+        // Only send commands if we've confirmed that there's a connection (just added this for testing when we don't have armbands)
+        if (!doVibrationVisualization)
+        {
+            SendArmband(vibController, "PC", currentLeftVib);
+            SendArmband(vibController, "PL", currentRightVib);
+        }
+        else
+        {
+            leftVibVis.text = currentLeftVib.ToString("0.00");
+            rightVibVis.text = currentRightVib.ToString("0.00");
+        }
     }
 
     void SendArmband(VibratorController controller, string code, float intensity)

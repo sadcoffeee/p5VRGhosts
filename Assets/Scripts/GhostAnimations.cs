@@ -45,7 +45,6 @@ public class GhostAnimations : MonoBehaviour
         Stars.SetActive(true); 
         ExclamationMarks.SetActive(false);
         anim.Play("Dizzy");
-        hoverGhostScript.enabled = false;
     }
 
     public void PlayFlying()

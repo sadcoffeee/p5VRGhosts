@@ -80,7 +80,7 @@ public class GazeGrabbingHand : MonoBehaviour
 
                         if (grabbed.CompareTag("Ghost"))
                         {
-                            grabbed.GetComponent<GhostBehavior>().Die();
+                            Destroy(grabbed);
                         }
                         else if (grabbed.CompareTag("Toy"))
                         {

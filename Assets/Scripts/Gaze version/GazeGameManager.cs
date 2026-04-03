@@ -3,12 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class GazeGameManager : MonoBehaviour
 {
     public static GazeGameManager Instance;
-    
+
+    [Header("Game Starting")]
+    public InputActionReference startGameButton;
+    public GameObject startGameUI;
+
     [Header("Spawning Settings")]
     [SerializeField] GameObject ghostPrefab;
     [SerializeField] List<Transform> ghostSpawnPoints;
@@ -28,6 +33,7 @@ public class GazeGameManager : MonoBehaviour
     float difficultyIncreaseTimer;
     int allowedGhosts;
     float ghostSpawnDelay;
+    bool gameStarted;
 
     void Awake()
     {
@@ -36,6 +42,7 @@ public class GazeGameManager : MonoBehaviour
     }
     void Start()
     {
+        gameStarted = false;
         allGhosts = new List<GhostBehavior>();
         allToys = new List<Transform>();
 
@@ -52,7 +59,18 @@ public class GazeGameManager : MonoBehaviour
             allToys.Add(go.transform);
         }
     }
+    private void Update()
+    {
+        float trgRightValue = startGameButton.action.ReadValue<float>();
 
+        if (!gameStarted && trgRightValue > 0)
+        {
+            StartGame();
+            gameStarted = true;
+            startGameUI.SetActive(false);
+        }
+
+    }
     public void StartGame()
     {
         StartCoroutine(GameplayLoop());
@@ -116,12 +134,18 @@ public class GazeGameManager : MonoBehaviour
     }
     public Transform ClaimToyForGhost(GhostBehavior claimingGhost)
     {
+        if (allToys.Count == 0) 
+            return null;
+        
         Transform claimedToy = allToys[UnityEngine.Random.Range(0, allToys.Count)];
         return claimedToy;
     }
-    public void OnGhostStoleToy(GhostBehavior stealingGhost, Transform stolenToy) 
+    public void OnGhostExitedWithToy(GhostBehavior stealingGhost, Transform stolenToy) 
     {
         stolenToy.GetComponent<Grabbable>().enabled = false;
         allToys.Remove(stolenToy);
+        // this is where we want to schedule a new possessed toy; mayhaps we want to add something to the stolenToy so we can check what kind of toy (mesh) it was
+        // so that if the ghosts steal a ball, its a ball that returns
+        // currently the stolentoy is parented to the ghost when stolen, so when the ghost self-deletes, the toy goes too
     }
 }
