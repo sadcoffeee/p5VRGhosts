@@ -16,6 +16,7 @@ public class HauntableToy : MonoBehaviour
 
     //Variables
     Material defaultMaterial;
+    HauntedToyWaypoint waypoint;
 
     //Logic
     private void Start()
@@ -67,11 +68,28 @@ public class HauntableToy : MonoBehaviour
     public void ReleaseGhost()
     {
         SetHaunted(false);
+        
         //TODO: Spawn ghost
+        GameObject ghost = Instantiate
+
+        //Spawn effect
         if (freedEffect != null)
         {
             Instantiate(freedEffect, transform.position, Quaternion.identity);
         }
+
+        if (waypoint != null)
+            waypoint.Occupy(false);
+    }
+
+    public void SetWaypoint(HauntedToyWaypoint waypoint)
+    {
+        if (this.waypoint != null)
+        {
+            this.waypoint.Occupy(false);
+        }
+        this.waypoint = waypoint;
+        this.waypoint.Occupy(true);
     }
 }
 
@@ -97,6 +115,11 @@ public class HauntableToyEditor : Editor
         if (GUILayout.Button("Release Ghost"))
         {
             hauntableToy.ReleaseGhost();
+        }
+
+        if (GUILayout.Button("Haunt"))
+        {
+            hauntableToy.SetHaunted(true);
         }
     }
 }

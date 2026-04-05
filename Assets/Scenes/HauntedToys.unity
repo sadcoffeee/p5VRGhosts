@@ -14577,7 +14577,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1001 &363700658
 PrefabInstance:
@@ -33388,7 +33388,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1001 &826371068
 PrefabInstance:
@@ -44686,7 +44686,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1 &1042781380 stripped
 GameObject:
@@ -46137,7 +46137,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1 &1238113352
 GameObject:
@@ -46314,7 +46314,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1 &1259017022
 GameObject:
@@ -48331,7 +48331,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1 &1437993381
 GameObject:
@@ -49310,7 +49310,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1001 &1604491902
 PrefabInstance:
@@ -51016,7 +51016,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1 &1874896719
 GameObject:
@@ -51935,7 +51935,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1001 &1911637894
 PrefabInstance:
@@ -52557,7 +52557,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1001 &1987959079
 PrefabInstance:
@@ -53074,7 +53074,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1001 &2031819508
 PrefabInstance:
@@ -53657,7 +53657,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1 &2072434145
 GameObject:
@@ -53766,7 +53766,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 0}
+  ExpelledGhost: {fileID: 7901639083215149929, guid: fae22f066e9857d4a9bf46bb90a13ba2, type: 3}
   meshRenderer: {fileID: 0}
 --- !u!1 &2086318686 stripped
 GameObject:

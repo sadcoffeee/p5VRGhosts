@@ -33,7 +33,7 @@ public class HauntedToyWaypoint : MonoBehaviour
 
     public bool IsAvailable()
     {
-        return isOccupied;
+        return !isOccupied;
     }
 
     public bool Occupy(bool state)

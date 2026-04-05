@@ -50,14 +50,21 @@ public class HauntedToyManager : MonoBehaviour
             //Select toy
             int randomToy = GetRandomToyIndex();
 
-            //Activate and move to waypoint
-            stolenToys[randomToy].transform.position = GetAvailableWaypoint().transform.position;
-            stolenToys[randomToy].transform.rotation = Quaternion.identity;
-            stolenToys[randomToy].SetActive(true);
-            stolenToys[randomToy].GetComponent<HauntableToy>().SetHaunted(true);
 
-            //Remove from stole toys
-            stolenToys.RemoveAt(randomToy);
+            //Find Waypoint
+            HauntedToyWaypoint waypoint = GetAvailableWaypoint();
+
+            if (waypoint != null)
+            {
+                //Activate and move to waypoint
+                stolenToys[randomToy].transform.position = waypoint.transform.position;
+                stolenToys[randomToy].transform.rotation = Quaternion.identity;
+                stolenToys[randomToy].SetActive(true);
+                stolenToys[randomToy].GetComponent<HauntableToy>().SetHaunted(true);
+
+                //Remove from stole toys
+                stolenToys.RemoveAt(randomToy);
+            }
         }
     }
 
@@ -69,26 +76,6 @@ public class HauntedToyManager : MonoBehaviour
     int GetRandomToyIndex()
     {
         return Random.Range(0, stolenToys.Count);
-    }
-    HauntedToyWaypoint GetAvailableWaypoint()
-    {
-        List<HauntedToyWaypoint> availableWaypoints = new List<HauntedToyWaypoint>();
-        foreach (HauntedToyWaypoint waypoint in waypoints)
-        {
-            if (waypoint.IsAvailable())
-            {
-                availableWaypoints.Add(waypoint);
-            }
-        }
-
-        if (availableWaypoints.Count > 0)
-        {
-            return availableWaypoints[Random.Range(0, availableWaypoints.Count)];
-        }
-        else
-        {
-            return null;
-        }
     }
 
 
@@ -106,6 +93,28 @@ public class HauntedToyManager : MonoBehaviour
         if (toySpawnTimer <= 0)
         {
             StartToySpawnTimer();
+        }
+    }
+
+    public HauntedToyWaypoint GetAvailableWaypoint()
+    {
+        List<HauntedToyWaypoint> availableWaypoints = new List<HauntedToyWaypoint>();
+        foreach (HauntedToyWaypoint waypoint in waypoints)
+        {
+            if (waypoint.IsAvailable())
+            {
+                availableWaypoints.Add(waypoint);
+            }
+        }
+
+        if (availableWaypoints.Count > 0)
+        {
+            return availableWaypoints[Random.Range(0, availableWaypoints.Count)];
+        }
+        else
+        {
+            Debug.LogWarning("No toy waypoints available!");
+            return null;
         }
     }
 }
