@@ -15,6 +15,10 @@ public class FlashlightController : MonoBehaviour
     [SerializeField] float hapticSmoothSpeed = 8f;
     [SerializeField] bool onlyHapticsForLingeringGhosts = true;
 
+    [Header("Stun Reward Impulse")]
+    [SerializeField] float rewardVibration = 150f;
+    [SerializeField] float rewardDuration = 0.3f;
+
     [Header("Debug")]
     [SerializeField] bool drawDebugGizmos = true;
     [SerializeField] bool doVibrationVisualization = true;
@@ -25,18 +29,23 @@ public class FlashlightController : MonoBehaviour
 
 
     // Smoothed current vibration values so they don't jump abruptly
-    private float currentLeftVib  = 0f;
+    private float currentLeftVib = 0f;
     private float currentRightVib = 0f;
 
     // Ghosts that were inside the cone last frame (for lost-notification)
     private HashSet<GhostBehavior> litLastFrame = new HashSet<GhostBehavior>();
 
+    // Tracks whether any ghost is being actively lit this frame
+    private bool ghostBeingLitThisFrame = false;
+
+    // Stun reward impulse countdown (> 0 means impulse is active)
+    private float rewardTimer = 0f;
     void Update()
     {
         // Default to using visualization rather than sending vibration CMDS, change that if we ever get a connection on the VibController
+        // Used for testing when we don't have the custom haptics connected
         if (vibController.connectionEstablished && doVibrationVisualization) 
         {
-            Debug.Log("turned vib vis off");
             doVibrationVisualization = false;
             leftVibVis.gameObject.SetActive(false);
             rightVibVis.gameObject.SetActive(false);
@@ -47,6 +56,10 @@ public class FlashlightController : MonoBehaviour
         HashSet<GhostBehavior> litThisFrame = new HashSet<GhostBehavior>();
         GhostBehavior nearestHapticGhost = null;
         float nearestDist = float.MaxValue;
+        ghostBeingLitThisFrame = false;
+
+        if (rewardTimer > 0f)
+            rewardTimer -= Time.deltaTime;
 
         foreach (GhostBehavior ghost in allGhosts)
         {
@@ -64,6 +77,8 @@ public class FlashlightController : MonoBehaviour
             {
                 litThisFrame.Add(ghost);
                 ghost.NotifyFlashlightHit(Time.deltaTime);
+                if (ghost.currentState == GhostBehavior.GhostState.Lingering)
+                    ghostBeingLitThisFrame = true;
             }
 
             // Haptic targeting: nearest eligible ghost regardless of cone
@@ -94,10 +109,24 @@ public class FlashlightController : MonoBehaviour
         float targetLeft;
         float targetRight;
 
-        if (nearestGhost == null)
+        if (rewardTimer > 0f)
+        {
+            // Reward impulse: both armbands spike to rewardVibration, still smoothed
+            // still smoothed, just a very fast ramp up then natural decay
+            targetLeft = rewardVibration;
+            targetRight = rewardVibration;
+        }
+        else if (ghostBeingLitThisFrame)
+        {
+            // Ghost is actively being lit: both arms at maxVibration equally
+            // Smoothing via hapticSmoothSpeed also keeps this a ramp, not a spike
+            targetLeft = maxVibration;
+            targetRight = maxVibration;
+        }
+        else if (nearestGhost == null)
         {
             // No ghost: both arms at minimum
-            targetLeft  = minVibration;
+            targetLeft = minVibration;
             targetRight = minVibration;
         }
         else
@@ -126,22 +155,22 @@ public class FlashlightController : MonoBehaviour
 
             float range = maxVibration - minVibration;
 
-            float leftT  = Mathf.Clamp01((1f - blend) / 2f);
+            float leftT = Mathf.Clamp01((1f - blend) / 2f);
             float rightT = Mathf.Clamp01((1f + blend) / 2f);
 
-            targetLeft  = minVibration + range * leftT  * Mathf.Lerp(0.5f, 1f, proximityT);
+            targetLeft = minVibration + range * leftT * Mathf.Lerp(0.5f, 1f, proximityT);
             targetRight = minVibration + range * rightT * Mathf.Lerp(0.5f, 1f, proximityT);
 
             float centerBoost = proximityT * minVibration;
-            targetLeft  = Mathf.Min(targetLeft  + centerBoost, maxVibration);
+            targetLeft = Mathf.Min(targetLeft + centerBoost, maxVibration);
             targetRight = Mathf.Min(targetRight + centerBoost, maxVibration);
         }
 
         // Smooth toward targets
-        currentLeftVib  = Mathf.Lerp(currentLeftVib,  targetLeft,  hapticSmoothSpeed * Time.deltaTime);
+        currentLeftVib = Mathf.Lerp(currentLeftVib,targetLeft, hapticSmoothSpeed * Time.deltaTime);
         currentRightVib = Mathf.Lerp(currentRightVib, targetRight, hapticSmoothSpeed * Time.deltaTime);
 
-        // Only send commands if we've confirmed that there's a connection (just added this for testing when we don't have armbands)
+        // Only send commands if we've confirmed that there's a connection
         if (!doVibrationVisualization)
         {
             SendArmband(vibController, "PC", currentLeftVib);
@@ -160,7 +189,11 @@ public class FlashlightController : MonoBehaviour
         if (!controller.connectionEstablished) return;
         controller.SendArduinoSignal(code, Mathf.RoundToInt(intensity));
     }
-
+    // Called by GhostBehavior when a ghost is successfully stunned by the flashlight
+    public void TriggerStunReward()
+    {
+        rewardTimer = rewardDuration;
+    }
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

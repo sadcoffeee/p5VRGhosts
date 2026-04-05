@@ -61,6 +61,7 @@ public class GhostBehavior : MonoBehaviour
     // Stun
     private float stunChargeTimer;
     private float stunTimer;
+    private FlashlightController flashlightController;
 
     // Steal & exit
     private Transform stolenToyTransform;
@@ -82,6 +83,7 @@ public class GhostBehavior : MonoBehaviour
         isGrabbable = false;
         spawnTimer = 0f;
         lookTarget = Camera.main.transform;
+        flashlightController = FindFirstObjectByType<FlashlightController>();
     }
 
     void Update()
@@ -152,7 +154,7 @@ public class GhostBehavior : MonoBehaviour
     // Stunned
     // -------------------------------------------------------------------------
 
-    void EnterStunned()
+    void EnterStunned(bool fromFlashlight)
     {
         currentState = GhostState.Stunned;
         stunTimer = stunDuration;
@@ -163,6 +165,12 @@ public class GhostBehavior : MonoBehaviour
 
         ghostAnimator?.PlayDizzy();
         AudioManager.Instance.PlayAudio("GhostStunned");
+
+        if (fromFlashlight)
+        {
+            flashlightController?.TriggerStunReward();
+        }
+
     }
 
     void UpdateStunned()
@@ -308,7 +316,7 @@ public class GhostBehavior : MonoBehaviour
     // When let go by vacuum
     public void ReturnToStunned()
     {
-        EnterStunned();
+        EnterStunned(false);
     }
     // Flashlight (called every frame ghost is lit)
     public void NotifyFlashlightHit(float deltaTime)
@@ -320,7 +328,7 @@ public class GhostBehavior : MonoBehaviour
 
         stunChargeTimer += deltaTime;
         if (stunChargeTimer >= stunChargeRequired)
-            EnterStunned();
+            EnterStunned(true);
     }
 
     public void NotifyFlashlightLost()
