@@ -46,4 +46,23 @@ public class HauntedToyWaypoint : MonoBehaviour
         isOccupied = state;
         return true;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        foreach (HauntedToyWaypoint waypoint in connectedWaypoints)
+        {
+            Gizmos.DrawLine(transform.position, waypoint.transform.position);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        foreach (HauntedToyWaypoint waypoint in connectedWaypoints)
+        {
+            Gizmos.DrawLine(transform.position, waypoint.transform.position);
+            Gizmos.DrawSphere(waypoint.transform.position, .35f);
+        }
+    }
 }

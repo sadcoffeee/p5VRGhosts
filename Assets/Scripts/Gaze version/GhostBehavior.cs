@@ -76,14 +76,26 @@ public class GhostBehavior : MonoBehaviour
     // Unity lifecycle
     // -------------------------------------------------------------------------
 
+    // Bypass initialization - used for when it is spawned by a haunted toy
+    bool bypassInitialization = false;
+
     void Start()
     {
+        lookTarget = Camera.main.transform;
+
+        // If spawned from a toy, skip rest of initialization
+        if (bypassInitialization)
+        {
+            return;
+        }
+
         GazeGameManager.Instance.RegisterGhost(this);
         SetVisualActive(false);
         isGrabbable = false;
         spawnTimer = 0f;
         lookTarget = Camera.main.transform;
         flashlightController = FindFirstObjectByType<FlashlightController>();
+
     }
 
     void Update()
@@ -303,10 +315,20 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
+
     // -------------------------------------------------------------------------
     // External interface (vacuum and flashlight
     // -------------------------------------------------------------------------
     // Vacuum
+
+    public void ExpellFromToy()
+    {
+        EnterStunned(false);
+        bypassInitialization = true;
+        stunTimer = Mathf.Infinity;
+        transform.LookAt(Camera.main.transform.position);
+    }
+
     public void OnGrabbed()
     {
         currentState = GhostState.Grabbed;
@@ -347,6 +369,11 @@ public class GhostBehavior : MonoBehaviour
     {
         if (ghostVisual != null)
             ghostVisual.SetActive(active);
+
+        if (active)
+            Debug.Log("Activating visuals");
+        else
+            Debug.Log("Deactivating visuals");
     }
 
     void OnDestroy()

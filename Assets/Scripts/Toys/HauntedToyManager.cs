@@ -60,7 +60,9 @@ public class HauntedToyManager : MonoBehaviour
                 stolenToys[randomToy].transform.position = waypoint.transform.position;
                 stolenToys[randomToy].transform.rotation = Quaternion.identity;
                 stolenToys[randomToy].SetActive(true);
-                stolenToys[randomToy].GetComponent<HauntableToy>().SetHaunted(true);
+                HauntableToy toy = stolenToys[randomToy].GetComponent<HauntableToy>();
+                toy.SetHaunted(true);
+                toy.SetWaypoint(waypoint);
 
                 //Remove from stole toys
                 stolenToys.RemoveAt(randomToy);
