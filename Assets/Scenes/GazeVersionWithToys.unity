@@ -48591,6 +48591,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Furniture
       objectReference: {fileID: 0}
+    - target: {fileID: 8690174607779491428, guid: 387da3a749befca4fb8e7bd6efd1c3cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9156674278977800585, guid: 387da3a749befca4fb8e7bd6efd1c3cf, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.84
@@ -48609,7 +48613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156674278977800585, guid: 387da3a749befca4fb8e7bd6efd1c3cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 9156674278977800585, guid: 387da3a749befca4fb8e7bd6efd1c3cf, type: 3}
       propertyPath: m_LocalPosition.z
