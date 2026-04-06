@@ -49,7 +49,6 @@ public class HauntableToy : MonoBehaviour
         {
             rb = GetComponent<Rigidbody>();
         }
-
         if (!isHaunted)
         {
             defaultMaterial = meshRenderer.material;

@@ -90,6 +90,14 @@ public class GhostBehavior : MonoBehaviour
         }
 
         GazeGameManager.Instance.RegisterGhost(this);
+
+        // If spawned from a toy, skip rest of initialization
+        if (bypassInitialization)
+        {
+            return;
+        }
+
+        GazeGameManager.Instance.RegisterGhost(this);
         SetVisualActive(false);
         isGrabbable = false;
         spawnTimer = 0f;
@@ -315,12 +323,6 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
-
-    // -------------------------------------------------------------------------
-    // External interface (vacuum and flashlight
-    // -------------------------------------------------------------------------
-    // Vacuum
-
     public void ExpellFromToy()
     {
         EnterStunned(false);
@@ -328,6 +330,12 @@ public class GhostBehavior : MonoBehaviour
         stunTimer = Mathf.Infinity;
         transform.LookAt(Camera.main.transform.position);
     }
+
+
+    // -------------------------------------------------------------------------
+    // External interface (vacuum and flashlight
+    // -------------------------------------------------------------------------
+    // Vacuum
 
     public void OnGrabbed()
     {
