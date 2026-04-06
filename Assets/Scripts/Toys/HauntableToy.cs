@@ -10,6 +10,7 @@ public class HauntableToy : MonoBehaviour
     [SerializeField] GameObject freedEffect;
     [SerializeField] Material hauntedMaterial;
     [SerializeField] GameObject ExpelledGhost;
+    [SerializeField] Vector3 GhostSpawnOffset = new Vector3 (0, 1.5f, 0);
 
     [Header("Movement")]
     [SerializeField] float waypointIdleTime = 5f;
@@ -106,7 +107,7 @@ public class HauntableToy : MonoBehaviour
         SetHaunted(false);
 
         //Spawn ghost
-        GameObject ghost = Instantiate(ExpelledGhost, transform.transform.position, Quaternion.identity);
+        GameObject ghost = Instantiate(ExpelledGhost, transform.transform.position + GhostSpawnOffset, Quaternion.identity);
         GhostBehavior ghostBehavior = ghost.GetComponent<GhostBehavior>();
         ghostBehavior.ExpellFromToy();
 
