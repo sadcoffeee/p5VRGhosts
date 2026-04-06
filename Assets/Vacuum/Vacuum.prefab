@@ -616,3 +616,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2142b4424b9c170488c18fc4618a46df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeVacuumTrigger:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Active Vacuum Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b67fa68c-5f59-43ce-8e7b-03a734dc5e27
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  suckSpeed: 5
+  spinSpeed: 200
+  lockDistance: 0.05
+  shootForce: 0.1
+  suckBlockDuration: 1
+  hapticPlayerR: {fileID: 0}
+  effect: {fileID: 0}
+  controller: {fileID: 0}
