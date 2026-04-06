@@ -56,8 +56,19 @@ public class GhostBehavior : MonoBehaviour
     // Grabbing
     [HideInInspector] public bool isGrabbable;
 
+    // Bypass initialization - used for when it is spawned by a haunted toy
+    bool bypassInitialization = false;
+
     void Start()
     {
+        lookTarget = Camera.main.transform;
+
+        // If spawned from a toy, skip rest of initialization
+        if (bypassInitialization)
+        {
+            return;
+        }
+
         GazeGameManager.Instance.RegisterGhost(this);
 
         // Ghost starts invisible
@@ -67,7 +78,6 @@ public class GhostBehavior : MonoBehaviour
         spawnStartPosition = transform.position;
         spawnTimer = 0f;
 
-        lookTarget = Camera.main.transform;
     }
 
     void Update()
@@ -217,6 +227,14 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
+    public void ExpellFromToy()
+    {
+        EnterStunned();
+        bypassInitialization = true;
+        stunTimer = Mathf.Infinity;
+        transform.LookAt(Camera.main.transform.position);
+    }
+
 
     public void OnGrabbed()
     {
@@ -229,6 +247,11 @@ public class GhostBehavior : MonoBehaviour
     {
         if (ghostVisual != null)
             ghostVisual.SetActive(active);
+
+        if (active)
+            Debug.Log("Activating visuals");
+        else
+            Debug.Log("Deactivating visuals");
     }
 
     public void Die()
