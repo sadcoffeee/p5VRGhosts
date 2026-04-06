@@ -143,6 +143,7 @@ public class GazeGameManager : MonoBehaviour
     public void OnGhostExitedWithToy(GhostBehavior stealingGhost, Transform stolenToy) 
     {
         stolenToy.GetComponent<Grabbable>().enabled = false;
+        stolenToy.GetComponent<HauntableToy>().StealToy();
         allToys.Remove(stolenToy);
         // this is where we want to schedule a new possessed toy; mayhaps we want to add something to the stolenToy so we can check what kind of toy (mesh) it was
         // so that if the ghosts steal a ball, its a ball that returns

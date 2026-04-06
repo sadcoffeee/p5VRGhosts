@@ -11,6 +11,7 @@ public class HauntableToy : MonoBehaviour
     [SerializeField] Material hauntedMaterial;
     [SerializeField] GameObject ExpelledGhost;
     [SerializeField] Vector3 GhostSpawnOffset = new Vector3 (0, 1.5f, 0);
+    [SerializeField] float expellDelay = 3f;
 
     [Header("Movement")]
     [SerializeField] float waypointIdleTime = 5f;
@@ -19,11 +20,13 @@ public class HauntableToy : MonoBehaviour
     //References
     [Header("Refrences")]
     [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] Rigidbody rb;
 
     //Variables
     Material defaultMaterial;
     HauntedToyWaypoint waypoint;
     float idleTimer = 0f;
+    float expellTimer = 0f;
 
     //Delegates
     public delegate void WaypointSet(HauntedToyWaypoint waypoint);
@@ -40,6 +43,11 @@ public class HauntableToy : MonoBehaviour
         if (meshRenderer == null)
         {
             meshRenderer = GetComponent<MeshRenderer>();
+        }
+
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody>();
         }
 
         if (!isHaunted)
@@ -98,6 +106,8 @@ public class HauntableToy : MonoBehaviour
         {
             Instantiate(spawnEffect, transform.position, Quaternion.identity);
         }
+
+        expellTimer = 0;
 
         onHaunted?.Invoke(state);
     }
@@ -174,6 +184,23 @@ public class HauntableToy : MonoBehaviour
         Vector3 projectedWaypointPosition = waypoint.transform.position;
         projectedWaypointPosition.y = transform.position.y;
         return projectedWaypointPosition;
+    }
+
+    public void ResetRigidbody()
+    {
+        rb.isKinematic = false;
+    }
+
+    public void FlashLightHit(float time)
+    {
+        if (!isHaunted)
+            return;
+
+        expellTimer += time;
+        if (expellTimer > expellDelay)
+        {
+            ReleaseGhost();
+        }
     }
 }
 

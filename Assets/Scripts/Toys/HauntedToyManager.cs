@@ -63,6 +63,7 @@ public class HauntedToyManager : MonoBehaviour
                 HauntableToy toy = stolenToys[randomToy].GetComponent<HauntableToy>();
                 toy.SetHaunted(true);
                 toy.SetWaypoint(waypoint);
+                toy.ResetRigidbody();
 
                 //Remove from stole toys
                 stolenToys.RemoveAt(randomToy);
@@ -86,6 +87,7 @@ public class HauntedToyManager : MonoBehaviour
     {
         //Set location and hide
         toy.transform.position = transform.position;
+        toy.transform.parent = transform;
         toy.SetActive(false);
 
         //Add to stolen list
