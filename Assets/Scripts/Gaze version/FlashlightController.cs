@@ -52,6 +52,7 @@ public class FlashlightController : MonoBehaviour
         }
         
         GhostBehavior[] allGhosts = GazeGameManager.Instance.GetAllGhosts();
+        Transform[] allToys = GazeGameManager.Instance.GetAllToys();
 
         HashSet<GhostBehavior> litThisFrame = new HashSet<GhostBehavior>();
         GhostBehavior nearestHapticGhost = null;
@@ -102,6 +103,28 @@ public class FlashlightController : MonoBehaviour
 
         // Drive armbands
         DriveHaptics(nearestHapticGhost);
+
+        foreach (Transform toy in allToys)
+        {
+            // if toy is haunted and toy is inside cone, light it
+            Vector3 toToy = toy.transform.position - transform.position;
+            float dist = toToy.magnitude;
+
+            if (dist > coneRange) continue;
+
+            float angle = Vector3.Angle(transform.forward, toToy);
+            bool inCone = angle <= coneHalfAngle;
+
+            if (inCone) 
+            {
+                HauntableToy hauntableToy = toy.transform.GetComponent<HauntableToy>();
+
+                if (hauntableToy != null && hauntableToy.IsHaunted())
+                {
+                    hauntableToy.FlashLightHit(Time.deltaTime);
+                }
+            }
+        }
     }
 
     void DriveHaptics(GhostBehavior nearestGhost)

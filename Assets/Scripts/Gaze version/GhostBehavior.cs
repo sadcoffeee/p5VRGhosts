@@ -91,13 +91,6 @@ public class GhostBehavior : MonoBehaviour
 
         GazeGameManager.Instance.RegisterGhost(this);
 
-        // If spawned from a toy, skip rest of initialization
-        if (bypassInitialization)
-        {
-            return;
-        }
-
-        GazeGameManager.Instance.RegisterGhost(this);
         SetVisualActive(false);
         isGrabbable = false;
         spawnTimer = 0f;

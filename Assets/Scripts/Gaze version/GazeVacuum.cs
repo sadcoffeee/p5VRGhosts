@@ -32,7 +32,6 @@ public class GazeVacuum : MonoBehaviour
 
     [Header("References")]
     public HapticImpulsePlayer hapticPlayerR;
-    public GameObject idleEffect;
     public GameObject suckEffect;
 
     // -------------------------------------------------------------------------
@@ -111,7 +110,7 @@ public class GazeVacuum : MonoBehaviour
         }
         else
         {
-            ResetAllEffects();
+            ResetEffects();
         }
     }
 
@@ -153,7 +152,7 @@ public class GazeVacuum : MonoBehaviour
     void HoldingState(bool triggerPressed)
     {
         HoldToy();
-        ResetAllEffects();
+        ResetEffects();
 
         // Press trigger again to shoot
         if (triggerPressed && !lastTriggerState)
@@ -165,6 +164,8 @@ public class GazeVacuum : MonoBehaviour
     // -------------------------------------------------------------------------
     void TryStartSucking()
     {
+        // To give ghosts priority, loop through the whole list for ghosts first, then do it again for toys
+        // Inelegant, but we have relatively few candidates and its a simple loop, so whatever
         foreach (var obj in candidates)
         {
             if (obj == null) continue;
@@ -174,6 +175,11 @@ public class GazeVacuum : MonoBehaviour
                 StartSuckingGhost(obj);
                 return;
             }
+        }
+        foreach (var obj in candidates)
+        {
+            if (obj == null) continue;
+
             else if (obj.CompareTag("Toy"))
             {
                 StartSuckingToy(obj);
@@ -217,13 +223,14 @@ public class GazeVacuum : MonoBehaviour
     }
     void ReleaseObject()
     {
-        ResetAllEffects();
+        ResetEffects();
 
         if (objectType == ObjectType.Ghost && currentObject != null)
         {
             GhostBehavior ghost = currentObject.GetComponent<GhostBehavior>();
             if (ghost != null)
                 ghost.ReturnToStunned();
+            currentObject.transform.localScale = ghostOriginalScale;
         }
 
         if (objectRb != null)
@@ -251,7 +258,7 @@ public class GazeVacuum : MonoBehaviour
 
     void AbsorbGhost()
     {
-        ResetAllEffects();
+        ResetEffects();
 
         if (hapticPlayerR != null)
             hapticPlayerR.SendHapticImpulse(1f, 0.3f);
@@ -270,7 +277,7 @@ public class GazeVacuum : MonoBehaviour
     void EnterHolding()
     {
         state = VacuumState.Holding;
-        ResetAllEffects();
+        ResetEffects();
     }
 
     void HoldToy()
@@ -320,11 +327,8 @@ public class GazeVacuum : MonoBehaviour
         if (hapticPlayerR != null)
             hapticPlayerR.SendHapticImpulse(0.5f, 0.1f);
 
-        if (idleEffect != null)
-            idleEffect.SetActive(true);
-
         if (suckEffect != null)
-            suckEffect.SetActive(false);
+            suckEffect.SetActive(true);
     }
     void ApplySuckEffect()
     {
@@ -333,18 +337,12 @@ public class GazeVacuum : MonoBehaviour
         if (hapticPlayerR != null)
             hapticPlayerR.SendHapticImpulse(0.9f, 0.1f);
 
-        if (idleEffect != null)
-            idleEffect.SetActive(false);
-
         if (suckEffect != null)
             suckEffect.SetActive(true);
     }
-    void ResetAllEffects()
+    void ResetEffects()
     {
         transform.localPosition = originalLocalPosition;
-
-        if (idleEffect != null)
-            idleEffect.SetActive(false);
 
         if (suckEffect != null)
             suckEffect.SetActive(false);

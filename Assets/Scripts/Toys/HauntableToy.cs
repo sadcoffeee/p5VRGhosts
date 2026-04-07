@@ -128,6 +128,8 @@ public class HauntableToy : MonoBehaviour
 
         if (waypoint != null)
             waypoint.Occupy(false);
+
+        GazeGameManager.Instance.ExpelGhostFromToy(transform);
     }
 
     public void SetWaypoint(HauntedToyWaypoint waypoint)
