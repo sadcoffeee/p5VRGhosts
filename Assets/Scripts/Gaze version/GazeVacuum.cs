@@ -290,7 +290,7 @@ public class GazeVacuum : MonoBehaviour
         {
             // Express the offset in the vacuum's local space
             currentObject.transform.position = transform.TransformPoint(grabComp.holdOffset);
-            currentObject.transform.eulerAngles = transform.eulerAngles + grabComp.holdRotation;
+            currentObject.transform.rotation = transform.rotation * Quaternion.Euler(grabComp.holdRotation);
         }
         else
         {
