@@ -303,7 +303,7 @@ public class GazeVacuum : MonoBehaviour
         if (objectRb == null) return;
 
         objectRb.isKinematic = false;
-        objectRb.AddForce(transform.up * shootForce, ForceMode.Impulse);
+        objectRb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
 
         if (hapticPlayerR != null)
             hapticPlayerR.SendHapticImpulse(1f, 0.2f);
