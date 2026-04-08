@@ -182,8 +182,11 @@ public class GazeVacuum : MonoBehaviour
 
             else if (obj.CompareTag("Toy"))
             {
-                StartSuckingToy(obj);
-                return;
+                if (!obj.GetComponent<HauntableToy>().IsHaunted()) 
+                {
+                    StartSuckingToy(obj);
+                    return;
+                }
             }
         }
     }
