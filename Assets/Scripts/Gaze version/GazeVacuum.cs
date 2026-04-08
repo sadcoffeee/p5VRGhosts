@@ -303,7 +303,8 @@ public class GazeVacuum : MonoBehaviour
         if (objectRb == null) return;
 
         objectRb.isKinematic = false;
-        objectRb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
+        objectRb.AddForce(-transform.right * shootForce + transform.up * 0.1f * shootForce, ForceMode.Impulse);
+
 
         if (hapticPlayerR != null)
             hapticPlayerR.SendHapticImpulse(1f, 0.2f);
@@ -325,7 +326,7 @@ public class GazeVacuum : MonoBehaviour
     void ApplyIdleEffect()
     {
         if (hapticPlayerR != null)
-            hapticPlayerR.SendHapticImpulse(0.5f, 0.1f);
+            hapticPlayerR.SendHapticImpulse(0.4f, 0.1f);
 
         if (suckEffect != null)
             suckEffect.SetActive(true);
@@ -335,7 +336,7 @@ public class GazeVacuum : MonoBehaviour
         transform.localPosition = originalLocalPosition + Random.insideUnitSphere * 0.01f;
 
         if (hapticPlayerR != null)
-            hapticPlayerR.SendHapticImpulse(0.9f, 0.1f);
+            hapticPlayerR.SendHapticImpulse(0.7f, 0.1f);
 
         if (suckEffect != null)
             suckEffect.SetActive(true);

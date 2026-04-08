@@ -311,8 +311,10 @@ public class GhostBehavior : MonoBehaviour
 
         if (arcT >= 1f)
         {
-            GazeGameManager.Instance.OnGhostExitedWithToy(this, stolenToyTransform);
-            Destroy(gameObject); // also destroys parented toy
+            if (stolenToyTransform != null) 
+                GazeGameManager.Instance.OnGhostExitedWithToy(this, stolenToyTransform);
+
+            Destroy(gameObject);
         }
     }
 

@@ -13996,7 +13996,7 @@ MonoBehaviour:
   lockDistance: 0.05
   shootForce: 9
   suckBlockDuration: 1
-  hapticPlayerR: {fileID: 0}
+  hapticPlayerR: {fileID: 319434906}
   suckEffect: {fileID: 621313974}
 --- !u!1 &324847673
 GameObject:
@@ -31584,6 +31584,7 @@ MonoBehaviour:
   defaultAllowedGhosts: 1
   maxAllowedGhosts: 3
   difficultyIncreaseDelay: 30
+  ghostContainer: {fileID: 985721140}
   allGhosts: []
 --- !u!1 &690510040
 GameObject:
@@ -43571,11 +43572,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1a9306e6d894a429a6b4c63248b26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniGhostPrefab: {fileID: 5933462121241962575, guid: ed38f61ed1c4ed94f8a5b3b558e18d58, type: 3}
+  miniGhostPrefab: {fileID: 3465929243930994659, guid: 746172501f83d2045b392afb36d59a31, type: 3}
   maxMiniGhosts: 10
   capsuleRadius: 0.0075
   capsuleHalfHeight: 0.0095
-  miniGhostScale: 0.04
+  miniGhostScale: 0.005
   catchCounterText: {fileID: 1748051901}
 --- !u!1 &986481721
 GameObject:

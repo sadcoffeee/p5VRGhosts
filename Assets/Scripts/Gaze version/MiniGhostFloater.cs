@@ -4,9 +4,9 @@ using UnityEngine;
 public class MiniGhostFloater : MonoBehaviour
 {
     [Header("Float Settings")]
-    public float moveSpeed = 0.03f;
+    public float moveSpeed = 0.005f;
     public float directionChangeInterval = 1.8f;
-    public float bobAmplitude = 0.005f;
+    public float bobAmplitude = 0.002f;
     public float rotationSpeed = 90f;
 
     // Capsule bounds set by GhostCapsuleManager
@@ -55,7 +55,7 @@ public class MiniGhostFloater : MonoBehaviour
         transform.localPosition = localPos;
 
         // Smoothly rotate to face movement direction
-        if (_velocity.sqrMagnitude > 0.0001f)
+        if (_velocity.sqrMagnitude > 0.00001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(_velocity);
             transform.localRotation = Quaternion.RotateTowards(
