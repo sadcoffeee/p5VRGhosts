@@ -24,6 +24,9 @@ public class GazeGameManager : MonoBehaviour
     [SerializeField] int maxAllowedGhosts;
     [SerializeField] float difficultyIncreaseDelay;
 
+    [Header("References")]
+    [SerializeField] GhostCapsuleManager ghostContainer;
+
 
     public List<GhostBehavior> allGhosts;
     List<Transform> allToys;
@@ -132,6 +135,7 @@ public class GazeGameManager : MonoBehaviour
     public void OnGhostDefeated(GhostBehavior defeatedGhost, float defeatTime)
     {
         allGhosts.Remove(defeatedGhost);
+        ghostContainer.OnGhostCaught();
     }
     public void RegisterGhost(GhostBehavior newGhost)
     {
@@ -148,14 +152,13 @@ public class GazeGameManager : MonoBehaviour
     public void ExpelGhostFromToy(Transform freedToy)
     {
         unPosessedToys.Add(freedToy);
+        freedToy.GetComponent<Grabbable>().enabled = true;
+
     }
     public void OnGhostExitedWithToy(GhostBehavior stealingGhost, Transform stolenToy) 
     {
         stolenToy.GetComponent<Grabbable>().enabled = false;
         stolenToy.GetComponent<HauntableToy>().StealToy();
         unPosessedToys.Remove(stolenToy);
-        // this is where we want to schedule a new possessed toy; mayhaps we want to add something to the stolenToy so we can check what kind of toy (mesh) it was
-        // so that if the ghosts steal a ball, its a ball that returns
-        // currently the stolentoy is parented to the ghost when stolen, so when the ghost self-deletes, the toy goes too
     }
 }

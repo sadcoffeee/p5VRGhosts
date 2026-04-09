@@ -122,8 +122,8 @@ MonoBehaviour:
   driftSpeed: 0.3
   stunChargeRequired: 0.5
   stunDuration: 5
-  flyToToySpeed: 3.5
-  arriveDistance: 0.15
+  flyToToySpeed: 2
+  arriveDistance: 0.1
   roomCenter: {x: 1.2, y: 0.03, z: -9.3}
   exitRadius: 8
   arcHeight: 3
