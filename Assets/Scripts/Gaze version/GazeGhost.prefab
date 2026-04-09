@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5115028701254077045}
   - component: {fileID: -7601946517778449148}
   - component: {fileID: 6993809177226164278}
+  - component: {fileID: 2059138023529599082}
   m_Layer: 0
   m_Name: GazeGhost
   m_TagString: Ghost
@@ -147,6 +148,18 @@ MonoBehaviour:
   mesh: {fileID: 8855631763376730876}
   OutlineLayer: 7
   DefaultLayer: 0
+--- !u!114 &2059138023529599082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330785707499205332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0e3356a9e0de940abc3b4f738e977b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615377586349451372
 GameObject:
   m_ObjectHideFlags: 0

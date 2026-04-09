@@ -47,6 +47,7 @@ public class GhostBehavior : MonoBehaviour
 
     [HideInInspector] public GhostState currentState = GhostState.Spawning;
     [HideInInspector] public bool isGrabbable;
+    SpatialAudioEmitter audioEmitter;
 
     // Spawning
     private float spawnTimer;
@@ -97,7 +98,7 @@ public class GhostBehavior : MonoBehaviour
         spawnTimer = 0f;
         lookTarget = Camera.main.transform;
         flashlightController = FindFirstObjectByType<FlashlightController>();
-
+        audioEmitter = GetComponent<SpatialAudioEmitter>();
     }
 
     void Update()
@@ -140,7 +141,7 @@ public class GhostBehavior : MonoBehaviour
         stunChargeTimer = 0f;
         isGrabbable = false;
         SetVisualActive(false);
-        AudioManager.Instance.PlayAudio("ghostLaugh"); 
+        AudioManager.Instance.PlayAudioAtPosition("ghostLaugh", transform.position); 
         // to do: find more sounds for the ghost so you can tell spawning, flying to steal, getting caught etc apart
     }
 
@@ -179,7 +180,7 @@ public class GhostBehavior : MonoBehaviour
             litParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
 
         ghostAnimator?.PlayDizzy();
-        AudioManager.Instance.PlayAudio("GhostStunned");
+        audioEmitter.Play(AudioManager.Instance.GetSound("GhostStunned"));
 
         if (fromFlashlight)
         {
@@ -199,8 +200,8 @@ public class GhostBehavior : MonoBehaviour
     {
         isGrabbable = false;
 
-        AudioManager.Instance.StopAudio("GhostStunned");
-        AudioManager.Instance.PlayAudio("ghostLaughOther");
+        audioEmitter.Stop();
+        AudioManager.Instance.PlayAudioAtPosition("ghostLaughOther", transform.position);
         EnterLingering();
     }
 
@@ -222,7 +223,7 @@ public class GhostBehavior : MonoBehaviour
         currentState = GhostState.FlyingToSteal;
         SetVisualActive(true);
         ghostAnimator?.PlayFlying();
-        AudioManager.Instance.PlayAudio("ghostLaugh");
+        AudioManager.Instance.PlayAudioAtPosition("ghostLaugh", transform.position);
     }
 
     void UpdateFlyingToSteal()
@@ -291,7 +292,7 @@ public class GhostBehavior : MonoBehaviour
         currentState = GhostState.ExitingScene;
 
         ghostAnimator?.PlayFlying();
-        AudioManager.Instance.PlayAudio("ghostExiting");
+        AudioManager.Instance.PlayAudioAtPosition("ghostExiting", transform.position);
     }
 
     void UpdateExitingScene()
@@ -343,7 +344,7 @@ public class GhostBehavior : MonoBehaviour
     {
         currentState = GhostState.Grabbed;
         isGrabbable = false;
-        AudioManager.Instance.StopAudio("GhostStunned");
+        audioEmitter.Stop();
     }
     // When let go by vacuum
     public void ReturnToStunned()
