@@ -157,7 +157,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   freedEffect: {fileID: 1488907097557279496, guid: 6d2ad2a16e7bcbd4f804df046cdc637c, type: 3}
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
-  ExpelledGhost: {fileID: 330785707499205332, guid: 56d6d76153c6e4540ac5af6c4e771d8a, type: 3}
+  ExpelledGhost: {fileID: 3031427591223421187, guid: 31f46ea1bb82e1a47a9282abacc5cb40, type: 3}
   GhostSpawnOffset: {x: 0, y: 0.75, z: 0}
   expellDelay: 3
   waypointIdleTime: 5
