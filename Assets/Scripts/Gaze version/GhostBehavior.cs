@@ -141,7 +141,7 @@ public class GhostBehavior : MonoBehaviour
         stunChargeTimer = 0f;
         isGrabbable = false;
         SetVisualActive(false);
-        AudioManager.Instance.PlayAudioAtPosition("ghostLaugh", transform.position); 
+        AudioManager.Instance.PlayAudioAtPosition("ghostSpawn", transform.position); 
         // to do: find more sounds for the ghost so you can tell spawning, flying to steal, getting caught etc apart
     }
 

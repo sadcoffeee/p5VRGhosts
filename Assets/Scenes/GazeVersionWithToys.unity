@@ -14984,6 +14984,21 @@ MonoBehaviour:
     volume: 0.2
     source: {fileID: 0}
     loop: 0
+  - name: bigVacuum
+    clip: {fileID: 8300000, guid: b5979b8a16991574a93bd1fdac625530, type: 3}
+    volume: 0.2
+    source: {fileID: 0}
+    loop: 1
+  - name: smallVacuum
+    clip: {fileID: 8300000, guid: efb07542b3c8bd4449455149e36090f2, type: 3}
+    volume: 0.2
+    source: {fileID: 0}
+    loop: 1
+  - name: ghostSpawn
+    clip: {fileID: 8300000, guid: dcc2e968cadfed8458aac7e72486f8b1, type: 3}
+    volume: 0.2
+    source: {fileID: 0}
+    loop: 0
   carTimeIntervalMin: 10
   carTimeIntervalMax: 30
   spatialSourcePoolSize: 10

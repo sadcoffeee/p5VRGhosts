@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpatialAudioEmitter : MonoBehaviour
 {
     AudioSource _source;
+    public bool isPlaying = false;
 
     private void Awake()
     {
@@ -18,7 +19,12 @@ public class SpatialAudioEmitter : MonoBehaviour
         _source.volume = s.volume;
         _source.loop = s.loop;
         _source.Play();
+        isPlaying = true;
     }
 
-    public void Stop() => _source.Stop();
+    public void Stop()
+    {
+        _source.Stop();
+        isPlaying = false;
+    }
 }

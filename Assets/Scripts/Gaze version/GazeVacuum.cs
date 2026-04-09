@@ -44,6 +44,8 @@ public class GazeVacuum : MonoBehaviour
     private GameObject currentObject;
     private GameObject currentTarget;
     private Rigidbody objectRb;
+    private SpatialAudioEmitter audioEmitter;
+    private bool latestSoundBig = false;
 
     // Ghost shrink: record the scale at the moment the ghost enters the vacuum
     private Vector3 ghostOriginalScale;
@@ -59,6 +61,7 @@ public class GazeVacuum : MonoBehaviour
     {
         originalLocalPosition = transform.localPosition;
         hapticPlayerR = GetComponent<HapticImpulsePlayer>();
+        audioEmitter = GetComponent<SpatialAudioEmitter>();
     }
 
     private void OnEnable()
@@ -383,6 +386,13 @@ public class GazeVacuum : MonoBehaviour
 
         if (suckEffect != null)
             suckEffect.SetActive(true);
+
+
+        if (!audioEmitter.isPlaying || latestSoundBig) 
+        {
+            audioEmitter.Play(AudioManager.Instance.GetSound("smallVacuum"));
+            latestSoundBig = false;
+        }
     }
     void ApplySuckEffect()
     {
@@ -393,6 +403,12 @@ public class GazeVacuum : MonoBehaviour
 
         if (suckEffect != null)
             suckEffect.SetActive(true);
+
+        if (!audioEmitter.isPlaying || !latestSoundBig)
+        {
+            audioEmitter.Play(AudioManager.Instance.GetSound("bigVacuum"));
+            latestSoundBig = true;
+        }
     }
     void ResetEffects()
     {
@@ -400,6 +416,8 @@ public class GazeVacuum : MonoBehaviour
 
         if (suckEffect != null)
             suckEffect.SetActive(false);
+
+        audioEmitter.Stop();
     }
 
     // -------------------------------------------------------------------------
