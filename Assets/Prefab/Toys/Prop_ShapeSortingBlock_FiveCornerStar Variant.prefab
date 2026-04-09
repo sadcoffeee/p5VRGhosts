@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7374353758504465848, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
       propertyPath: m_TagString
-      value: Toy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7862483407644258050, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
       propertyPath: m_LocalPosition.x
@@ -157,6 +157,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7374353758504465848, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7189827967711141934}
+    - targetCorrespondingSourceObject: {fileID: 7374353758504465848, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1959586164541921395}
   m_SourcePrefab: {fileID: 100100000, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
 --- !u!4 &5083762025393206637 stripped
 Transform:
@@ -232,6 +235,7 @@ MonoBehaviour:
   waypointStoppingDistance: 0.2
   meshRenderer: {fileID: 6798781839413607513}
   rb: {fileID: 0}
+  outline: {fileID: 7189827967711141934}
 --- !u!114 &2898763090986241032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,3 +286,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 6798781839413607513}
+  OutlineLayer: 6
+  DefaultLayer: 0
+--- !u!114 &-1959586164541921395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604437318055161815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee11abe490c33b4ea88eae33fd69f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistanceFromStartingPosition: 100

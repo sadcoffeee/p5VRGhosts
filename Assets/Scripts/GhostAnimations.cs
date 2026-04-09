@@ -50,6 +50,17 @@ public class GhostAnimations : MonoBehaviour
             hoverGhostScript.enabled = false;
     }
 
+    public void PlayExpelled()
+    {
+        Initialize();
+
+        ghostFaceRenderer.material.mainTexture = GhostFaceMaterials[2];
+        Stars.SetActive(true);
+        ExclamationMarks.SetActive(false);
+        anim.Play("Ghost_expelled");
+        if (hoverGhostScript != null)
+            hoverGhostScript.enabled = false;
+    }
     public void PlayFlying()
     {
         Initialize();

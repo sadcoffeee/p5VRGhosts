@@ -90,6 +90,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6170108572680179469, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 988819478825850214}
+    - targetCorrespondingSourceObject: {fileID: 6170108572680179469, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5836158490614100982}
   m_SourcePrefab: {fileID: 100100000, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
 --- !u!23 &7496065293931321763 stripped
 MeshRenderer:
@@ -165,6 +168,7 @@ MonoBehaviour:
   waypointStoppingDistance: 0.2
   meshRenderer: {fileID: 0}
   rb: {fileID: 0}
+  outline: {fileID: 988819478825850214}
 --- !u!114 &7674031744580252798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +219,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 7496065293931321763}
+  OutlineLayer: 6
+  DefaultLayer: 0
+--- !u!114 &5836158490614100982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8288773802192975990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee11abe490c33b4ea88eae33fd69f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistanceFromStartingPosition: 100
 --- !u!65 &9207268634975241689 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 6440649804371260066, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}

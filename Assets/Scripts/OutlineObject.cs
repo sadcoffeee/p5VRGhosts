@@ -13,11 +13,11 @@ public class OutlineObject : MonoBehaviour
     {
         if (selectedObject == this)
         {
-            mesh.gameObject.layer = OutlineLayer; //& is the layer the outline uses
+            mesh.gameObject.layer = OutlineLayer;
         }
         else
         {
-            mesh.gameObject.layer = DefaultLayer; //= is defeault layer
+            mesh.gameObject.layer = DefaultLayer;
         }
     }
 
@@ -29,5 +29,14 @@ public class OutlineObject : MonoBehaviour
     public static void Deselect()
     {
         selectedObject = null;
+    }
+
+    private void OnDisable()
+    {
+        if (selectedObject == this)
+        {
+            Deselect();
+            mesh.gameObject.layer = DefaultLayer;
+        }
     }
 }

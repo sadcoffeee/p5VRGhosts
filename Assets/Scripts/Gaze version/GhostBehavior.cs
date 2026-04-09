@@ -16,6 +16,7 @@ public class GhostBehavior : MonoBehaviour
     [SerializeField] GameObject ghostVisual;
     [SerializeField] GhostAnimations ghostAnimator;
     [SerializeField] ParticleSystem litParticles;
+    [SerializeField] OutlineObject outline;
 
     [Header("Spawning")]
     [SerializeField] float spawnMoveDuration = 0.6f;
@@ -101,6 +102,7 @@ public class GhostBehavior : MonoBehaviour
 
     void Update()
     {
+        outline.enabled = isGrabbable;
         switch (currentState)
         {
             case GhostState.Spawning:      UpdateSpawning();      break;
@@ -311,8 +313,12 @@ public class GhostBehavior : MonoBehaviour
 
         if (arcT >= 1f)
         {
-            if (stolenToyTransform != null) 
+            if (stolenToyTransform != null && GazeGameManager.Instance != null) 
                 GazeGameManager.Instance.OnGhostExitedWithToy(this, stolenToyTransform);
+            else if (GazeGameManager.Instance == null)
+            {
+                Debug.Log("WTF?!");
+            }
 
             Destroy(gameObject);
         }
@@ -324,6 +330,7 @@ public class GhostBehavior : MonoBehaviour
         bypassInitialization = true;
         stunTimer = Mathf.Infinity;
         transform.LookAt(Camera.main.transform.position);
+        ghostAnimator.PlayExpelled();
     }
 
 

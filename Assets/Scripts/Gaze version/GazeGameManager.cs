@@ -157,8 +157,12 @@ public class GazeGameManager : MonoBehaviour
     }
     public void OnGhostExitedWithToy(GhostBehavior stealingGhost, Transform stolenToy) 
     {
-        stolenToy.GetComponent<Grabbable>().enabled = false;
-        stolenToy.GetComponent<HauntableToy>().StealToy();
-        unPosessedToys.Remove(stolenToy);
+        if (stolenToy == null) return;
+        if (stolenToy.GetComponent<Grabbable>() != null)
+            stolenToy.GetComponent<Grabbable>().enabled = false;
+        stolenToy.GetComponent<HauntableToy>()?.StealToy();
+
+        if (unPosessedToys.Contains(stolenToy))
+            unPosessedToys.Remove(stolenToy);
     }
 }

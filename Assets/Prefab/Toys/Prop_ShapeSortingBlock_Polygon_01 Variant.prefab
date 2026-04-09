@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7678388068938258789, guid: e4dc9f87d48af0a4f96aac5f30749b3d, type: 3}
       propertyPath: m_TagString
-      value: Toy
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7371957826381718582, guid: e4dc9f87d48af0a4f96aac5f30749b3d, type: 3}
@@ -157,6 +157,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7678388068938258789, guid: e4dc9f87d48af0a4f96aac5f30749b3d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7657627949197108804}
+    - targetCorrespondingSourceObject: {fileID: 7678388068938258789, guid: e4dc9f87d48af0a4f96aac5f30749b3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2220007188564599704}
   m_SourcePrefab: {fileID: 100100000, guid: e4dc9f87d48af0a4f96aac5f30749b3d, type: 3}
 --- !u!4 &348285262657711052 stripped
 Transform:
@@ -232,6 +235,7 @@ MonoBehaviour:
   waypointStoppingDistance: 0.2
   meshRenderer: {fileID: 3310442269574516675}
   rb: {fileID: 0}
+  outline: {fileID: 7657627949197108804}
 --- !u!95 &2965756812371185488
 Animator:
   serializedVersion: 7
@@ -282,3 +286,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 3310442269574516675}
+  OutlineLayer: 6
+  DefaultLayer: 0
+--- !u!114 &-2220007188564599704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125490018711187830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee11abe490c33b4ea88eae33fd69f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistanceFromStartingPosition: 100

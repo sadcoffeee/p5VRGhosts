@@ -10,7 +10,7 @@ public class HauntableToy : MonoBehaviour
     [SerializeField] GameObject freedEffect;
     [SerializeField] Material hauntedMaterial;
     [SerializeField] GameObject ExpelledGhost;
-    [SerializeField] Vector3 GhostSpawnOffset = new Vector3 (0, 1.5f, 0);
+    [SerializeField] Vector3 GhostSpawnOffset = new Vector3 (0, 1f, 0);
     [SerializeField] float expellDelay = 3f;
 
     [Header("Movement")]
@@ -21,6 +21,7 @@ public class HauntableToy : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] Rigidbody rb;
+    [SerializeField] OutlineObject outline;
 
     //Variables
     Material defaultMaterial;
@@ -108,6 +109,11 @@ public class HauntableToy : MonoBehaviour
 
         expellTimer = 0;
 
+        if (outline != null)
+        {
+            outline.enabled = !state;
+        }
+
         onHaunted?.Invoke(state);
     }
 
@@ -129,6 +135,8 @@ public class HauntableToy : MonoBehaviour
         if (waypoint != null)
             waypoint.Occupy(false);
 
+        SetWaypoint(null);
+
         GazeGameManager.Instance.ExpelGhostFromToy(transform);
     }
 
@@ -142,7 +150,8 @@ public class HauntableToy : MonoBehaviour
 
         //Update waypoint
         this.waypoint = waypoint;
-        this.waypoint.Occupy(true);
+        if (waypoint != null)
+            this.waypoint.Occupy(true);
 
         //Call delegate
         onWaypointSet?.Invoke(this.waypoint);

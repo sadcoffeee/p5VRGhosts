@@ -170,6 +170,8 @@ public class GazeVacuum : MonoBehaviour
 
         foreach (GameObject _object in candidates)
         {
+            if (_object == null) continue;
+
             if (_object.CompareTag("Ghost"))
             {
                 return _object;
