@@ -3,7 +3,82 @@ guid: 86a0b24e593b3e34f9475db5b6b52c93
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark red
+    second: {fileID: 2100000, guid: 4d727b08222d0894e9c7383685523213, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 774c0a227f0f09b45bd85e198df40b15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #46
+    second: {fileID: 2100000, guid: e4318c980dc4c2542ba3863ff7f16d9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 6deea4b6201dbf042b0416809f768e88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 1eb4b4497e022b142bbd3a651de0f0f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 355bc1e5317db0f41b547a3c0d79d59f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 96617ec2d13998c439a4bc726edaa1c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _20882_Grabbing_Hand_v120882_Grabbing_Hand_v1.001
+    second: {fileID: 2100000, guid: 190be2a3e1079a748b3be49e69d75296, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: black
+    second: {fileID: 2100000, guid: d8d86860ecade4a4aaa00aac8f713b06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: darkBLue
+    second: {fileID: 2100000, guid: ce241789667e81d4ab7ca5fa850eb4ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: darkTeal
+    second: {fileID: 2100000, guid: 8d512c1d7db82104a9500c20c11611c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lightTeal
+    second: {fileID: 2100000, guid: a87734a387ce67a459767196ea407f9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: medium blue
+    second: {fileID: 2100000, guid: 6f54dc429b32acd4788316d9bd5e5c61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: random
+    second: {fileID: 2100000, guid: 49a91757a9b244c429bb156f4e7f8d63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red
+    second: {fileID: 2100000, guid: 3fecd4d17882af445bf5a4d23a642521, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,9 +143,9 @@ ModelImporter:
     useFileScale: 1
     strictVertexDataChecks: 0
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 80
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 2
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
