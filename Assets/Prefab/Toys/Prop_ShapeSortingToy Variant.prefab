@@ -75,7 +75,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 798335780872822321, guid: c27f938d98f88cc49992e4940f5fbffa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8380991645161224509}
+    - targetCorrespondingSourceObject: {fileID: 798335780872822321, guid: c27f938d98f88cc49992e4940f5fbffa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5195730905908966675}
   m_SourcePrefab: {fileID: 100100000, guid: c27f938d98f88cc49992e4940f5fbffa, type: 3}
+--- !u!23 &639781447905250349 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1158760295762968548, guid: c27f938d98f88cc49992e4940f5fbffa, type: 3}
+  m_PrefabInstance: {fileID: 1798145232278139849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1432155291799563768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 798335780872822321, guid: c27f938d98f88cc49992e4940f5fbffa, type: 3}
@@ -140,9 +148,11 @@ MonoBehaviour:
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
   ExpelledGhost: {fileID: 330785707499205332, guid: 56d6d76153c6e4540ac5af6c4e771d8a, type: 3}
   GhostSpawnOffset: {x: 0, y: 1.5, z: 0}
+  expellDelay: 3
   waypointIdleTime: 5
   waypointStoppingDistance: 0.2
   meshRenderer: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &312413496220593935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +190,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.22012924
   m_Center: {x: 0, y: 0.22012924, z: 0}
+--- !u!114 &-5195730905908966675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432155291799563768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2727c37c52fb0e348b4c2768a01bbbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 639781447905250349}
 --- !u!65 &2243180155820675159 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 564405673839141790, guid: c27f938d98f88cc49992e4940f5fbffa, type: 3}

@@ -88,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3696854810548079334}
+    - targetCorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5995281833533336962}
   m_SourcePrefab: {fileID: 100100000, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
 --- !u!1 &4661797024891709602 stripped
 GameObject:
@@ -153,9 +156,11 @@ MonoBehaviour:
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
   ExpelledGhost: {fileID: 330785707499205332, guid: 56d6d76153c6e4540ac5af6c4e771d8a, type: 3}
   GhostSpawnOffset: {x: 0, y: 1.5, z: 0}
+  expellDelay: 3
   waypointIdleTime: 5
   waypointStoppingDistance: 0.2
   meshRenderer: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &3696854810548079334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +175,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rollingForce: 1
   stoppingDistance: 0.2
+--- !u!114 &-5995281833533336962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661797024891709602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2727c37c52fb0e348b4c2768a01bbbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 6607620413227469175}
+--- !u!23 &6607620413227469175 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7342854612921520675, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+  m_PrefabInstance: {fileID: 4491765154719832916}
+  m_PrefabAsset: {fileID: 0}

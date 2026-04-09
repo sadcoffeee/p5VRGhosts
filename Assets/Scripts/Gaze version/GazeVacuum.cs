@@ -42,6 +42,7 @@ public class GazeVacuum : MonoBehaviour
 
     private List<GameObject> candidates = new List<GameObject>();
     private GameObject currentObject;
+    private GameObject currentTarget;
     private Rigidbody objectRb;
 
     // Ghost shrink: record the scale at the moment the ghost enters the vacuum
@@ -101,6 +102,8 @@ public class GazeVacuum : MonoBehaviour
 
     void IdleState(bool triggerPressed)
     {
+        OutlineCurrentObject();
+
         if (triggerPressed)
         {
             ApplyIdleEffect();
@@ -179,6 +182,28 @@ public class GazeVacuum : MonoBehaviour
 
         if (toys.Count > 0) return toys[0];
         return null;
+    }
+
+    void OutlineCurrentObject()
+    {
+
+        currentTarget = SelectCandidate();
+
+        if (currentTarget == null)
+        {
+            OutlineObject.Deselect();
+            return;
+        }
+
+        OutlineObject outlineObject = currentTarget.GetComponent<OutlineObject>();
+        if (outlineObject != null)
+        {
+            outlineObject.Select();
+        }
+        else
+        {
+            OutlineObject.Deselect();
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -290,6 +315,7 @@ public class GazeVacuum : MonoBehaviour
 
         // AudioManager.Instance.PlayAudio("GhostAbsorbed"); TO DO: FIND SFX
 
+        UnregisterCandidate(currentObject);
         Destroy(currentObject);
         ClearCurrentObject();
         state = VacuumState.Idle;

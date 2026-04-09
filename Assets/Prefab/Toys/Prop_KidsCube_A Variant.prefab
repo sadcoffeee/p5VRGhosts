@@ -87,7 +87,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6170108572680179469, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2506119093851414986}
+    - targetCorrespondingSourceObject: {fileID: 6170108572680179469, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 988819478825850214}
   m_SourcePrefab: {fileID: 100100000, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
+--- !u!23 &7496065293931321763 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5665631128365461208, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
+  m_PrefabInstance: {fileID: 2785198008729827195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8288773802192975990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6170108572680179469, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}
@@ -152,9 +160,11 @@ MonoBehaviour:
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
   ExpelledGhost: {fileID: 330785707499205332, guid: 56d6d76153c6e4540ac5af6c4e771d8a, type: 3}
   GhostSpawnOffset: {x: 0, y: 1.5, z: 0}
+  expellDelay: 3
   waypointIdleTime: 5
   waypointStoppingDistance: 0.2
   meshRenderer: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &7674031744580252798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +202,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.104609124
   m_Center: {x: 0, y: 0.104609124, z: 0}
+--- !u!114 &988819478825850214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8288773802192975990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2727c37c52fb0e348b4c2768a01bbbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 7496065293931321763}
 --- !u!65 &9207268634975241689 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 6440649804371260066, guid: 5af375af61fad404cb9ecd678bc64bff, type: 3}

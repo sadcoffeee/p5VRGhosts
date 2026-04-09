@@ -83,7 +83,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2468312258021884094, guid: f7795ef49a32a1f448876d068cee1ab1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3470632608806162710}
+    - targetCorrespondingSourceObject: {fileID: 2468312258021884094, guid: f7795ef49a32a1f448876d068cee1ab1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3028395415559389855}
   m_SourcePrefab: {fileID: 100100000, guid: f7795ef49a32a1f448876d068cee1ab1, type: 3}
+--- !u!23 &1028357227623562805 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4125799305729319275, guid: f7795ef49a32a1f448876d068cee1ab1, type: 3}
+  m_PrefabInstance: {fileID: 3964502379448606558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1532781894169173984 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2468312258021884094, guid: f7795ef49a32a1f448876d068cee1ab1, type: 3}
@@ -148,9 +156,11 @@ MonoBehaviour:
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
   ExpelledGhost: {fileID: 330785707499205332, guid: 56d6d76153c6e4540ac5af6c4e771d8a, type: 3}
   GhostSpawnOffset: {x: 0, y: 1.5, z: 0}
+  expellDelay: 3
   waypointIdleTime: 5
   waypointStoppingDistance: 0.4
   meshRenderer: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &8178228411929266222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +197,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.23631051, y: 0.15127364, z: 0.4155105}
   m_Center: {x: 0, y: 0.07570478, z: 0.003943339}
+--- !u!114 &3028395415559389855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532781894169173984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2727c37c52fb0e348b4c2768a01bbbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 1028357227623562805}
