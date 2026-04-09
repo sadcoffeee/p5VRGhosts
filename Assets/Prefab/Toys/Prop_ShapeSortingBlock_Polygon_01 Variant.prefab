@@ -207,8 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: -0.016, y: -0.05, z: -0.09}
-  holdRotation: {x: 0, y: 0, z: 0}
+  holdOffset: {x: -0.36, y: 0.05, z: -0.14}
+  holdRotation: {x: 0, y: 0, z: 90}
 --- !u!114 &20489481403325315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,3 +282,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 3310442269574516675}
+  OutlineLayer: 6
+  DefaultLayer: 0

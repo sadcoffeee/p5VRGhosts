@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5816bb6d2829e40b554dacd6075bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdOffset: {x: 0, y: -0.02, z: -0.13}
-  holdRotation: {x: 180, y: 0, z: 0}
+  holdOffset: {x: -0.43, y: -0.04, z: -0.13}
+  holdRotation: {x: 180, y: 0, z: 90}
 --- !u!114 &8243344322371306741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 6832942534539714230}
+  OutlineLayer: 6
+  DefaultLayer: 0
 --- !u!4 &9154388374750986627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4348338983486386829, guid: aef7a66dd5ed7b4448dd2eab50c2c4f7, type: 3}
