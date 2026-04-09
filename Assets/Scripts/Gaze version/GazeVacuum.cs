@@ -158,6 +158,28 @@ public class GazeVacuum : MonoBehaviour
         if (triggerPressed && !lastTriggerState)
             ShootToy();
     }
+    // -------------------------------------------------------------------------
+    // Selecting candidate - used for outline
+    // -------------------------------------------------------------------------
+    GameObject SelectCandidate()
+    {
+        List<GameObject> toys = new List<GameObject>();
+
+        foreach (GameObject _object in candidates)
+        {
+            if (_object.CompareTag("Ghost"))
+            {
+                return _object;
+            }
+            else if (_object.CompareTag("Toy"))
+            {
+                toys.Add(_object);
+            }
+        }
+
+        if (toys.Count > 0) return toys[0];
+        return null;
+    }
 
     // -------------------------------------------------------------------------
     // Sucking - no longer driven by ConeCollider, instead driven directly in update
