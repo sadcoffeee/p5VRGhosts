@@ -44,6 +44,7 @@ public class FlashlightController : MonoBehaviour
     {
         // Default to using visualization rather than sending vibration CMDS, change that if we ever get a connection on the VibController
         // Used for testing when we don't have the custom haptics connected
+        
         if (vibController.connectionEstablished && doVibrationVisualization) 
         {
             doVibrationVisualization = false;

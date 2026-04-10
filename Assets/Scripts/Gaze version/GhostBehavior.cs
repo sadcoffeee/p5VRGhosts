@@ -84,6 +84,8 @@ public class GhostBehavior : MonoBehaviour
     void Start()
     {
         lookTarget = Camera.main.transform;
+        audioEmitter = GetComponent<SpatialAudioEmitter>();
+        flashlightController = FindFirstObjectByType<FlashlightController>();
 
         // If spawned from a toy, skip rest of initialization
         if (bypassInitialization)
@@ -96,9 +98,6 @@ public class GhostBehavior : MonoBehaviour
         SetVisualActive(false);
         isGrabbable = false;
         spawnTimer = 0f;
-        lookTarget = Camera.main.transform;
-        flashlightController = FindFirstObjectByType<FlashlightController>();
-        audioEmitter = GetComponent<SpatialAudioEmitter>();
     }
 
     void Update()
@@ -180,7 +179,9 @@ public class GhostBehavior : MonoBehaviour
             litParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
 
         ghostAnimator?.PlayDizzy();
-        audioEmitter.Play(AudioManager.Instance.GetSound("GhostStunned"));
+        
+        if (audioEmitter != null)
+            audioEmitter.Play(AudioManager.Instance.GetSound("GhostStunned"));
 
         if (fromFlashlight)
         {
@@ -200,7 +201,9 @@ public class GhostBehavior : MonoBehaviour
     {
         isGrabbable = false;
 
-        audioEmitter.Stop();
+        if (audioEmitter != null)
+            audioEmitter.Stop();
+        
         AudioManager.Instance.PlayAudioAtPosition("ghostLaughOther", transform.position);
         EnterLingering();
     }
@@ -344,7 +347,9 @@ public class GhostBehavior : MonoBehaviour
     {
         currentState = GhostState.Grabbed;
         isGrabbable = false;
-        audioEmitter.Stop();
+        
+        if (audioEmitter != null)
+            audioEmitter.Stop();
     }
     // When let go by vacuum
     public void ReturnToStunned()

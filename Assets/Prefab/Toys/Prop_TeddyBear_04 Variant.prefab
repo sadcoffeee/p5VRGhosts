@@ -257,7 +257,7 @@ MonoBehaviour:
   hauntedMaterial: {fileID: 2100000, guid: 2b20245550643704e9c67004a23a66dc, type: 2}
   ExpelledGhost: {fileID: 3031427591223421187, guid: 31f46ea1bb82e1a47a9282abacc5cb40, type: 3}
   GhostSpawnOffset: {x: 0, y: 0.75, z: 0}
-  expellDelay: 3
+  expellDelay: 1.5
   waypointIdleTime: 5
   waypointStoppingDistance: 0.2
   meshRenderer: {fileID: 6058225463559590400}
