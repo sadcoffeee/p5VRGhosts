@@ -191,7 +191,7 @@ public class FlashlightController : MonoBehaviour
         }
 
         // Smooth toward targets
-        currentLeftVib = Mathf.Lerp(currentLeftVib,targetLeft, hapticSmoothSpeed * Time.deltaTime);
+        currentLeftVib = Mathf.Lerp(currentLeftVib, targetLeft, hapticSmoothSpeed * Time.deltaTime);
         currentRightVib = Mathf.Lerp(currentRightVib, targetRight, hapticSmoothSpeed * Time.deltaTime);
 
         // Only send commands if we've confirmed that there's a connection

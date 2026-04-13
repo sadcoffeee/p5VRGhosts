@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class GazeVacuum : MonoBehaviour
 {
@@ -30,8 +29,12 @@ public class GazeVacuum : MonoBehaviour
     private float suckBlockTimer = 0f;
     public  float suckBlockDuration = 1f;
 
+    [Header("Feedback Ramp Durations")]
+    public float audioRampDuration = 0.15f;
+    public float audioCrossfadeDuration = 0.2f;
+
     [Header("References")]
-    public HapticImpulsePlayer hapticPlayerR;
+    public HapticController hapticController;
     public GameObject suckEffect;
 
     // -------------------------------------------------------------------------
@@ -45,7 +48,7 @@ public class GazeVacuum : MonoBehaviour
     private GameObject currentTarget;
     private Rigidbody objectRb;
     private SpatialAudioEmitter audioEmitter;
-    private bool latestSoundBig = false;
+    private string currentSoundKey = "";
 
     // Ghost shrink: record the scale at the moment the ghost enters the vacuum
     private Vector3 ghostOriginalScale;
@@ -60,7 +63,6 @@ public class GazeVacuum : MonoBehaviour
     private void Start()
     {
         originalLocalPosition = transform.localPosition;
-        hapticPlayerR = GetComponent<HapticImpulsePlayer>();
         audioEmitter = GetComponent<SpatialAudioEmitter>();
     }
 
@@ -157,12 +159,14 @@ public class GazeVacuum : MonoBehaviour
 
     void HoldingState(bool triggerPressed)
     {
-        HoldToy();
-        ResetEffects();
-
-        // Press trigger again to shoot
-        if (triggerPressed && !lastTriggerState)
+        if (!triggerPressed)
+        {
             ShootToy();
+            return;
+        }
+
+        HoldToy();
+        ApplyHoldEffect();
     }
     // -------------------------------------------------------------------------
     // Selecting candidate - used for outline
@@ -315,8 +319,11 @@ public class GazeVacuum : MonoBehaviour
     {
         ResetEffects();
 
-        if (hapticPlayerR != null)
-            hapticPlayerR.SendHapticImpulse(1f, 0.3f);
+        if (hapticController != null)
+        {
+            hapticController.CutOff();
+            hapticController.SendOnce(1f, 0.3f);
+        }
 
         // AudioManager.Instance.PlayAudio("GhostAbsorbed"); TO DO: FIND SFX
 
@@ -358,12 +365,14 @@ public class GazeVacuum : MonoBehaviour
     {
         if (objectRb == null) return;
 
+        ResetEffects();
+
         objectRb.isKinematic = false;
         objectRb.AddForce(-transform.right * shootForce + transform.up * 0.1f * shootForce, ForceMode.Impulse);
 
 
-        if (hapticPlayerR != null)
-            hapticPlayerR.SendHapticImpulse(1f, 0.2f);
+        if (hapticController != null)
+            hapticController.SendOnce(1f, 0.2f);
 
         suckBlockTimer = suckBlockDuration;
         ClearCurrentObject();
@@ -379,45 +388,67 @@ public class GazeVacuum : MonoBehaviour
     // -------------------------------------------------------------------------
     // Effects
     // -------------------------------------------------------------------------
-    void ApplyIdleEffect()
+    // Plays a sound by key, crossfading if a different sound is already playing,
+    // or fading in from silence if nothing is playing yet.
+    void PlaySound(string key)
     {
-        if (hapticPlayerR != null)
-            hapticPlayerR.SendHapticImpulse(0.4f, 0.1f);
+        if (currentSoundKey == key && audioEmitter.isPlaying) return;
 
-        if (suckEffect != null)
-            suckEffect.SetActive(true);
-
-
-        if (!audioEmitter.isPlaying || latestSoundBig) 
-        {
-            audioEmitter.Play(AudioManager.Instance.GetSound("smallVacuum"));
-            latestSoundBig = false;
-        }
+        float ramp = audioEmitter.isPlaying ? audioCrossfadeDuration : audioRampDuration;
+        audioEmitter.Play(AudioManager.Instance.GetSound(key), ramp);
+        currentSoundKey = key;
     }
-    void ApplySuckEffect()
+
+    void ApplyHoldEffect()
     {
-        transform.localPosition = originalLocalPosition + Random.insideUnitSphere * 0.01f;
+        // More intense shake than sucking
+        transform.localPosition = originalLocalPosition + Random.insideUnitSphere * 0.025f;
 
-        if (hapticPlayerR != null)
-            hapticPlayerR.SendHapticImpulse(0.7f, 0.1f);
-
-        if (suckEffect != null)
-            suckEffect.SetActive(true);
-
-        if (!audioEmitter.isPlaying || !latestSoundBig)
-        {
-            audioEmitter.Play(AudioManager.Instance.GetSound("bigVacuum"));
-            latestSoundBig = true;
-        }
-    }
-    void ResetEffects()
-    {
-        transform.localPosition = originalLocalPosition;
+        if (hapticController != null)
+            hapticController.SetTarget(1f);
 
         if (suckEffect != null)
             suckEffect.SetActive(false);
 
-        audioEmitter.Stop();
+        PlaySound("bigVacuum");
+    }
+
+    void ApplyIdleEffect()
+    {
+        if (hapticController != null)
+            hapticController.SetTarget(0.4f);
+
+        if (suckEffect != null)
+            suckEffect.SetActive(true);
+
+        PlaySound("smallVacuum");
+    }
+
+    void ApplySuckEffect()
+    {
+        transform.localPosition = originalLocalPosition + Random.insideUnitSphere * 0.01f;
+
+        if (hapticController != null)
+            hapticController.SetTarget(0.7f);
+
+        if (suckEffect != null)
+            suckEffect.SetActive(true);
+
+        PlaySound("smallVacuum");
+    }
+
+    void ResetEffects()
+    {
+        transform.localPosition = originalLocalPosition;
+
+        if (hapticController != null)
+            hapticController.SetTarget(0f);
+
+        if (suckEffect != null)
+            suckEffect.SetActive(false);
+
+        audioEmitter.Stop(audioRampDuration);
+        currentSoundKey = "";
     }
 
     // -------------------------------------------------------------------------

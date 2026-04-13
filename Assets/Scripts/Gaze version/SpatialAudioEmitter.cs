@@ -1,30 +1,108 @@
+using System.Collections;
 using UnityEngine;
+
 
 public class SpatialAudioEmitter : MonoBehaviour
 {
-    AudioSource _source;
-    public bool isPlaying = false;
+    public bool isPlaying => _sources[_activeIndex].isPlaying;
+
+
+    private AudioSource[] _sources = new AudioSource[2];
+    private int _activeIndex = 0;
+
+    private Coroutine _fadeInCoroutine;
+    private Coroutine _fadeOutCoroutine;
 
     private void Awake()
     {
-        _source = gameObject.AddComponent<AudioSource>();
-        _source.spatialBlend = 1f;
-        _source.rolloffMode = AudioRolloffMode.Logarithmic;
-        _source.playOnAwake = false;
+        for (int i = 0; i < 2; i++)
+        {
+            _sources[i] = gameObject.AddComponent<AudioSource>();
+            _sources[i].spatialBlend = 1f;
+            _sources[i].rolloffMode = AudioRolloffMode.Logarithmic;
+            _sources[i].playOnAwake = false;
+            _sources[i].volume = 0f;
+        }
     }
 
-    public void Play(Sound s)
+    // -------------------------------------------------------------------------
+    // Public API
+    // -------------------------------------------------------------------------
+
+    public void Play(Sound s, float rampDuration = 0f)
     {
-        _source.clip = s.clip;
-        _source.volume = s.volume;
-        _source.loop = s.loop;
-        _source.Play();
-        isPlaying = true;
+        int incomingIndex = 1 - _activeIndex;   // the source that isn't currently primary
+
+        // Stop any in-progress fades on the incoming source so we start clean
+        if (_fadeInCoroutine  != null) StopCoroutine(_fadeInCoroutine);
+        if (_fadeOutCoroutine != null) StopCoroutine(_fadeOutCoroutine);
+
+        // Configure the incoming source
+        AudioSource incoming = _sources[incomingIndex];
+        incoming.clip = s.clip;
+        incoming.loop = s.loop;
+        incoming.volume = 0f;
+        incoming.Play();
+
+        if (rampDuration > 0f)
+        {
+            // Crossfade: ramp incoming up, ramp outgoing down, simultaneously
+            _fadeInCoroutine = StartCoroutine(FadeVolume(incoming, 0f, s.volume, rampDuration));
+            _fadeOutCoroutine = StartCoroutine(FadeAndStop(_sources[_activeIndex], rampDuration));
+        }
+        else
+        {
+            // Instant cut
+            _sources[_activeIndex].Stop();
+            _sources[_activeIndex].volume = 0f;
+            incoming.volume = s.volume;
+        }
+
+        _activeIndex = incomingIndex;
     }
 
-    public void Stop()
+    public void Stop(float rampDuration = 0f)
     {
-        _source.Stop();
-        isPlaying = false;
+        if (_fadeOutCoroutine != null) StopCoroutine(_fadeOutCoroutine);
+        if (_fadeInCoroutine != null) StopCoroutine(_fadeInCoroutine);
+
+        if (rampDuration > 0f)
+        {
+            _fadeOutCoroutine = StartCoroutine(FadeAndStop(_sources[_activeIndex], rampDuration));
+        }
+        else
+        {
+            foreach (var src in _sources)
+            {
+                src.Stop();
+                src.volume = 0f;
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Coroutines
+    // -------------------------------------------------------------------------
+
+    private IEnumerator FadeVolume(AudioSource source, float from, float to, float duration)
+    {
+        float elapsed = 0f;
+        source.volume = from;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            source.volume = Mathf.Lerp(from, to, elapsed / duration);
+            yield return null;
+        }
+
+        source.volume = to;
+    }
+
+    private IEnumerator FadeAndStop(AudioSource source, float duration)
+    {
+        float startVolume = source.volume;
+        yield return FadeVolume(source, startVolume, 0f, duration);
+        source.Stop();
     }
 }
