@@ -297,7 +297,9 @@ public class GazeGameManager : MonoBehaviour
     public void OnGhostDefeated(GhostBehavior defeatedGhost, float defeatTime, bool shouldCount)
     {
         allGhosts.Remove(defeatedGhost);
-        ghostContainer.OnGhostCaught();
+
+        if (shouldCount)
+            ghostContainer.OnGhostCaught();
     }
 
     public Transform ClaimToyForGhost(GhostBehavior claimingGhost)
