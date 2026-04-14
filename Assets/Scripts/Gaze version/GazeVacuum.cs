@@ -328,7 +328,7 @@ public class GazeVacuum : MonoBehaviour
         AudioManager.Instance.PlayAudioAtPosition("ghostAbsorbed", transform.position);
 
         UnregisterCandidate(currentObject);
-        currentObject.GetComponent<GhostBehavior>().Die();
+        currentObject.GetComponent<GhostBehavior>().Die(true);
         ClearCurrentObject();
         state = VacuumState.Idle;
     }

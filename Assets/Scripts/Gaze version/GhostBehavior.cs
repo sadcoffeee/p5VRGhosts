@@ -189,7 +189,7 @@ public class GhostBehavior : MonoBehaviour
         if (toy == null)
         {
             // No toys available, just vanish
-            Die();
+            Die(false);
             return;
         }
 
@@ -204,7 +204,7 @@ public class GhostBehavior : MonoBehaviour
     {
         if (stolenToyTransform == null)
         {
-            Die();
+            Die(false);
             return;
         }
         isGrabbable = true; // last chance to catch while flying towards toy
@@ -291,7 +291,7 @@ public class GhostBehavior : MonoBehaviour
             else if (GazeGameManager.Instance == null)
                 Debug.LogWarning("GazeGameManager missing on ghost exit!");
 
-            Die();
+            Die(false);
         }
     }
 
@@ -357,9 +357,9 @@ public class GhostBehavior : MonoBehaviour
             ghostVisual.SetActive(active);
     }
 
-    public void Die()
+    public void Die(bool byVacuum)
     {
-        GazeGameManager.Instance?.OnGhostDefeated(this, Time.time);
+        GazeGameManager.Instance?.OnGhostDefeated(this, Time.time, byVacuum);
         Destroy(gameObject);
     }
 }

@@ -117,6 +117,8 @@ public class GazeGameManager : MonoBehaviour
     {
         const float tick = 0.1f;
 
+        TrySpawnGhost();
+
         while (true)
         {
             ghostSpawnTimer += tick;
@@ -292,7 +294,7 @@ public class GazeGameManager : MonoBehaviour
         allGhosts.Add(newGhost);
     }
 
-    public void OnGhostDefeated(GhostBehavior defeatedGhost, float defeatTime)
+    public void OnGhostDefeated(GhostBehavior defeatedGhost, float defeatTime, bool shouldCount)
     {
         allGhosts.Remove(defeatedGhost);
         ghostContainer.OnGhostCaught();
