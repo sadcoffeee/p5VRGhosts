@@ -325,10 +325,10 @@ public class GazeVacuum : MonoBehaviour
             hapticController.SendOnce(1f, 0.3f);
         }
 
-        // AudioManager.Instance.PlayAudio("GhostAbsorbed"); TO DO: FIND SFX
+        AudioManager.Instance.PlayAudioAtPosition("ghostAbsorbed", transform.position);
 
         UnregisterCandidate(currentObject);
-        Destroy(currentObject);
+        currentObject.GetComponent<GhostBehavior>().Die();
         ClearCurrentObject();
         state = VacuumState.Idle;
     }

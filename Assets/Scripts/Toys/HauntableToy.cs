@@ -10,7 +10,7 @@ public class HauntableToy : MonoBehaviour
     [SerializeField] GameObject freedEffect;
     [SerializeField] Material hauntedMaterial;
     [SerializeField] GameObject ExpelledGhost;
-    [SerializeField] Vector3 GhostSpawnOffset = new Vector3 (0, 1f, 0);
+    [SerializeField] Vector3 GhostSpawnOffset = new Vector3(0, 1f, 0);
     [SerializeField] float expellDelay = 3f;
 
     [Header("Movement")]
@@ -18,7 +18,7 @@ public class HauntableToy : MonoBehaviour
     [SerializeField] float waypointStoppingDistance = 0.2f;
 
     //References
-    [Header("Refrences")]
+    [Header("References")]
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] Rigidbody rb;
     [SerializeField] OutlineObject outline;
@@ -42,18 +42,13 @@ public class HauntableToy : MonoBehaviour
         ResetIdleTimer();
 
         if (meshRenderer == null)
-        {
             meshRenderer = GetComponent<MeshRenderer>();
-        }
 
         if (rb == null)
-        {
             rb = GetComponent<Rigidbody>();
-        }
+
         if (!isHaunted)
-        {
             defaultMaterial = meshRenderer.material;
-        }
     }
 
     private void Update()
@@ -96,23 +91,28 @@ public class HauntableToy : MonoBehaviour
         HauntedToyManager.instance.AddToy(gameObject);
     }
 
-    public void SetHaunted(bool state)
+    public void SetHaunted(bool state, bool silent = false)
     {
         isHaunted = state;
 
+        if (waypoint != null)
+            waypoint.Occupy(false);
+
+        SetWaypoint(null);
+
         UpdateMaterial();
 
-        if (spawnEffect != null)
+        if (!silent)
         {
-            Instantiate(spawnEffect, transform.position, Quaternion.identity);
+            GameObject effect = state ? spawnEffect : freedEffect;
+            if (effect != null)
+                Instantiate(effect, transform.position, Quaternion.identity);
         }
 
-        expellTimer = 0;
+        expellTimer = 0f;
 
         if (outline != null)
-        {
             outline.enabled = !state;
-        }
 
         onHaunted?.Invoke(state);
     }
@@ -121,32 +121,19 @@ public class HauntableToy : MonoBehaviour
     {
         SetHaunted(false);
 
-        //Spawn ghost
-        GameObject ghost = Instantiate(ExpelledGhost, transform.transform.position + GhostSpawnOffset, Quaternion.identity);
+        // Spawn ghost
+        GameObject ghost = Instantiate(ExpelledGhost, transform.position + GhostSpawnOffset, Quaternion.identity);
         GhostBehavior ghostBehavior = ghost.GetComponent<GhostBehavior>();
         ghostBehavior.ExpellFromToy();
-
-        //Spawn effect
-        if (freedEffect != null)
-        {
-            Instantiate(freedEffect, transform.position, Quaternion.identity);
-        }
-
-        if (waypoint != null)
-            waypoint.Occupy(false);
-
-        SetWaypoint(null);
 
         GazeGameManager.Instance.ExpelGhostFromToy(transform);
     }
 
     public void SetWaypoint(HauntedToyWaypoint waypoint)
     {
-        //If it already has a waypoint, release it
+        // If it already has a waypoint, release it
         if (this.waypoint != null)
-        {
             this.waypoint.Occupy(false);
-        }
 
         //Update waypoint
         this.waypoint = waypoint;
@@ -165,12 +152,11 @@ public class HauntableToy : MonoBehaviour
             return;
         }
 
-        HauntedToyWaypoint newWaypoint =  waypoint.GetWaypoint();
+        HauntedToyWaypoint newWaypoint = waypoint.GetWaypoint();
         if (newWaypoint != null)
-        {
             SetWaypoint(newWaypoint);
-        }
     }
+
 
     // Returns the distance to the current waypoint projected to the horizontal plane. Effectivly negates distance in height
     public float DistanceToWaypoint()
@@ -184,10 +170,7 @@ public class HauntableToy : MonoBehaviour
         return Vector3.Distance(transform.position, GetProjectedWaypoint(waypoint));
     }
 
-    public bool IsHaunted()
-    {
-        return isHaunted;
-    }
+    public bool IsHaunted() => isHaunted;
 
     public Vector3 GetProjectedWaypoint(HauntedToyWaypoint waypoint)
     {
@@ -203,14 +186,11 @@ public class HauntableToy : MonoBehaviour
 
     public void FlashLightHit(float time)
     {
-        if (!isHaunted)
-            return;
+        if (!isHaunted) return;
 
         expellTimer += time;
         if (expellTimer > expellDelay)
-        {
             ReleaseGhost();
-        }
     }
 }
 
@@ -228,19 +208,17 @@ public class HauntableToyEditor : Editor
         GUILayout.Label("Debug tools");
 
         HauntableToy hauntableToy = (HauntableToy)target;
+
         if (GUILayout.Button("Steal Toy"))
-        {
             hauntableToy.StealToy();
-        }
 
         if (GUILayout.Button("Release Ghost"))
-        {
             hauntableToy.ReleaseGhost();
-        }
 
         if (GUILayout.Button("Haunt"))
-        {
             hauntableToy.SetHaunted(true);
-        }
+
+        if (GUILayout.Button("Silent Un-haunt"))
+            hauntableToy.SetHaunted(false, silent: true);
     }
 }

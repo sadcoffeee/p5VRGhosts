@@ -34,8 +34,22 @@ public class SpatialAudioEmitter : MonoBehaviour
         int incomingIndex = 1 - _activeIndex;   // the source that isn't currently primary
 
         // Stop any in-progress fades on the incoming source so we start clean
-        if (_fadeInCoroutine  != null) StopCoroutine(_fadeInCoroutine);
-        if (_fadeOutCoroutine != null) StopCoroutine(_fadeOutCoroutine);
+        if (_fadeInCoroutine != null)
+        {
+            StopCoroutine(_fadeInCoroutine);
+            _fadeInCoroutine = null;
+        }
+
+        if (_fadeOutCoroutine != null)
+        {
+            StopCoroutine(_fadeOutCoroutine);
+
+            // Ensure outgoing source actually stops
+            _sources[_activeIndex].Stop();
+            _sources[_activeIndex].volume = 0f;
+
+            _fadeOutCoroutine = null;
+        }
 
         // Configure the incoming source
         AudioSource incoming = _sources[incomingIndex];
@@ -63,8 +77,18 @@ public class SpatialAudioEmitter : MonoBehaviour
 
     public void Stop(float rampDuration = 0f)
     {
-        if (_fadeOutCoroutine != null) StopCoroutine(_fadeOutCoroutine);
-        if (_fadeInCoroutine != null) StopCoroutine(_fadeInCoroutine);
+        // Kill running fades safely
+        if (_fadeOutCoroutine != null)
+        {
+            StopCoroutine(_fadeOutCoroutine);
+            _fadeOutCoroutine = null;
+        }
+
+        if (_fadeInCoroutine != null)
+        {
+            StopCoroutine(_fadeInCoroutine);
+            _fadeInCoroutine = null;
+        }
 
         if (rampDuration > 0f)
         {
@@ -72,11 +96,7 @@ public class SpatialAudioEmitter : MonoBehaviour
         }
         else
         {
-            foreach (var src in _sources)
-            {
-                src.Stop();
-                src.volume = 0f;
-            }
+            ForceStopAllSources();
         }
     }
 
@@ -104,5 +124,20 @@ public class SpatialAudioEmitter : MonoBehaviour
         float startVolume = source.volume;
         yield return FadeVolume(source, startVolume, 0f, duration);
         source.Stop();
+    }
+
+    // -------------------------------------------------------------------------
+    // Helper
+    // -------------------------------------------------------------------------
+    private void ForceStopAllSources()
+    {
+        foreach (var src in _sources)
+        {
+            if (src.isPlaying)
+            {
+                src.Stop();
+                src.volume = 0f;
+            }
+        }
     }
 }

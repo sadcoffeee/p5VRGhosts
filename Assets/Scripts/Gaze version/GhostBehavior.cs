@@ -4,7 +4,6 @@ public class GhostBehavior : MonoBehaviour
 {
     public enum GhostState
     {
-        Spawning,
         Lingering,
         Stunned,
         Grabbed,
@@ -17,9 +16,6 @@ public class GhostBehavior : MonoBehaviour
     [SerializeField] GhostAnimations ghostAnimator;
     [SerializeField] ParticleSystem litParticles;
     [SerializeField] OutlineObject outline;
-
-    [Header("Spawning")]
-    [SerializeField] float spawnMoveDuration = 0.6f;
 
     [Header("Lingering")]
     [SerializeField] float lingerDuration = 8f;
@@ -45,12 +41,9 @@ public class GhostBehavior : MonoBehaviour
     // Runtime
     // -------------------------------------------------------------------------
 
-    [HideInInspector] public GhostState currentState = GhostState.Spawning;
+    [HideInInspector] public GhostState currentState = GhostState.Lingering;
     [HideInInspector] public bool isGrabbable;
     SpatialAudioEmitter audioEmitter;
-
-    // Spawning
-    private float spawnTimer;
 
     // Lingering
     private float lingerTimer;
@@ -58,7 +51,6 @@ public class GhostBehavior : MonoBehaviour
     private Vector3 lingerAnchor;
     private Vector3 driftTarget;
     private Transform lookTarget;
-
 
     // Stun
     private float stunChargeTimer;
@@ -89,15 +81,10 @@ public class GhostBehavior : MonoBehaviour
 
         // If spawned from a toy, skip rest of initialization
         if (bypassInitialization)
-        {
             return;
-        }
 
         GazeGameManager.Instance.RegisterGhost(this);
-
-        SetVisualActive(false);
-        isGrabbable = false;
-        spawnTimer = 0f;
+        EnterLingering();
     }
 
     void Update()
@@ -105,25 +92,12 @@ public class GhostBehavior : MonoBehaviour
         outline.enabled = isGrabbable;
         switch (currentState)
         {
-            case GhostState.Spawning:      UpdateSpawning();      break;
-            case GhostState.Lingering:     UpdateLingering();     break;
-            case GhostState.Stunned:       UpdateStunned();       break;
+            case GhostState.Lingering: UpdateLingering(); break;
+            case GhostState.Stunned: UpdateStunned(); break;
             case GhostState.FlyingToSteal: UpdateFlyingToSteal(); break;
-            case GhostState.ExitingScene:  UpdateExitingScene();  break;
+            case GhostState.ExitingScene: UpdateExitingScene(); break;
             // Grabbed is driven externally by Vacuum
         }
-    }
-
-    // -------------------------------------------------------------------------
-    // Spawning
-    // -------------------------------------------------------------------------
-
-    void UpdateSpawning()
-    {
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnMoveDuration)
-
-            EnterLingering();
     }
 
     // -------------------------------------------------------------------------
@@ -179,15 +153,12 @@ public class GhostBehavior : MonoBehaviour
             litParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
 
         ghostAnimator?.PlayDizzy();
-        
+
         if (audioEmitter != null)
             audioEmitter.Play(AudioManager.Instance.GetSound("GhostStunned"));
 
         if (fromFlashlight)
-        {
             flashlightController?.TriggerStunReward();
-        }
-
     }
 
     void UpdateStunned()
@@ -203,7 +174,7 @@ public class GhostBehavior : MonoBehaviour
 
         if (audioEmitter != null)
             audioEmitter.Stop();
-        
+
         AudioManager.Instance.PlayAudioAtPosition("ghostLaughOther", transform.position);
         EnterLingering();
     }
@@ -218,7 +189,7 @@ public class GhostBehavior : MonoBehaviour
         if (toy == null)
         {
             // No toys available, just vanish
-            Destroy(gameObject);
+            Die();
             return;
         }
 
@@ -233,13 +204,12 @@ public class GhostBehavior : MonoBehaviour
     {
         if (stolenToyTransform == null)
         {
-            Destroy(gameObject);
+            Die();
             return;
         }
         isGrabbable = true; // last chance to catch while flying towards toy
 
         transform.position = Vector3.MoveTowards(transform.position, stolenToyTransform.position, flyToToySpeed * Time.deltaTime);
-
         transform.LookAt(stolenToyTransform.position);
 
         if (Vector3.Distance(transform.position, stolenToyTransform.position) <= arriveDistance)
@@ -260,8 +230,7 @@ public class GhostBehavior : MonoBehaviour
 
     void EnterExitingScene()
     {
-        isGrabbable = false; //ghost got the toy and is now escaping, no longer possible to catch
-        // Parent toy to ghost so it travels along without extra per-frame work
+        isGrabbable = false; // ghost got the toy and is now escaping, no longer catchable
         if (stolenToyTransform != null)
         {
             stolenToyTransform.SetParent(transform);
@@ -317,14 +286,12 @@ public class GhostBehavior : MonoBehaviour
 
         if (arcT >= 1f)
         {
-            if (stolenToyTransform != null && GazeGameManager.Instance != null) 
+            if (stolenToyTransform != null && GazeGameManager.Instance != null)
                 GazeGameManager.Instance.OnGhostExitedWithToy(this, stolenToyTransform);
             else if (GazeGameManager.Instance == null)
-            {
-                Debug.Log("WTF?!");
-            }
+                Debug.LogWarning("GazeGameManager missing on ghost exit!");
 
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -337,25 +304,26 @@ public class GhostBehavior : MonoBehaviour
         ghostAnimator.PlayExpelled();
     }
 
+    // -------------------------------------------------------------------------
+    // External interface (vacuum and flashlight)
+    // -------------------------------------------------------------------------
 
-    // -------------------------------------------------------------------------
-    // External interface (vacuum and flashlight
-    // -------------------------------------------------------------------------
     // Vacuum
-
     public void OnGrabbed()
     {
         currentState = GhostState.Grabbed;
         isGrabbable = false;
-        
+
         if (audioEmitter != null)
             audioEmitter.Stop();
     }
+
     // When let go by vacuum
     public void ReturnToStunned()
     {
         EnterStunned(false);
     }
+
     // Flashlight (called every frame ghost is lit)
     public void NotifyFlashlightHit(float deltaTime)
     {
@@ -377,6 +345,8 @@ public class GhostBehavior : MonoBehaviour
         if (litParticles.isPlaying)
             litParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
     }
+
+
     // -------------------------------------------------------------------------
     // Helpers
     // -------------------------------------------------------------------------
@@ -385,15 +355,11 @@ public class GhostBehavior : MonoBehaviour
     {
         if (ghostVisual != null)
             ghostVisual.SetActive(active);
-
-        if (active)
-            Debug.Log("Activating visuals");
-        else
-            Debug.Log("Deactivating visuals");
     }
 
-    void OnDestroy()
+    public void Die()
     {
         GazeGameManager.Instance?.OnGhostDefeated(this, Time.time);
+        Destroy(gameObject);
     }
 }
