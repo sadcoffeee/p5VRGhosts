@@ -24,6 +24,8 @@ public class FlashlightController : MonoBehaviour
     [SerializeField] bool doVibrationVisualization = true;
     [SerializeField] TMP_Text leftVibVis;
     [SerializeField] TMP_Text rightVibVis;
+    [SerializeField] VibrationVisualizer leftVibrationVisualizer;
+    [SerializeField] VibrationVisualizer rightVibrationVisualizer;
 
 
 
@@ -202,8 +204,14 @@ public class FlashlightController : MonoBehaviour
         }
         else
         {
-            leftVibVis.text = currentLeftVib.ToString("0.00");
-            rightVibVis.text = currentRightVib.ToString("0.00");
+            //leftVibVis.text = currentLeftVib.ToString("0.00");
+            //rightVibVis.text = currentRightVib.ToString("0.00");
+
+            leftVibVis.text = "";
+            rightVibVis.text = "";
+
+            leftVibrationVisualizer.SetVibrationValue(currentLeftVib);
+            rightVibrationVisualizer.SetVibrationValue(currentRightVib);
         }
     }
 

@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4617711223794440924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7691826297818653999}
+    m_Modifications:
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964990232482487493, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_Name
+      value: Expell Particles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+--- !u!4 &7455072820460164076 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+  m_PrefabInstance: {fileID: 4617711223794440924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8231793786556991735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,7 +132,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1766518908338204120, guid: 76c7196ae34380a4b946da8d06630510, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7455072820460164076}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1425458804399683426, guid: 76c7196ae34380a4b946da8d06630510, type: 3}
       insertIndex: -1
@@ -164,6 +229,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   rb: {fileID: 0}
   outline: {fileID: -3979714345000502570}
+  expellParticles: {fileID: 5964990232482487493, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
 --- !u!114 &5354968567494454664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +295,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistanceFromStartingPosition: 100
+--- !u!4 &7691826297818653999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1766518908338204120, guid: 76c7196ae34380a4b946da8d06630510, type: 3}
+  m_PrefabInstance: {fileID: 8231793786556991735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &7869022470399869634 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 2236414257455368757, guid: 76c7196ae34380a4b946da8d06630510, type: 3}

@@ -59,7 +59,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7680781953434683627, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7862483407644258050, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7685826923087857499}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5ee5ff90339094b8703a859cf81987, type: 3}
 --- !u!4 &5625291510334359350 stripped
@@ -236,6 +239,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 6798781839413607513}
   rb: {fileID: 0}
   outline: {fileID: 7189827967711141934}
+  expellParticles: {fileID: 2237927281981559470}
 --- !u!114 &2898763090986241032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,3 +305,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistanceFromStartingPosition: 100
+--- !u!1001 &5605099183785741931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5625291510334359350}
+    m_Modifications:
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964990232482487493, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+      propertyPath: m_Name
+      value: Expell Particles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+--- !u!1 &2237927281981559470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964990232482487493, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+  m_PrefabInstance: {fileID: 5605099183785741931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7685826923087857499 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+  m_PrefabInstance: {fileID: 5605099183785741931}
+  m_PrefabAsset: {fileID: 0}

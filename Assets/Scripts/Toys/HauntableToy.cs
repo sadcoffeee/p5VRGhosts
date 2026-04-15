@@ -22,12 +22,14 @@ public class HauntableToy : MonoBehaviour
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] Rigidbody rb;
     [SerializeField] OutlineObject outline;
+    [SerializeField] GameObject expellParticles;
 
     //Variables
     Material defaultMaterial;
     HauntedToyWaypoint waypoint;
     float idleTimer = 0f;
     float expellTimer = 0f;
+    float expellTimerStore = 0f;
 
     //Delegates
     public delegate void WaypointSet(HauntedToyWaypoint waypoint);
@@ -53,18 +55,30 @@ public class HauntableToy : MonoBehaviour
 
     private void Update()
     {
-        if (waypoint == null)
-            return;
-
-        if (DistanceToWaypoint() <= waypointStoppingDistance)
+        if (waypoint != null)
         {
-            idleTimer -= Time.deltaTime;
-            if (idleTimer < 0f)
+            if (DistanceToWaypoint() <= waypointStoppingDistance)
             {
-                FindNewWaypoint();
-                ResetIdleTimer();
+                idleTimer -= Time.deltaTime;
+                if (idleTimer < 0f)
+                {
+                    FindNewWaypoint();
+                    ResetIdleTimer();
+                }
             }
         }
+
+
+        //Particles
+        if (expellTimerStore != expellTimer && expellParticles != null && isHaunted)
+        {
+            expellParticles.SetActive(true);
+        }
+        else if (expellParticles != null)
+        {
+            expellParticles.SetActive(false);
+        }
+        expellTimerStore = expellTimer;
     }
 
     //Methods
