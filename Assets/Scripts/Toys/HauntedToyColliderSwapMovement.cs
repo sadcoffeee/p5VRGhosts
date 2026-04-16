@@ -11,8 +11,15 @@ public class HauntedToyColliderSwapMovement : MonoBehaviour
     [SerializeField] Collider defaultColldier;
     [SerializeField] Collider moveColldier;
 
+    //Sounds
+    [Header("Sounds")]
+    [SerializeField] string onWaypointSound = "";
+    [SerializeField] string walkingSound = "";
+    [SerializeField] float walkingSoundInterval = 1f;
+
     //Variables
     HauntedToyWaypoint currentWaypoint;
+    float walkSoundTimer = 1f;
 
     //Refrences
     HauntableToy toy;
@@ -36,6 +43,12 @@ public class HauntedToyColliderSwapMovement : MonoBehaviour
         if (toy.DistanceToWaypoint() > stoppingDistance && toy.IsHaunted())
         {
             Move();
+
+            walkSoundTimer -= Time.fixedDeltaTime;
+            if (walkSoundTimer <= 0)
+            {
+                PlayWalkSound();
+            }
         }
     }
 
@@ -43,6 +56,8 @@ public class HauntedToyColliderSwapMovement : MonoBehaviour
     public virtual void OnNewWaypoint(HauntedToyWaypoint newWaypoint)
     {
         currentWaypoint = newWaypoint;
+
+        if (onWaypointSound != "") AudioManager.Instance.PlayAudioAtPosition(onWaypointSound, transform.position);
     }
 
     void Move()
@@ -58,5 +73,13 @@ public class HauntedToyColliderSwapMovement : MonoBehaviour
     {
         moveColldier.enabled = state;
         defaultColldier.enabled = !state;
+    }
+
+    void PlayWalkSound()
+    {
+        walkSoundTimer = walkingSoundInterval;
+
+        if (walkingSound == "") return;
+        AudioManager.Instance.PlayAudioAtPosition(walkingSound, transform.position);
     }
 }

@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rollingForce: 1
   stoppingDistance: 0.2
+  onWaypointSound: ballBounce
 --- !u!114 &-5995281833533336962
 MonoBehaviour:
   m_ObjectHideFlags: 0

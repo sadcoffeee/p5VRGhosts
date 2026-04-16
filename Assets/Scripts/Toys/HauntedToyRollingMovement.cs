@@ -7,6 +7,9 @@ public class HauntedToyRollingMovement : MonoBehaviour
     [SerializeField] float rollingForce = 1.0f;
     [SerializeField] float stoppingDistance = 0.1f;
 
+    [Header("Sounds")]
+    [SerializeField] string onWaypointSound = "";
+
     //Variables
     HauntedToyWaypoint currentWaypoint;
 
@@ -38,6 +41,8 @@ public class HauntedToyRollingMovement : MonoBehaviour
     public virtual void OnNewWaypoint(HauntedToyWaypoint newWaypoint)
     {
         currentWaypoint = newWaypoint;
+
+        if (onWaypointSound != "") AudioManager.Instance.PlayAudioAtPosition(onWaypointSound, transform.position);
     }
 
     void Move()

@@ -189,6 +189,9 @@ MonoBehaviour:
   stoppingDistance: 0.1
   defaultColldier: {fileID: 9207268634975241689}
   moveColldier: {fileID: 2506119093851414986}
+  onWaypointSound: rollingBall
+  walkingSound: 
+  walkingSoundInterval: 1
 --- !u!135 &2506119093851414986
 SphereCollider:
   m_ObjectHideFlags: 0

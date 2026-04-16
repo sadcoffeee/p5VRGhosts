@@ -344,6 +344,9 @@ MonoBehaviour:
   movementSpeed: 1
   stoppingDistance: 0.1
   animator: {fileID: 2965756812371185488}
+  onWaypointSound: woodenBlock
+  walkingSound: woodenBlock
+  walkingSoundInterval: 0.2
 --- !u!114 &7657627949197108804
 MonoBehaviour:
   m_ObjectHideFlags: 0

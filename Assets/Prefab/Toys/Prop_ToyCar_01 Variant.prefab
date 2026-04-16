@@ -184,6 +184,7 @@ MonoBehaviour:
   drivingForce: 1
   stoppingDistance: 0.35
   rotationSpeed: 0.5
+  onWaypointSound: carRev
 --- !u!65 &3470632608806162710
 BoxCollider:
   m_ObjectHideFlags: 0

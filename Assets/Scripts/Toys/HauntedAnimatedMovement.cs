@@ -9,12 +9,19 @@ public class HauntedAnimatedMovement : MonoBehaviour
 
     //Variables
     HauntedToyWaypoint currentWaypoint;
+    float walkSoundTimer = 1f;
 
     //Refrences
     [Header("Refrences")]
     HauntableToy toy;
     Rigidbody rb;
     [SerializeField] Animator animator;
+
+    //Sounds
+    [Header("Sounds")]
+    [SerializeField] string onWaypointSound = "";
+    [SerializeField] string walkingSound = "";
+    [SerializeField] float walkingSoundInterval = 1f;
 
     //Logic
     private void Awake()
@@ -34,6 +41,12 @@ public class HauntedAnimatedMovement : MonoBehaviour
         if (Vector3.Distance(transform.position, toy.GetProjectedWaypoint(currentWaypoint)) > stoppingDistance)
         {
             Move();
+            
+            walkSoundTimer -= Time.fixedDeltaTime;
+            if (walkSoundTimer <= 0)
+            {
+                PlayWalkSound();
+            }
         }
         else
         {
@@ -45,6 +58,9 @@ public class HauntedAnimatedMovement : MonoBehaviour
     public virtual void OnNewWaypoint(HauntedToyWaypoint newWaypoint)
     {
         currentWaypoint = newWaypoint;
+
+        walkSoundTimer = walkingSoundInterval;
+        AudioManager.Instance.PlayAudioAtPosition(onWaypointSound, transform.position);
     }
 
     void Move()
@@ -78,5 +94,13 @@ public class HauntedAnimatedMovement : MonoBehaviour
             currentWaypoint = null;
             PlayAnimation(false);
         }
+    }
+
+    void PlayWalkSound()
+    {
+        walkSoundTimer = walkingSoundInterval;
+
+        if (walkingSound == "") return;
+        AudioManager.Instance.PlayAudioAtPosition(walkingSound, transform.position);
     }
 }

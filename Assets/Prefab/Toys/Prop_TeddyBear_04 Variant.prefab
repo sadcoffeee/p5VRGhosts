@@ -379,6 +379,9 @@ MonoBehaviour:
   movementSpeed: 0.25
   stoppingDistance: 0.2
   animator: {fileID: 1991322393768532001}
+  onWaypointSound: plushSqueak
+  walkingSound: 
+  walkingSoundInterval: 1
 --- !u!114 &-804048075560751993
 MonoBehaviour:
   m_ObjectHideFlags: 0

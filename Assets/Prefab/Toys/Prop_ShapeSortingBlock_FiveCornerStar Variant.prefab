@@ -255,6 +255,9 @@ MonoBehaviour:
   movementSpeed: 1
   stoppingDistance: 0.1
   animator: {fileID: 2362218550185774565}
+  onWaypointSound: woodenBlock
+  walkingSound: woodenBlock
+  walkingSoundInterval: 0.2
 --- !u!95 &2362218550185774565
 Animator:
   serializedVersion: 7

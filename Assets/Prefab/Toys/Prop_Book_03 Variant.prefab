@@ -322,6 +322,9 @@ MonoBehaviour:
   movementSpeed: 1
   stoppingDistance: 0.1
   animator: {fileID: 8880211483306703381}
+  onWaypointSound: bookFlop
+  walkingSound: woodenBlock
+  walkingSoundInterval: 0.2
 --- !u!95 &8880211483306703381
 Animator:
   serializedVersion: 7
