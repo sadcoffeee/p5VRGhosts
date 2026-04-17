@@ -49,7 +49,7 @@ public class FlashlightController : MonoBehaviour
         
         if (vibController.connectionEstablished && doVibrationVisualization) 
         {
-            doVibrationVisualization = false;
+            //doVibrationVisualization = false;
             leftVibVis.gameObject.SetActive(false);
             rightVibVis.gameObject.SetActive(false);
         }
@@ -197,12 +197,12 @@ public class FlashlightController : MonoBehaviour
         currentRightVib = Mathf.Lerp(currentRightVib, targetRight, hapticSmoothSpeed * Time.deltaTime);
 
         // Only send commands if we've confirmed that there's a connection
-        if (!doVibrationVisualization)
+        if (vibController.connectionEstablished)
         {
             SendArmband(vibController, "PC", currentLeftVib);
             SendArmband(vibController, "PL", currentRightVib);
         }
-        else
+        if (doVibrationVisualization)
         {
             //leftVibVis.text = currentLeftVib.ToString("0.00");
             //rightVibVis.text = currentRightVib.ToString("0.00");
