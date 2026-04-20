@@ -402,7 +402,7 @@ public class GazeVacuum : MonoBehaviour
     void ApplyHoldEffect()
     {
         // More intense shake than sucking
-        transform.localPosition = originalLocalPosition + Random.insideUnitSphere * 0.025f;
+        transform.localPosition = originalLocalPosition + Random.insideUnitSphere * 0.015f;
 
         if (hapticController != null)
             hapticController.SetTarget(1f);
