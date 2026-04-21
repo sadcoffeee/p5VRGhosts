@@ -1983,7 +1983,7 @@
                     "name": "Activate",
                     "type": "Button",
                     "id": "41976d89-60de-4deb-bff9-16b4af96b290",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -2068,6 +2068,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ThumbButtons",
+                    "type": "Button",
+                    "id": "959ebc16-afe3-44da-82d2-95c168324a56",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.2)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2376,6 +2385,28 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "",
                     "action": "Translate Manipulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb27157d-35ea-4538-97e5-0307aec61e5b",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThumbButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "894339f4-b626-4a23-88fd-40c84c8a210e",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThumbButtons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

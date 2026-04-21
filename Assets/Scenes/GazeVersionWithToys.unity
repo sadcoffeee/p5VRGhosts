@@ -8649,11 +8649,7 @@ MonoBehaviour:
   - {fileID: 1433962474}
   - {fileID: 1729587880}
   maxVibrationValue: 150
-  materials:
-  - meshRenderer: {fileID: 862692871}
-    materialIndex: 2
-    intensityRange: {x: 3, y: 0}
-    propertyName: _Glow_intensity
+  materials: []
 --- !u!1001 &232209361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32112,6 +32108,9 @@ MonoBehaviour:
   condition: 3
   startGameButton: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   startGameUI: {fileID: 760871640}
+  recenterPlayerButton: {fileID: -4380237131950267087, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  recenterAnchor: {fileID: 1879171370}
+  xrOrigin: {fileID: 282668506}
   ghostPrefab: {fileID: 330785707499205332, guid: 56d6d76153c6e4540ac5af6c4e771d8a, type: 3}
   ghostSpawnPoints:
   - {fileID: 1152734341}
@@ -38354,7 +38353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43622,11 +43621,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856026485}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &862692871 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -3628690197520011886, guid: c04b79fbd4fcfc746a1c247f24f4620f, type: 3}
-  m_PrefabInstance: {fileID: 1864422245}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &896551955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6857788192064577062, guid: f3b91efaa72ad254e845ba242c827bf3, type: 3}
@@ -53796,11 +53790,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: f3b91efaa72ad254e845ba242c827bf3, type: 3}
   m_PrefabInstance: {fileID: 319316130}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1556848778 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -3628690197520011886, guid: c04b79fbd4fcfc746a1c247f24f4620f, type: 3}
-  m_PrefabInstance: {fileID: 1525511828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1565774306 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6481476239624149790, guid: f805c1afa505ce449ad1bbc22ce52aed, type: 3}
@@ -54627,11 +54616,7 @@ MonoBehaviour:
   - {fileID: 1920174169}
   - {fileID: 778929512}
   maxVibrationValue: 150
-  materials:
-  - meshRenderer: {fileID: 1556848778}
-    materialIndex: 2
-    intensityRange: {x: 3, y: 0}
-    propertyName: _Glow_intensity
+  materials: []
 --- !u!1 &1684766405
 GameObject:
   m_ObjectHideFlags: 0
@@ -56229,6 +56214,37 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1879171369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879171370}
+  m_Layer: 0
+  m_Name: Recenterpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1879171370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879171369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.002797299, y: 0.496, z: 0.067}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4741253116372376682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1881487044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64696,6 +64712,7 @@ Transform:
   - {fileID: 2931193303230094875}
   - {fileID: 980661406382210302}
   - {fileID: 1705229836}
+  - {fileID: 1879171370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4850943647334001646

@@ -17,12 +17,17 @@ public class GazeGameManager : MonoBehaviour
     public static GazeGameManager Instance;
 
     [Header("Session settings")]
-    public int participantNumber;
+    [SerializeField] int participantNumber;
     public Conditions condition;
 
     [Header("Game Starting")]
-    public InputActionReference startGameButton;
-    public GameObject startGameUI;
+    [SerializeField] InputActionReference startGameButton;
+    [SerializeField] GameObject startGameUI;
+
+    [Header("Recentering")]
+    [SerializeField] InputActionReference recenterPlayerButton;
+    [SerializeField] Transform recenterAnchor;
+    [SerializeField] GameObject xrOrigin;
 
     [Header("Spawning Settings")]
     [SerializeField] GameObject ghostPrefab;
@@ -115,6 +120,10 @@ public class GazeGameManager : MonoBehaviour
             gameStarted = true;
             startGameUI.SetActive(false);
         }
+
+        if (!gameStarted && recenterPlayerButton.action.WasPerformedThisFrame())
+            RecenterPlayer();
+
     }
 
     // -------------------------------------------------------------------------
@@ -282,6 +291,22 @@ public class GazeGameManager : MonoBehaviour
         hauntedToys.Remove(toy);
         unPossessedToys.Add(toy);
         Debug.Log($"[DDA] Silently un-haunted toy: {toy.name}");
+    }
+
+    // -------------------------------------------------------------------------
+    // Recentering player
+    // -------------------------------------------------------------------------
+    void RecenterPlayer()
+    {
+        Transform mainCamera = Camera.main.transform;
+
+        Vector3 posOffset = mainCamera.position - recenterAnchor.position;
+        float yRotOffset = mainCamera.transform.rotation.eulerAngles.y - recenterAnchor.rotation.eulerAngles.y;
+
+        Vector3 pos = xrOrigin.transform.position - posOffset;
+        Quaternion rot = Quaternion.Euler(xrOrigin.transform.rotation.x, xrOrigin.transform.rotation.eulerAngles.y - yRotOffset, xrOrigin.transform.rotation.z);
+
+        xrOrigin.transform.SetPositionAndRotation(pos, rot);
     }
 
     // -------------------------------------------------------------------------
