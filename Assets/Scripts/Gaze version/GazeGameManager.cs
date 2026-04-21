@@ -4,9 +4,21 @@ using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum Conditions
+{
+    NoVibration,
+    HandVibration,
+    ArmVibration,
+    AllVibration
+}
+
 public class GazeGameManager : MonoBehaviour
 {
     public static GazeGameManager Instance;
+
+    [Header("Session settings")]
+    public int participantNumber;
+    public Conditions condition;
 
     [Header("Game Starting")]
     public InputActionReference startGameButton;
@@ -37,6 +49,7 @@ public class GazeGameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] GhostCapsuleManager ghostContainer;
 
+
     // -------------------------------------------------------------------------
     // Internal state
     // -------------------------------------------------------------------------
@@ -54,7 +67,7 @@ public class GazeGameManager : MonoBehaviour
     float timeAtNoHiddenGhosts;     // player is excelling, clears ghosts fast
     float noHauntTimer;             // time since last toy was haunted
 
-    Transform lastUsedSpawnPoint;   // prevents back-to-back same-location spawns
+    Transform lastUsedSpawnPoint;
 
     bool gameStarted;
 
@@ -110,6 +123,10 @@ public class GazeGameManager : MonoBehaviour
 
     public void StartGame()
     {
+        SessionLogger.Instance.SetParticipantID(participantNumber);
+        SessionLogger.Instance.SetCondition(condition.ToString());
+        SessionLogger.Instance.Log("Started Game");
+
         StartCoroutine(GameplayLoop());
     }
 
@@ -193,7 +210,7 @@ public class GazeGameManager : MonoBehaviour
                 TrySpawnGhost();
                 ghostSpawnTimer = 0f;
                 timeAtNoHiddenGhosts = 0f;
-                Debug.Log("[DDA] Emergency ghost spawn — scene was ghost-free too long");
+                Debug.Log("[DDA] Emergency ghost spawn - scene was ghost-free too long");
             }
 
             yield return new WaitForSeconds(tick);

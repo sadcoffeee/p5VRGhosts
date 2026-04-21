@@ -21,6 +21,8 @@ public class HapticController : MonoBehaviour
     private float _blockTimer = 0f;
     private float _driftOffset = 0f;
     private float _driftTimer = 0f;
+    private float _latestValue;
+    private bool _doHaptics;
 
     // -------------------------------------------------------------------------
     // Lifecycle
@@ -33,11 +35,18 @@ public class HapticController : MonoBehaviour
 
         PickNewDriftOffset();
     }
+    private void Start()
+    {
+        Conditions currentCondition = GazeGameManager.Instance.condition;
+        if (currentCondition == Conditions.AllVibration || currentCondition == Conditions.HandVibration)
+            _doHaptics = true;
+        else _doHaptics = false;
+    }
 
     private void Update()
     {
         // Tick down the SendOnce block first; skip everything else while active
-        if (_blockTimer > 0f)
+        if (_blockTimer > 0f || !_doHaptics)
         {
             _blockTimer -= Time.deltaTime;
             return;
@@ -45,6 +54,7 @@ public class HapticController : MonoBehaviour
 
         // Step linearly toward the target amplitude this frame
         _currentAmplitude = Mathf.MoveTowards(_currentAmplitude, _targetAmplitude, rampSpeed * Time.deltaTime);
+        
 
         // Advance drift timer and pick a new offset when it expires.
         // Drift is only applied while there's meaningful amplitude to vary
@@ -62,6 +72,9 @@ public class HapticController : MonoBehaviour
         // Fire a short impulse at the drifted amplitude every frame.
         // The impulse duration slightly overlaps the next frame's impulse, which is intentional
         float driftedAmplitude = Mathf.Clamp01(_currentAmplitude + _driftOffset);
+
+        _latestValue = driftedAmplitude;
+
         if (driftedAmplitude > 0f && _hapticPlayer != null)
             _hapticPlayer.SendHapticImpulse(driftedAmplitude, impulseDuration);
     }
@@ -75,6 +88,8 @@ public class HapticController : MonoBehaviour
 
         _hapticPlayer.SendHapticImpulse(amplitude, duration);
         _blockTimer = duration;
+
+        _latestValue = amplitude;
     }
 
     public void SetTarget(float amplitude)
@@ -89,6 +104,7 @@ public class HapticController : MonoBehaviour
         _driftOffset = 0f;
         _blockTimer = 0f;
     }
+    public float GetLatestValue() => _latestValue;
 
     // -------------------------------------------------------------------------
     // Internal

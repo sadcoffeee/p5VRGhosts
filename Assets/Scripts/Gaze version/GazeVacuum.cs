@@ -340,6 +340,7 @@ public class GazeVacuum : MonoBehaviour
     void EnterHolding()
     {
         state = VacuumState.Holding;
+        SessionLogger.Instance.IncreaseToyHeldCount();
         ResetEffects();
     }
 

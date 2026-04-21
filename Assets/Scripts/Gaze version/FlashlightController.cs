@@ -22,12 +22,9 @@ public class FlashlightController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] bool drawDebugGizmos = true;
     [SerializeField] bool doVibrationVisualization = true;
-    [SerializeField] TMP_Text leftVibVis;
-    [SerializeField] TMP_Text rightVibVis;
+    [SerializeField] bool doVibration = true;
     [SerializeField] VibrationVisualizer leftVibrationVisualizer;
     [SerializeField] VibrationVisualizer rightVibrationVisualizer;
-
-
 
 
     // Smoothed current vibration values so they don't jump abruptly
@@ -42,18 +39,16 @@ public class FlashlightController : MonoBehaviour
 
     // Stun reward impulse countdown (> 0 means impulse is active)
     private float rewardTimer = 0f;
+
+    private void Start()
+    {
+        Conditions currentCondition = GazeGameManager.Instance.condition;
+        if (currentCondition == Conditions.AllVibration || currentCondition == Conditions.ArmVibration)
+            doVibration = true;
+        else doVibration = false;
+    }
     void Update()
     {
-        // Default to using visualization rather than sending vibration CMDS, change that if we ever get a connection on the VibController
-        // Used for testing when we don't have the custom haptics connected
-        
-        if (vibController.connectionEstablished && doVibrationVisualization) 
-        {
-            //doVibrationVisualization = false;
-            leftVibVis.gameObject.SetActive(false);
-            rightVibVis.gameObject.SetActive(false);
-        }
-        
         GhostBehavior[] allGhosts = GazeGameManager.Instance.GetAllGhosts();
         Transform[] allToys = GazeGameManager.Instance.GetAllToys();
 
@@ -197,19 +192,13 @@ public class FlashlightController : MonoBehaviour
         currentRightVib = Mathf.Lerp(currentRightVib, targetRight, hapticSmoothSpeed * Time.deltaTime);
 
         // Only send commands if we've confirmed that there's a connection
-        if (vibController.connectionEstablished)
+        if (vibController.connectionEstablished && doVibration)
         {
             SendArmband(vibController, "PC", currentLeftVib);
             SendArmband(vibController, "PL", currentRightVib);
         }
         if (doVibrationVisualization)
         {
-            //leftVibVis.text = currentLeftVib.ToString("0.00");
-            //rightVibVis.text = currentRightVib.ToString("0.00");
-
-            leftVibVis.text = "";
-            rightVibVis.text = "";
-
             leftVibrationVisualizer.SetVibrationValue(currentLeftVib);
             rightVibrationVisualizer.SetVibrationValue(currentRightVib);
         }
@@ -226,6 +215,16 @@ public class FlashlightController : MonoBehaviour
     {
         rewardTimer = rewardDuration;
     }
+
+    // Used by logger to get vibration values on pain stimuli
+    public float[] getVibrationValues()
+    {
+        float[] values = new float[2];
+        values[0] = currentLeftVib;
+        values[1] = currentRightVib;
+        return values;
+    }
+
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

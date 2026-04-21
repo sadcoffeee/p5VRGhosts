@@ -7,7 +7,6 @@ public class HoverGhost : MonoBehaviour
     float startOffset = 0f;
 
     public Vector3 startPosition;
-    float returnspeed = 2f;
 
     private void Start()
     {

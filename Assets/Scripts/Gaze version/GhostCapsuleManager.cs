@@ -29,6 +29,7 @@ public class GhostCapsuleManager : MonoBehaviour
             SpawnMiniGhost();
         // If cap reached we keep existing ghosts and only update the counter.
     }
+    public int TotalCaught() { return _totalCaught; }
 
     // Internals
     private void SpawnMiniGhost()
