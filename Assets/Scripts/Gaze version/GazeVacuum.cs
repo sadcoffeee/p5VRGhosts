@@ -204,7 +204,8 @@ public class GazeVacuum : MonoBehaviour
             return;
         }
 
-        OutlineObject outlineObject = currentTarget.GetComponent<OutlineObject>();
+        OutlineObject outlineObject = currentTarget.GetComponent<OutlineObject>(); //does tge object support outlining
+
         if (outlineObject != null)
         {
             outlineObject.Select();
