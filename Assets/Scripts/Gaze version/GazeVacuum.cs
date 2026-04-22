@@ -232,17 +232,27 @@ public class GazeVacuum : MonoBehaviour
                 return;
             }
         }
-        foreach (var obj in candidates)
+        foreach (var obj in candidates) //loops through every GameObject currently inside the vacuum’s detection area.
         {
-            if (obj == null) continue;
+            if (obj == null) continue; //if it does not exists, ignore
 
-            else if (obj.CompareTag("Toy"))
+            else if (obj.CompareTag("Toy")) //if the object is a toy
             {
-                if (!obj.GetComponent<HauntableToy>().IsHaunted()) 
+                HauntableToy hauntable = obj.GetComponent<HauntableToy>(); //looks for HauntableToy script on the toy, if there is one store in hauntable
+
+                if (hauntable.IsHaunted()) //is the toy haunted, 
+                {
+                    hauntable.OnVacuumAttempt(); // tells the toy that it tried to vacuumed
+                    suckBlockTimer = suckBlockDuration; //Temporarily disables vacuum sucking.
+
+                    return;
+                }
+                else //the toy us not haunted and save to suck
                 {
                     StartSuckingToy(obj);
                     return;
                 }
+
             }
         }
     }

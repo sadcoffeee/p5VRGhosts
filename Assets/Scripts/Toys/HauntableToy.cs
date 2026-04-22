@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.TerrainTools;
+using System.Collections;
 
 public class HauntableToy : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class HauntableToy : MonoBehaviour
     [SerializeField] Material hauntedMaterial;
     [SerializeField] GameObject ExpelledGhost;
     [SerializeField] Vector3 GhostSpawnOffset = new Vector3(0, 1f, 0);
-    [SerializeField] float expellDelay = 3f;
+    [SerializeField] float expellDelay = 3f; //how long it needs to be attacked
+    [SerializeField] float vacuumTimer = 3f;
+    [SerializeField] float flashlightTimer = 3f;
 
     [Header("Movement")]
     [SerializeField] float waypointIdleTime = 5f;
@@ -28,8 +31,9 @@ public class HauntableToy : MonoBehaviour
     Material defaultMaterial;
     HauntedToyWaypoint waypoint;
     float idleTimer = 0f;
-    float expellTimer = 0f;
+    float expellTimer = 0f; //how long the toy/ghost has been attacked
     float expellTimerStore = 0f;
+
 
     //Delegates
     public delegate void WaypointSet(HauntedToyWaypoint waypoint);
@@ -51,6 +55,7 @@ public class HauntableToy : MonoBehaviour
 
         if (!isHaunted)
             defaultMaterial = meshRenderer.material;
+
     }
 
     private void Update()
@@ -125,8 +130,9 @@ public class HauntableToy : MonoBehaviour
 
         expellTimer = 0f;
 
-        if (outline != null)
-            outline.enabled = !state;
+        //not include, so outline appears on haunted toys
+        //if (outline != null)
+          //  outline.enabled = !state;
 
         onHaunted?.Invoke(state);
     }
@@ -172,6 +178,36 @@ public class HauntableToy : MonoBehaviour
     }
 
 
+    public void OnVacuumAttempt()
+    {
+        if (!isHaunted)
+            return;
+
+
+        expellTimer += Time.deltaTime;
+
+        float intensity = 0.03f;
+       
+        // Apply shake
+        Vector3 offset = Random.insideUnitSphere * intensity;
+        offset.y = 0f; // optional: keep it horizontal
+
+        transform.position += offset;
+
+        //apply shake
+
+        if (expellTimer >= vacuumTimer)
+        {
+            ReleaseGhost();
+        }
+
+
+
+    }
+
+
+
+
     // Returns the distance to the current waypoint projected to the horizontal plane. Effectivly negates distance in height
     public float DistanceToWaypoint()
     {
@@ -203,7 +239,7 @@ public class HauntableToy : MonoBehaviour
         if (!isHaunted) return;
 
         expellTimer += time;
-        if (expellTimer > expellDelay)
+        if (expellTimer > flashlightTimer)
             ReleaseGhost();
     }
 }

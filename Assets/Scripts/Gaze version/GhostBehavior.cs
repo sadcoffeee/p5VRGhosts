@@ -230,7 +230,7 @@ public class GhostBehavior : MonoBehaviour
 
     void EnterExitingScene()
     {
-        isGrabbable = false; // ghost got the toy and is now escaping, no longer catchable
+        isGrabbable = true; // ghost got the toy and is now escaping, no longer catchable
         if (stolenToyTransform != null)
         {
             stolenToyTransform.SetParent(transform);
@@ -311,6 +311,9 @@ public class GhostBehavior : MonoBehaviour
     // Vacuum
     public void OnGrabbed()
     {
+        //drop the toy when vacuum cathes the ghost
+        DropStolenToys();
+
         currentState = GhostState.Grabbed;
         isGrabbable = false;
 
@@ -362,4 +365,30 @@ public class GhostBehavior : MonoBehaviour
         GazeGameManager.Instance?.OnGhostDefeated(this, Time.time, byVacuum);
         Destroy(gameObject);
     }
+
+    void DropStolenToys()
+    {
+        if (stolenToyTransform == null)
+            return;
+
+        //detach from ghost
+        stolenToyTransform.SetParent(null);
+
+        //re-enable physics
+        Rigidbody toyRb = stolenToyTransform.GetComponent<Rigidbody>();
+
+        if (toyRb != null)
+        {
+            toyRb.isKinematic = false;
+            toyRb.linearVelocity = Vector3.zero;
+            toyRb.angularVelocity = Vector3.zero;
+        }
+
+
+        // Ghost no longer owns a toy
+        stolenToyTransform = null;
+
+
+    }
+
 }

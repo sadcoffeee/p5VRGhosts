@@ -6320,6 +6320,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2297174259392022289, guid: 07c33c1bb181e1f4f96328743baa2848, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55539,6 +55543,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1814788487}
     m_Modifications:
+    - target: {fileID: 3505478391692824381, guid: 59699d144248bab43bf0e50711072ba1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4661797024891709602, guid: 59699d144248bab43bf0e50711072ba1, type: 3}
       propertyPath: m_Name
       value: Prop_Ball_03 Variant
