@@ -168,7 +168,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   rb: {fileID: 0}
   outline: {fileID: -5995281833533336962}
-  expellParticles: {fileID: 0}
+  expellParticles: {fileID: 3505478391692824381}
 --- !u!114 &3696854810548079334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +279,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+--- !u!1 &3505478391692824381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964990232482487493, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}
+  m_PrefabInstance: {fileID: 7089247478610105336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4972761076820810440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2837508417489766704, guid: fb10de174f1e3af4bbf0de222f9b3b6a, type: 3}

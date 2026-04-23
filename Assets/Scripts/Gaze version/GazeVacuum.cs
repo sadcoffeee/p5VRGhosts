@@ -36,6 +36,7 @@ public class GazeVacuum : MonoBehaviour
     [Header("References")]
     public HapticController hapticController;
     public GameObject suckEffect;
+    public LineRenderer selectedObjectLine;
 
     // -------------------------------------------------------------------------
     // Runtime state
@@ -201,6 +202,7 @@ public class GazeVacuum : MonoBehaviour
         if (currentTarget == null)
         {
             OutlineObject.Deselect();
+            RemoveLineToObject();
             return;
         }
 
@@ -208,12 +210,30 @@ public class GazeVacuum : MonoBehaviour
 
         if (outlineObject != null)
         {
+            // Check if outlineObject is a hiding ghost before highlighting it
+            GhostBehavior ghostBehavior = outlineObject.GetComponent<GhostBehavior>();
+            if (ghostBehavior != null && !ghostBehavior.isGrabbable)
+                return;
+
             outlineObject.Select();
+            DrawLineToObject(outlineObject);
         }
         else
         {
             OutlineObject.Deselect();
+            RemoveLineToObject();
         }
+    }
+
+    void DrawLineToObject(OutlineObject obj)
+    {
+        selectedObjectLine.SetPosition(0, selectedObjectLine.transform.position);
+        selectedObjectLine.SetPosition(1, obj.transform.position);
+    }
+    void RemoveLineToObject()
+    {
+        selectedObjectLine.SetPosition(0, selectedObjectLine.transform.position);
+        selectedObjectLine.SetPosition(1, selectedObjectLine.transform.position);
     }
 
     // -------------------------------------------------------------------------
@@ -230,6 +250,7 @@ public class GazeVacuum : MonoBehaviour
             if (obj.CompareTag("Ghost"))
             {
                 StartSuckingGhost(obj);
+                RemoveLineToObject();
                 return;
             }
         }
@@ -251,6 +272,7 @@ public class GazeVacuum : MonoBehaviour
                 else //the toy us not haunted and save to suck
                 {
                     StartSuckingToy(obj);
+                    RemoveLineToObject();
                     return;
                 }
 
