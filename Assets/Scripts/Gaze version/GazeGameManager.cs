@@ -77,6 +77,11 @@ public class GazeGameManager : MonoBehaviour
     bool gameStarted;
 
     // -------------------------------------------------------------------------
+    // Metrics (For logging)
+    // -------------------------------------------------------------------------
+    int total_ghosts_spawned = 0;
+
+    // -------------------------------------------------------------------------
     // Unity lifecycle
     // -------------------------------------------------------------------------
 
@@ -134,7 +139,6 @@ public class GazeGameManager : MonoBehaviour
     {
         SessionLogger.Instance.SetParticipantID(participantNumber);
         SessionLogger.Instance.SetCondition(condition.ToString());
-        SessionLogger.Instance.Log("Started Game");
 
         StartCoroutine(GameplayLoop());
     }
@@ -242,6 +246,7 @@ public class GazeGameManager : MonoBehaviour
         Instantiate(ghostPrefab, spawnPoint.position, spawnPoint.rotation);
         lastUsedSpawnPoint = spawnPoint;
         Debug.Log($"[Spawn] Ghost spawned at {spawnPoint.name}");
+        total_ghosts_spawned++;
     }
 
     Transform PickSpawnPoint()
@@ -380,5 +385,30 @@ public class GazeGameManager : MonoBehaviour
 
         Grabbable grabbable = freedToy.GetComponent<Grabbable>();
         if (grabbable != null) grabbable.enabled = true;
+    }
+
+    public float GetSpawnDelay()
+    {
+        return ghostSpawnDelay;
+    }
+
+    public int GetCurrentNumOfHauntedToys()
+    {
+        return hauntedToys.Count;
+    }
+
+    public int GetCurrentNumOfGhosts()
+    {
+        return allGhosts.Count;
+    }
+
+    public int GetTotalGhostsSpawned()
+    {
+        return total_ghosts_spawned;
+    }
+
+    public bool IsGameStarted()
+    {
+        return gameStarted;
     }
 }

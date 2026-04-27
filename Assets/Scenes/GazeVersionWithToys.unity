@@ -32151,12 +32151,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2580325b1e4261438ef9cea7960529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doLogging: 0
+  doLogging: 1
   armHaptics: {fileID: 186459515}
   handHaptics: {fileID: 319434909}
   caughtGhostsCounter: {fileID: 985721140}
-  logHapticsButton: 32
+  PlayerHead: {fileID: 1874896720}
+  logPainButton: 32
   triggerButton: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  writeInterval: 1
+  maxLinesPerWrite: 1000
 --- !u!1 &647952847
 GameObject:
   m_ObjectHideFlags: 0
@@ -38498,7 +38501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
