@@ -40,6 +40,9 @@ public class FlashlightController : MonoBehaviour
     // Stun reward impulse countdown (> 0 means impulse is active)
     private float rewardTimer = 0f;
 
+    // Used for metrics
+    GhostBehavior nearestHapticGhost = null;
+
     private void Start()
     {
         Conditions currentCondition = GazeGameManager.Instance.condition;
@@ -53,7 +56,7 @@ public class FlashlightController : MonoBehaviour
         Transform[] allToys = GazeGameManager.Instance.GetAllToys();
 
         HashSet<GhostBehavior> litThisFrame = new HashSet<GhostBehavior>();
-        GhostBehavior nearestHapticGhost = null;
+        nearestHapticGhost = null;
         float nearestDist = float.MaxValue;
         ghostBeingLitThisFrame = false;
 
@@ -223,6 +226,11 @@ public class FlashlightController : MonoBehaviour
         values[0] = currentLeftVib;
         values[1] = currentRightVib;
         return values;
+    }
+
+    public GhostBehavior GetCurrentGhost()
+    {
+        return nearestHapticGhost;
     }
 
 
