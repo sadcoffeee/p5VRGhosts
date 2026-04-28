@@ -307,6 +307,7 @@ public class GazeGameManager : MonoBehaviour
         Quaternion rot = Quaternion.Euler(xrOrigin.transform.rotation.x, xrOrigin.transform.rotation.eulerAngles.y - yRotOffset, xrOrigin.transform.rotation.z);
 
         xrOrigin.transform.SetPositionAndRotation(pos, rot);
+        Debug.Log("yes");
     }
 
     // -------------------------------------------------------------------------

@@ -2075,7 +2075,7 @@
                     "id": "959ebc16-afe3-44da-82d2-95c168324a56",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold(duration=0.2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
