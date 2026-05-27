@@ -108,6 +108,9 @@ public class GazeGameManager : MonoBehaviour
 
         lastUsedSpawnPoint = null;
 
+        SessionLogger.Instance.SetParticipantID(participantNumber);
+        SessionLogger.Instance.SetCondition(condition.ToString());
+
         // Collect all toys in the scene
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Toy"))
         {
@@ -137,9 +140,9 @@ public class GazeGameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SessionLogger.Instance.SetParticipantID(participantNumber);
-        SessionLogger.Instance.SetCondition(condition.ToString());
-
+        //SessionLogger.Instance.SetParticipantID(participantNumber);
+        //SessionLogger.Instance.SetCondition(condition.ToString());
+        SessionLogger.Instance.InitLogFile(participantNumber, condition.ToString());
         StartCoroutine(GameplayLoop());
     }
 

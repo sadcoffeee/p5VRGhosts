@@ -86,6 +86,8 @@ public class HapticController : MonoBehaviour
     {
         if (_hapticPlayer == null) return;
 
+        if (!_doHaptics) return;
+
         _hapticPlayer.SendHapticImpulse(amplitude, duration);
         _blockTimer = duration;
 

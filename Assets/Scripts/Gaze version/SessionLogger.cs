@@ -60,17 +60,15 @@ public class SessionLogger : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        if (doLogging)
-            InitLogFile();
+        
 
         //TODO: Start logging coroutine
-        StartCoroutine(WriteQueueCoroutine());
     }
 
-    void InitLogFile()
+    public void InitLogFile(int participantID, string conditionName)
     {
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        string path = Path.Combine(Application.persistentDataPath, $"session_{timestamp}.csv");
+        string path = Path.Combine(Application.persistentDataPath, $"session_{timestamp}_participant_{participantID}_{conditionName}.csv");
 
         _writer = new StreamWriter(path, append: false);
         _sessionStart = Time.time;
@@ -90,6 +88,9 @@ public class SessionLogger : MonoBehaviour
             "num_trigger_presses;" +
             "current_ghost_spawn_delay;" +
             "absolute_look_ghost_direction_difference");
+
+
+        StartCoroutine(WriteQueueCoroutine());
     }
 
     void LateUpdate()
@@ -177,7 +178,8 @@ public class SessionLogger : MonoBehaviour
         {
             ghost_direction = (ghost.transform.position - PlayerHead.position).normalized;
 
-            absolute_look_ghost_direction_difference = MathF.Abs(Vector3.Distance(look_direction, ghost_direction));
+            //absolute_look_ghost_direction_difference = MathF.Abs(Vector3.Distance(look_direction, ghost_direction));
+            absolute_look_ghost_direction_difference = Vector3.Angle(look_direction, ghost_direction);
         }
         else
         {

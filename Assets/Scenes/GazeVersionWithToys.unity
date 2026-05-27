@@ -32096,7 +32096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efab5ed634dc484e81e8f04badc2e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: COM5
+  portName: COM7
   connectionEstablished: 0
 --- !u!114 &630644710
 MonoBehaviour:
@@ -32110,8 +32110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a073b6e0188ec446bf12caba6cbf3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantNumber: 0
-  condition: 3
+  participantNumber: 14
+  condition: 1
   startGameButton: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   startGameUI: {fileID: 760871640}
   recenterPlayerButton: {fileID: -4380237131950267087, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -38501,7 +38501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56346,7 +56346,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.25
+  near clip plane: 0.15
   far clip plane: 1000
   field of view: 60
   orthographic: 0
